@@ -4,6 +4,50 @@
     cursor: pointer;
 }
 
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header {
+    &__nav {
+        &-items {
+            display: flex;
+            align-items: center;
+        }
+
+        &-item {
+            margin: 0 10px;
+            list-style-type: none;
+
+            a {
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                color: #222;
+                font-weight: 400;
+                cursor: pointer;
+                transition: all .2s ease-out;
+
+                &:hover {
+                    text-decoration: wavy;
+                    color: #0049d1;
+                    transition: all .2s ease-out;
+                }
+
+                img {
+                    display: block;
+                }
+
+
+
+            }
+        }
+    }
+
+}
+
 .presentation {
     width: 100%;
     height: 636px;
@@ -13,4 +57,5 @@
     background-position: center center;
     background-blend-mode: multiply;
     background-color: rgba(0, 0, 0, 0.2);
+
 }
