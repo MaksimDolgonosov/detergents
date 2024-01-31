@@ -20,7 +20,7 @@ const Header = () => {
                 <Navbar.Brand href="#home"><img src={Logo} className='logo' alt='logo' /></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-                    <Nav className="me-auto justify-content-end">
+                    <Nav className="me-right">
                         <NavDropdown title="Категории" id="basic-nav-dropdown" className='d-block'>
                             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">
@@ -32,8 +32,9 @@ const Header = () => {
                                 Separated link
                             </NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Link href="#home" className='d-block'>Доставка</Nav.Link>
-                        <Nav.Link href="#link" className='d-block'>Контакты</Nav.Link>
+                        <Nav.Link href="#home" >О нас</Nav.Link>
+                        <Nav.Link href="#home" >Доставка</Nav.Link>
+                        <Nav.Link href="#link" >Контакты</Nav.Link>
 
                     </Nav>
                     <Nav>
