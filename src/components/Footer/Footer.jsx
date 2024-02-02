@@ -14,11 +14,11 @@ const Footer = () => {
     console.log(date)
     return (
         <footer className='footer bg-body-tertiary'>
-            <a href="http://webmaks.site">&copy; {date} powered by webmaks</a>
+            <a className='footer__link' href="http://webmaks.site">&copy; {date} powered by webmaks</a>
             <div className='footer__descr'>
-                <Link >О нас</Link>
-                <Link >Политика конфиденциальности</Link>
-                <Link >Контакты</Link>
+                <Link className='footer__descr-link'>О нас</Link>
+                <Link className='footer__descr-link'>Политика конфиденциальности</Link>
+                <Link className='footer__descr-link'>Контакты</Link>
             </div>
         </footer >
     );
