@@ -1,21 +1,26 @@
+import { Link } from 'react-router-dom';
+import '../css/loginPage.scss';
 
 export const LoginPage = () => {
     return (
         <div className="login_page">
-            <h2>Войти в аакаунт</h2>
+            <h2>Войти</h2>
+            <h3>Что бы продолжить</h3>
             <form>
                 <label>
-                    <p>Username</p>
-                    <input type="text" />
+                    <div className="login__login">Логин</div>
+                    <input type="text" placeholder='Ваш email' />
                 </label>
                 <label>
-                    <p>Password</p>
+                    <div className="login__password">Пароль</div>
                     <input type="password" />
                 </label>
                 <div>
-                    <button type="submit">Submit</button>
+                    <button type="submit">Войти</button>
                 </div>
             </form>
+            <div className="login_redirect">Нет аккаунта? <Link to="/register">Зарегистрироваться</Link></div>
         </div>
+      
     )
 }
