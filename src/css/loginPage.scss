@@ -23,12 +23,12 @@
 
     }
 
-    form {
+    .form {
 
 
-        label {
-            width: 100%;
-            margin: 8px 0;
+        // label {
+        //     width: 100%;
+        //     margin: 8px 0;
 
             input {
                 box-sizing: inherit;
@@ -43,7 +43,7 @@
                 border-radius: 0.375rem;
                 border: 1px solid rgba(0, 0, 0, 0.16);
             }
-        }
+        // }
     }
 
 

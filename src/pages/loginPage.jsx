@@ -1,26 +1,57 @@
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setUser } from "../slices/userSlice";
+import { useHttp } from "../hooks/useHttp";
 import '../css/loginPage.scss';
 
 export const LoginPage = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { request } = useHttp();
+
+    const onLogin = (email, password) => {
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth, email, password)
+            .then(({ user }) => {
+                console.log(user)
+                request("http://localhost:3001/users")
+                    .then(data => data.filter(serverUser => serverUser.id === user.uid))
+                    .then(console.log())
+                // dispatch(setUser({
+                //     email: user.email,
+                //     id: user.uid,
+                //     token: user.refreshToken
+                // }));
+                // navigate("/goods");
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            });
+    }
     return (
         <div className="login_page">
             <h2>Войти</h2>
             <h3>Что бы продолжить</h3>
-            <form>
-                <label>
-                    <div className="login__login">Логин</div>
-                    <input type="text" placeholder='Ваш email' />
-                </label>
-                <label>
-                    <div className="login__password">Пароль</div>
-                    <input type="password" />
-                </label>
+            <div className="form">
+
+                <div className="login__login">Логин</div>
+                <input type="text" placeholder='Ваш email' value={email} onChange={e => setEmail(e.target.value)} />
+
+                <div className="login__password">Пароль</div>
+                <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
+
                 <div>
-                    <button type="submit">Войти</button>
+                    <button onClick={() => onLogin(email, password)}>Войти</button>
                 </div>
-            </form>
+            </div>
             <div className="login_redirect">Нет аккаунта? <Link to="/register">Зарегистрироваться</Link></div>
         </div>
-      
+
     )
 }

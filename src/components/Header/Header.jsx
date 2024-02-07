@@ -47,7 +47,7 @@ const Header = () => {
                                     Войти</Link>}
 
                             </Nav.Link>
-                            <Nav.Link href="#link">
+                            <Nav.Link >
                                 {/* <img src={Store} className='store' alt='store' /> */}
                                 <FaBasketShopping className='nav_basket' />
                                 Корзина</Nav.Link>

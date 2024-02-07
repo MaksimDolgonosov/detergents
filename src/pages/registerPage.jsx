@@ -23,7 +23,9 @@ export const RegisterPage = () => {
                     name: name,
                     email: user.email,
                     id: user.uid,
-                    token: user.refreshToken
+                    status: "customer",
+                    basket:[],
+                    history: []
                 }));
                 navigate("/goods");
             })
