@@ -20,6 +20,15 @@ const Header = () => {
     const { isAuth, name } = useAuth();
     const dispatch = useDispatch();
 
+    const Name = () => {
+        return (
+            <>
+                <IoPersonCircleOutline style={{ marginBottom: "3px", marginRight: "3px" }} />
+                {name}
+            </>
+        )
+    }
+
     const onLogout = () => {
         dispatch(removeUser());
     }
@@ -48,24 +57,24 @@ const Header = () => {
 
                         </Nav>
                         <Nav >
-                            <Nav.Link href="#action/3.4" >
-                                {isAuth ?
-                                    <>
-                                        <IoPersonCircleOutline />
-                                        <NavDropdown title={name} id="basic-nav-dropdown" className='d-block'>
-                                            <NavDropdown.Item href="/personal">Личный кабинет</NavDropdown.Item>
-                                            <NavDropdown.Item href="/basket">Корзина</NavDropdown.Item>
-                                            <NavDropdown.Divider />
-                                            <NavDropdown.Item onClick={onLogout}>Выйти</NavDropdown.Item>
-                                        </NavDropdown>
-                                    </>
+                            {/* <Nav.Link href="#action/3.4" > */}
+                            {isAuth ?
+                                <>
+                                    {/* <IoPersonCircleOutline style={{ marginTop: "5%" }} /> */}
+                                    <NavDropdown title={<Name />} id="basic-nav-dropdown" className='d-block header_black'>
+                                        <NavDropdown.Item href="/personal">Личный кабинет</NavDropdown.Item>
+                                        <NavDropdown.Item href="/basket">Корзина</NavDropdown.Item>
+                                        <NavDropdown.Divider />
+                                        <NavDropdown.Item onClick={onLogout}>Выйти</NavDropdown.Item>
+                                    </NavDropdown>
+                                </>
 
-                                    // <Link to="/personal"><IoPersonCircleOutline /> {name}</Link> 
-                                    :
-                                    <Link to="/login"><FaArrowRightToBracket className='nav_login' />
-                                        Войти</Link>}
+                                // <Link to="/personal"><IoPersonCircleOutline /> {name}</Link> 
+                                :
+                                <Nav.Link href="/login"><FaArrowRightToBracket className='nav_login' />
+                                    Войти</Nav.Link>}
 
-                            </Nav.Link>
+                            {/* </Nav.Link> */}
                             <Nav.Link href="/basket" style={{ position: "relative" }}>
 
                                 <>

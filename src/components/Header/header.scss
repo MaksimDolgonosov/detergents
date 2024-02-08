@@ -13,6 +13,12 @@ header {
     a {
         text-decoration: none;
         color: black;
+
+        .header_black {
+            text-decoration: none;
+            color: black;
+        }
+
     }
 
     .header__basket__span {
@@ -31,4 +37,12 @@ header {
         font-family: sans-serif;
 
     }
+}
+
+.header_black {
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
 }
