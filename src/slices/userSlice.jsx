@@ -26,8 +26,8 @@ const userSlice = createSlice({
             state.email = null;
             state.id = null;
             state.status = null;
-            state.basket = null;
-            state.history = null;
+            state.basket = [];
+            state.history = [];
         }
     }
 })

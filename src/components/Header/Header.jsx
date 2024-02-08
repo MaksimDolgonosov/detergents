@@ -9,14 +9,20 @@ import { Link } from 'react-router-dom';
 import Logo from '../../images/logo/logo2.svg';
 import { useAuth } from '../../hooks/useAuth';
 import { FaArrowRightToBracket } from "react-icons/fa6";
-import EnterLogo from '../../images/logo/enter.svg';
-
+// import EnterLogo from '../../images/logo/enter.svg';
+import { removeUser } from '../../slices/userSlice';
 import { FaBasketShopping } from "react-icons/fa6";
 import { IoPersonCircleOutline } from "react-icons/io5";
+import { useDispatch, useSelector } from 'react-redux';
 
 const Header = () => {
-
+    const basket = useSelector(state => state.user.basket);
     const { isAuth, name } = useAuth();
+    const dispatch = useDispatch();
+
+    const onLogout = () => {
+        dispatch(removeUser());
+    }
     return (
         <header>
             <Navbar expand="lg" className="bg-body-tertiary header">
@@ -33,24 +39,44 @@ const Header = () => {
                                 <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="#action/3.4">
-                                    Separated link
+                                    Все
                                 </NavDropdown.Item>
                             </NavDropdown>
-                            <Nav.Link href="#home" >О нас</Nav.Link>
-                            <Nav.Link href="#home" >Доставка</Nav.Link>
-                            <Nav.Link href="#link" >Контакты</Nav.Link>
+                            <Nav.Link href="#action/3.4" >О нас</Nav.Link>
+                            <Nav.Link href="#action/3.4" >Доставка</Nav.Link>
+                            <Nav.Link href="#action/3.4" >Контакты</Nav.Link>
 
                         </Nav>
-                        <Nav>
-                            <Nav.Link >
-                                {isAuth ? <Link ><IoPersonCircleOutline /> {name}</Link> : <Link to="/login"><FaArrowRightToBracket className='nav_login' />
-                                    Войти</Link>}
+                        <Nav >
+                            <Nav.Link href="#action/3.4" >
+                                {isAuth ?
+                                    <>
+                                        <IoPersonCircleOutline />
+                                        <NavDropdown title={name} id="basic-nav-dropdown" className='d-block'>
+                                            <NavDropdown.Item href="/personal">Личный кабинет</NavDropdown.Item>
+                                            <NavDropdown.Item href="/basket">Корзина</NavDropdown.Item>
+                                            <NavDropdown.Divider />
+                                            <NavDropdown.Item onClick={onLogout}>Выйти</NavDropdown.Item>
+                                        </NavDropdown>
+                                    </>
+
+                                    // <Link to="/personal"><IoPersonCircleOutline /> {name}</Link> 
+                                    :
+                                    <Link to="/login"><FaArrowRightToBracket className='nav_login' />
+                                        Войти</Link>}
 
                             </Nav.Link>
-                            <Nav.Link >
-                                {/* <img src={Store} className='store' alt='store' /> */}
-                                <FaBasketShopping className='nav_basket' />
-                                Корзина</Nav.Link>
+                            <Nav.Link href="/basket" style={{ position: "relative" }}>
+
+                                <>
+                                    <FaBasketShopping className='nav_basket' />
+                                    Корзина
+                                    <BasketItems quantity={basket.length} />
+                                </>
+
+
+
+                            </Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
@@ -81,6 +107,17 @@ const Header = () => {
         //     <div className='presentation'></div>
         // </header>
     );
+}
+
+const BasketItems = ({ quantity }) => {
+    if (quantity > 0) {
+        return (
+            <span className='header__basket__span'>{quantity}</span>
+        )
+    } else {
+        return null;
+    }
+
 }
 
 export default Header;

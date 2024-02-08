@@ -21,17 +21,20 @@ export const LoginPage = () => {
                 console.log(user)
                 request("http://localhost:3001/users")
                     .then(data => data.filter(serverUser => serverUser.id === user.uid))
-                    .then(console.log())
-                // dispatch(setUser({
-                //     email: user.email,
-                //     id: user.uid,
-                //     token: user.refreshToken
-                // }));
-                // navigate("/goods");
+                    .then(data => dispatch(setUser({
+                        name: data[0].name,
+                        email: user.email,
+                        id: user.uid,
+                        status: data[0].status,
+                        basket: data[0].basket,
+                        history: data[0].history
+                    })))
+                navigate("/goods");
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
+                console.log(errorCode, errorMessage)
             });
     }
     return (
@@ -41,7 +44,7 @@ export const LoginPage = () => {
             <div className="form">
 
                 <div className="login__login">Логин</div>
-                <input type="text" placeholder='Ваш email' value={email} onChange={e => setEmail(e.target.value)} />
+                <input type="email" placeholder='Ваш email' value={email} onChange={e => setEmail(e.target.value)} />
 
                 <div className="login__password">Пароль</div>
                 <input type="password" value={password} onChange={e => setPassword(e.target.value)} />

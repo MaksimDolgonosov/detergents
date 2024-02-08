@@ -14,4 +14,21 @@ header {
         text-decoration: none;
         color: black;
     }
+
+    .header__basket__span {
+
+        width: 15px;
+        height: 15px;
+        color: white;
+        background-color: brown;
+        border-radius: 100%;
+        border-color: black;
+        position: absolute;
+        text-align: center;
+        top: 2px;
+        left: 2px;
+        font-size: 10px;
+        font-family: sans-serif;
+
+    }
 }

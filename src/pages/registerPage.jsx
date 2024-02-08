@@ -4,7 +4,9 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../slices/userSlice";
+import { useAddUserMutation } from "../query/userApiSlice";
 import '../css/registerPage.scss';
+
 
 export const RegisterPage = () => {
     const [name, setName] = useState("");
@@ -12,6 +14,8 @@ export const RegisterPage = () => {
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [updateUsers] = useAddUserMutation();
+
 
     const onRegister = (email, password) => {
         // event.preventDefault();
@@ -19,14 +23,16 @@ export const RegisterPage = () => {
         createUserWithEmailAndPassword(auth, email, password)
 
             .then(({ user }) => {
-                dispatch(setUser({
+                const newUser = {
                     name: name,
                     email: user.email,
                     id: user.uid,
                     status: "customer",
-                    basket:[],
+                    basket: [],
                     history: []
-                }));
+                }
+                dispatch(setUser(newUser));
+                updateUsers(newUser).unwrap();
                 navigate("/goods");
             })
             .catch((error) => {

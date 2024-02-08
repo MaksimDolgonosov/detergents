@@ -31,6 +31,14 @@
         }
       ],
       "history": []
+    },
+    {
+      "name": "Петя",
+      "email": "peter@mail.ch",
+      "id": "kfc8ucSqWzcwVpoCV9BPvMEEdz33",
+      "status": "customer",
+      "basket": [],
+      "history": []
     }
   ]
 }
