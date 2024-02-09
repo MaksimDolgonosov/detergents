@@ -33,6 +33,7 @@ export const RegisterPage = () => {
                 }
                 dispatch(setUser(newUser));
                 updateUsers(newUser).unwrap();
+                localStorage.setItem("userId", user.uid);
                 navigate("/goods");
             })
             .catch((error) => {

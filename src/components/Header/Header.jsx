@@ -7,7 +7,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
 import Logo from '../../images/logo/logo2.svg';
-import { useAuth } from '../../hooks/useAuth';
+// import { useAuth } from '../../hooks/useAuth';
+
 import { FaArrowRightToBracket } from "react-icons/fa6";
 // import EnterLogo from '../../images/logo/enter.svg';
 import { removeUser } from '../../slices/userSlice';
@@ -17,9 +18,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const Header = () => {
     const basket = useSelector(state => state.user.basket);
-    const { isAuth, name } = useAuth();
+    const isAuth = useSelector(state => state.user.isAuth);
+    const name = useSelector(state => state.user.name);
+    //const { isAuth, name } = useAuth();
     const dispatch = useDispatch();
-
+    console.log(isAuth);
     const Name = () => {
         return (
             <>
@@ -31,6 +34,7 @@ const Header = () => {
 
     const onLogout = () => {
         dispatch(removeUser());
+        localStorage.setItem("userId", null);
     }
     return (
         <header>

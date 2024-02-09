@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { setUser } from "../slices/userSlice";
 import { useHttp } from "../hooks/useHttp";
 import '../css/loginPage.scss';
+//import { useGetUserQuery } from '../query/userApiSlice';
 
 export const LoginPage = () => {
     const [email, setEmail] = useState("");
@@ -14,11 +15,12 @@ export const LoginPage = () => {
     const navigate = useNavigate();
     const { request } = useHttp();
 
+    //const { data: user = {} } = useGetUserQuery("kfc8ucSqWzcwVpoCV9BPvMEEdz33");
+    //console.log(user);
     const onLogin = (email, password) => {
         const auth = getAuth();
         signInWithEmailAndPassword(auth, email, password)
             .then(({ user }) => {
-                console.log(user)
                 request("http://localhost:3001/users")
                     .then(data => data.filter(serverUser => serverUser.id === user.uid))
                     .then(data => dispatch(setUser({
@@ -29,6 +31,7 @@ export const LoginPage = () => {
                         basket: data[0].basket,
                         history: data[0].history
                     })))
+                localStorage.setItem("userId", user.uid);
                 navigate("/goods");
             })
             .catch((error) => {

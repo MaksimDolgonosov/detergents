@@ -6,7 +6,7 @@ export const userApiSlice = createApi({
     tagTypes: [],
     endpoints: (builder) => ({
         getUser: builder.query({
-            query: () => `/users`,
+            query: (id) => `/users/${id}`,
             providesTags: []
         }),
         addUser: builder.mutation({

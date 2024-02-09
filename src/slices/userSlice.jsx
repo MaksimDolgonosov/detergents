@@ -6,7 +6,8 @@ const initialState = {
     id: null,
     status: null,
     basket: [],
-    history: []
+    history: [],
+    isAuth: false
 }
 
 const userSlice = createSlice({
@@ -20,6 +21,7 @@ const userSlice = createSlice({
             state.status = action.payload.status;
             state.basket = action.payload.basket;
             state.history = action.payload.history;
+            state.isAuth = true;
         },
         removeUser(state) {
             state.name = null;
@@ -28,6 +30,7 @@ const userSlice = createSlice({
             state.status = null;
             state.basket = [];
             state.history = [];
+            state.isAuth = false;
         }
     }
 })
