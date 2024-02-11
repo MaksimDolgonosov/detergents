@@ -25,9 +25,8 @@ function App() {
   // const { data } = useGetUserQuery("x8m1HZZWYrd9eE9lqxY0e19EL4H2");
   // console.log(data);
   // dispatch(setUser(data));
-  const { request } = useHttp()
-
-  if (localStorage.getItem("userId") !== "null") {
+  const { request } = useHttp();
+  if (localStorage.getItem("userId") !== "null" && localStorage.getItem("userId") !== null) {
     request("http://localhost:3001/users")
       .then(data => data.filter(serverUser => serverUser.id === localStorage.getItem("userId")))
       .then(data => dispatch(setUser({

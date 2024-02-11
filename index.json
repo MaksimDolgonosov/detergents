@@ -2,21 +2,43 @@
   "goods": [
     {
       "id": 1,
-      "name": "Первый герой",
-      "description": "Первый герой в рейтинге!",
-      "element": "fire"
+      "title": "Стиральный порошок Persil",
+      "price": 20,
+      "description": "Стиральный порошок Персил Premium Гигиена и чистота, 2.43 кг",
+      "category": "washing powder",
+      "image": "https://avatars.mds.yandex.net/get-mpic/3765589/img_id6529181415354864912.jpeg/orig"
     },
     {
       "id": 2,
-      "name": "Неизвестный герой",
-      "description": "Скрывающийся в тени",
-      "element": "wind"
+      "title": "Стиральный порошок Persil",
+      "price": 23,
+      "description": "Стиральный порошок «Персил» Color, 3 кг",
+      "category": "washing powder",
+      "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/2287/00002287/norm/00002287.n_3.png"
     },
     {
       "id": 3,
-      "name": "Морской герой",
-      "description": "Как аквамен, но не из DC",
-      "element": "water"
+      "title": "Средство для мытья посуды",
+      "price": 10,
+      "description": "Средство для мытья посуды Fairy Сочный лимон (1.35л)",
+      "category": "Dishwashing liquid",
+      "image": "https://cdn21vek.by/img/galleries/1018/773/preview_b/fairy_04_60bdf7666468c.jpeg"
+    },
+    {
+      "id": 4,
+      "title": "Тблетки для посудомоечной машины Finish",
+      "price": 50,
+      "description": "Таблетки для посудомоечной машины Finish Powerball Quantum All in 1 (84 шт)",
+      "category": "Dishwasher tablets",
+      "image": "https://img.5element.by/import/images/ut/goods/good_8ca419a2-99ca-11ee-8db3-005056012b6d/tabletki-dlya-pmm-finish-powerball-quantum-84-sht-1_600.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Кондиционер для белья ВЕРНЕЛЬ",
+      "price": 15,
+      "description": "Кондиционер для белья ВЕРНЕЛЬ Свежий бриз VERNEL концентрированный, 910 мл",
+      "category": "Fabric softener",
+      "image": "https://mila.by/images/cache/_thumb_500x500xin_upload_iblock_cce_60kvv7xcycvt7ps53qu00bht6d9lcs3t_9000101075076.jpg"
     }
   ],
   "users": [
