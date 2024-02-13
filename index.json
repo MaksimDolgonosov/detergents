@@ -6,7 +6,7 @@
       "price": 20,
       "description": "Стиральный порошок Персил Premium Гигиена и чистота, 2.43 кг",
       "category": "washing powder",
-      "image": "https://avatars.mds.yandex.net/get-mpic/3765589/img_id6529181415354864912.jpeg/orig"
+      "image": "https://static.price.ru/images/models/296x296/bitovaya-himiya/persil-poroshok-stiralniy-avtomat-premium-dlya-belogo-belya-2.43-kg/de7589058ae3dd8f54f7e2254d3e5ccf.JPEG"
     },
     {
       "id": 2,
@@ -22,11 +22,11 @@
       "price": 10,
       "description": "Средство для мытья посуды Fairy Сочный лимон (1.35л)",
       "category": "Dishwashing liquid",
-      "image": "https://cdn21vek.by/img/galleries/1018/773/preview_b/fairy_04_60bdf7666468c.jpeg"
+      "image": "https://pwa-api.eva.ua/img/512/512/resize/5/9/592448_1_1666776608.jpg"
     },
     {
       "id": 4,
-      "title": "Тблетки для посудомоечной машины Finish",
+      "title": "Таблетки для посудомоечной машины",
       "price": 50,
       "description": "Таблетки для посудомоечной машины Finish Powerball Quantum All in 1 (84 шт)",
       "category": "Dishwasher tablets",
@@ -34,6 +34,286 @@
     },
     {
       "id": 5,
+      "title": "Кондиционер для белья ВЕРНЕЛЬ",
+      "price": 15,
+      "description": "Кондиционер для белья ВЕРНЕЛЬ Свежий бриз VERNEL концентрированный, 910 мл",
+      "category": "Fabric softener",
+      "image": "https://mila.by/images/cache/_thumb_500x500xin_upload_iblock_cce_60kvv7xcycvt7ps53qu00bht6d9lcs3t_9000101075076.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Стиральный порошок Persil",
+      "price": 20,
+      "description": "Стиральный порошок Персил Premium Гигиена и чистота, 2.43 кг",
+      "category": "washing powder",
+      "image": "https://static.price.ru/images/models/296x296/bitovaya-himiya/persil-poroshok-stiralniy-avtomat-premium-dlya-belogo-belya-2.43-kg/de7589058ae3dd8f54f7e2254d3e5ccf.JPEG"
+    },
+    {
+      "id": 7,
+      "title": "Стиральный порошок Persil",
+      "price": 23,
+      "description": "Стиральный порошок «Персил» Color, 3 кг",
+      "category": "washing powder",
+      "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/2287/00002287/norm/00002287.n_3.png"
+    },
+    {
+      "id": 8,
+      "title": "Средство для мытья посуды",
+      "price": 10,
+      "description": "Средство для мытья посуды Fairy Сочный лимон (1.35л)",
+      "category": "Dishwashing liquid",
+      "image": "https://pwa-api.eva.ua/img/512/512/resize/5/9/592448_1_1666776608.jpg"
+    },
+    {
+      "id": 9,
+      "title": "Таблетки для посудомоечной машины",
+      "price": 50,
+      "description": "Таблетки для посудомоечной машины Finish Powerball Quantum All in 1 (84 шт)",
+      "category": "Dishwasher tablets",
+      "image": "https://img.5element.by/import/images/ut/goods/good_8ca419a2-99ca-11ee-8db3-005056012b6d/tabletki-dlya-pmm-finish-powerball-quantum-84-sht-1_600.jpg"
+    },
+    {
+      "id": 10,
+      "title": "Кондиционер для белья ВЕРНЕЛЬ",
+      "price": 15,
+      "description": "Кондиционер для белья ВЕРНЕЛЬ Свежий бриз VERNEL концентрированный, 910 мл",
+      "category": "Fabric softener",
+      "image": "https://mila.by/images/cache/_thumb_500x500xin_upload_iblock_cce_60kvv7xcycvt7ps53qu00bht6d9lcs3t_9000101075076.jpg"
+    },
+    {
+      "id": 11,
+      "title": "Стиральный порошок Persil",
+      "price": 20,
+      "description": "Стиральный порошок Персил Premium Гигиена и чистота, 2.43 кг",
+      "category": "washing powder",
+      "image": "https://static.price.ru/images/models/296x296/bitovaya-himiya/persil-poroshok-stiralniy-avtomat-premium-dlya-belogo-belya-2.43-kg/de7589058ae3dd8f54f7e2254d3e5ccf.JPEG"
+    },
+    {
+      "id": 12,
+      "title": "Стиральный порошок Persil",
+      "price": 23,
+      "description": "Стиральный порошок «Персил» Color, 3 кг",
+      "category": "washing powder",
+      "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/2287/00002287/norm/00002287.n_3.png"
+    },
+    {
+      "id": 13,
+      "title": "Средство для мытья посуды",
+      "price": 10,
+      "description": "Средство для мытья посуды Fairy Сочный лимон (1.35л)",
+      "category": "Dishwashing liquid",
+      "image": "https://pwa-api.eva.ua/img/512/512/resize/5/9/592448_1_1666776608.jpg"
+    },
+    {
+      "id": 14,
+      "title": "Таблетки для посудомоечной машины",
+      "price": 50,
+      "description": "Таблетки для посудомоечной машины Finish Powerball Quantum All in 1 (84 шт)",
+      "category": "Dishwasher tablets",
+      "image": "https://img.5element.by/import/images/ut/goods/good_8ca419a2-99ca-11ee-8db3-005056012b6d/tabletki-dlya-pmm-finish-powerball-quantum-84-sht-1_600.jpg"
+    },
+    {
+      "id": 15,
+      "title": "Кондиционер для белья ВЕРНЕЛЬ",
+      "price": 15,
+      "description": "Кондиционер для белья ВЕРНЕЛЬ Свежий бриз VERNEL концентрированный, 910 мл",
+      "category": "Fabric softener",
+      "image": "https://mila.by/images/cache/_thumb_500x500xin_upload_iblock_cce_60kvv7xcycvt7ps53qu00bht6d9lcs3t_9000101075076.jpg"
+    },
+    {
+      "id": 16,
+      "title": "Стиральный порошок Persil",
+      "price": 20,
+      "description": "Стиральный порошок Персил Premium Гигиена и чистота, 2.43 кг",
+      "category": "washing powder",
+      "image": "https://static.price.ru/images/models/296x296/bitovaya-himiya/persil-poroshok-stiralniy-avtomat-premium-dlya-belogo-belya-2.43-kg/de7589058ae3dd8f54f7e2254d3e5ccf.JPEG"
+    },
+    {
+      "id": 17,
+      "title": "Стиральный порошок Persil",
+      "price": 23,
+      "description": "Стиральный порошок «Персил» Color, 3 кг",
+      "category": "washing powder",
+      "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/2287/00002287/norm/00002287.n_3.png"
+    },
+    {
+      "id": 18,
+      "title": "Средство для мытья посуды",
+      "price": 10,
+      "description": "Средство для мытья посуды Fairy Сочный лимон (1.35л)",
+      "category": "Dishwashing liquid",
+      "image": "https://pwa-api.eva.ua/img/512/512/resize/5/9/592448_1_1666776608.jpg"
+    },
+    {
+      "id": 19,
+      "title": "Таблетки для посудомоечной машины",
+      "price": 50,
+      "description": "Таблетки для посудомоечной машины Finish Powerball Quantum All in 1 (84 шт)",
+      "category": "Dishwasher tablets",
+      "image": "https://img.5element.by/import/images/ut/goods/good_8ca419a2-99ca-11ee-8db3-005056012b6d/tabletki-dlya-pmm-finish-powerball-quantum-84-sht-1_600.jpg"
+    },
+    {
+      "id": 20,
+      "title": "Кондиционер для белья ВЕРНЕЛЬ",
+      "price": 15,
+      "description": "Кондиционер для белья ВЕРНЕЛЬ Свежий бриз VERNEL концентрированный, 910 мл",
+      "category": "Fabric softener",
+      "image": "https://mila.by/images/cache/_thumb_500x500xin_upload_iblock_cce_60kvv7xcycvt7ps53qu00bht6d9lcs3t_9000101075076.jpg"
+    }, 
+    {
+      "id": 21,
+      "title": "Стиральный порошок Persil",
+      "price": 20,
+      "description": "Стиральный порошок Персил Premium Гигиена и чистота, 2.43 кг",
+      "category": "washing powder",
+      "image": "https://static.price.ru/images/models/296x296/bitovaya-himiya/persil-poroshok-stiralniy-avtomat-premium-dlya-belogo-belya-2.43-kg/de7589058ae3dd8f54f7e2254d3e5ccf.JPEG"
+    },
+    {
+      "id": 22,
+      "title": "Стиральный порошок Persil",
+      "price": 23,
+      "description": "Стиральный порошок «Персил» Color, 3 кг",
+      "category": "washing powder",
+      "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/2287/00002287/norm/00002287.n_3.png"
+    },
+    {
+      "id": 23,
+      "title": "Средство для мытья посуды",
+      "price": 10,
+      "description": "Средство для мытья посуды Fairy Сочный лимон (1.35л)",
+      "category": "Dishwashing liquid",
+      "image": "https://pwa-api.eva.ua/img/512/512/resize/5/9/592448_1_1666776608.jpg"
+    },
+    {
+      "id": 24,
+      "title": "Таблетки для посудомоечной машины",
+      "price": 50,
+      "description": "Таблетки для посудомоечной машины Finish Powerball Quantum All in 1 (84 шт)",
+      "category": "Dishwasher tablets",
+      "image": "https://img.5element.by/import/images/ut/goods/good_8ca419a2-99ca-11ee-8db3-005056012b6d/tabletki-dlya-pmm-finish-powerball-quantum-84-sht-1_600.jpg"
+    },
+    {
+      "id": 25,
+      "title": "Кондиционер для белья ВЕРНЕЛЬ",
+      "price": 15,
+      "description": "Кондиционер для белья ВЕРНЕЛЬ Свежий бриз VERNEL концентрированный, 910 мл",
+      "category": "Fabric softener",
+      "image": "https://mila.by/images/cache/_thumb_500x500xin_upload_iblock_cce_60kvv7xcycvt7ps53qu00bht6d9lcs3t_9000101075076.jpg"
+    },
+    {
+      "id": 26,
+      "title": "Стиральный порошок Persil",
+      "price": 20,
+      "description": "Стиральный порошок Персил Premium Гигиена и чистота, 2.43 кг",
+      "category": "washing powder",
+      "image": "https://static.price.ru/images/models/296x296/bitovaya-himiya/persil-poroshok-stiralniy-avtomat-premium-dlya-belogo-belya-2.43-kg/de7589058ae3dd8f54f7e2254d3e5ccf.JPEG"
+    },
+    {
+      "id": 27,
+      "title": "Стиральный порошок Persil",
+      "price": 23,
+      "description": "Стиральный порошок «Персил» Color, 3 кг",
+      "category": "washing powder",
+      "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/2287/00002287/norm/00002287.n_3.png"
+    },
+    {
+      "id": 28,
+      "title": "Средство для мытья посуды",
+      "price": 10,
+      "description": "Средство для мытья посуды Fairy Сочный лимон (1.35л)",
+      "category": "Dishwashing liquid",
+      "image": "https://pwa-api.eva.ua/img/512/512/resize/5/9/592448_1_1666776608.jpg"
+    },
+    {
+      "id": 29,
+      "title": "Таблетки для посудомоечной машины",
+      "price": 50,
+      "description": "Таблетки для посудомоечной машины Finish Powerball Quantum All in 1 (84 шт)",
+      "category": "Dishwasher tablets",
+      "image": "https://img.5element.by/import/images/ut/goods/good_8ca419a2-99ca-11ee-8db3-005056012b6d/tabletki-dlya-pmm-finish-powerball-quantum-84-sht-1_600.jpg"
+    },
+    {
+      "id": 30,
+      "title": "Кондиционер для белья ВЕРНЕЛЬ",
+      "price": 15,
+      "description": "Кондиционер для белья ВЕРНЕЛЬ Свежий бриз VERNEL концентрированный, 910 мл",
+      "category": "Fabric softener",
+      "image": "https://mila.by/images/cache/_thumb_500x500xin_upload_iblock_cce_60kvv7xcycvt7ps53qu00bht6d9lcs3t_9000101075076.jpg"
+    },
+    {
+      "id": 31,
+      "title": "Стиральный порошок Persil",
+      "price": 20,
+      "description": "Стиральный порошок Персил Premium Гигиена и чистота, 2.43 кг",
+      "category": "washing powder",
+      "image": "https://static.price.ru/images/models/296x296/bitovaya-himiya/persil-poroshok-stiralniy-avtomat-premium-dlya-belogo-belya-2.43-kg/de7589058ae3dd8f54f7e2254d3e5ccf.JPEG"
+    },
+    {
+      "id": 32,
+      "title": "Стиральный порошок Persil",
+      "price": 23,
+      "description": "Стиральный порошок «Персил» Color, 3 кг",
+      "category": "washing powder",
+      "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/2287/00002287/norm/00002287.n_3.png"
+    },
+    {
+      "id": 33,
+      "title": "Средство для мытья посуды",
+      "price": 10,
+      "description": "Средство для мытья посуды Fairy Сочный лимон (1.35л)",
+      "category": "Dishwashing liquid",
+      "image": "https://pwa-api.eva.ua/img/512/512/resize/5/9/592448_1_1666776608.jpg"
+    },
+    {
+      "id": 34,
+      "title": "Таблетки для посудомоечной машины",
+      "price": 50,
+      "description": "Таблетки для посудомоечной машины Finish Powerball Quantum All in 1 (84 шт)",
+      "category": "Dishwasher tablets",
+      "image": "https://img.5element.by/import/images/ut/goods/good_8ca419a2-99ca-11ee-8db3-005056012b6d/tabletki-dlya-pmm-finish-powerball-quantum-84-sht-1_600.jpg"
+    },
+    {
+      "id": 35,
+      "title": "Кондиционер для белья ВЕРНЕЛЬ",
+      "price": 15,
+      "description": "Кондиционер для белья ВЕРНЕЛЬ Свежий бриз VERNEL концентрированный, 910 мл",
+      "category": "Fabric softener",
+      "image": "https://mila.by/images/cache/_thumb_500x500xin_upload_iblock_cce_60kvv7xcycvt7ps53qu00bht6d9lcs3t_9000101075076.jpg"
+    },
+    {
+      "id": 36,
+      "title": "Стиральный порошок Persil",
+      "price": 20,
+      "description": "Стиральный порошок Персил Premium Гигиена и чистота, 2.43 кг",
+      "category": "washing powder",
+      "image": "https://static.price.ru/images/models/296x296/bitovaya-himiya/persil-poroshok-stiralniy-avtomat-premium-dlya-belogo-belya-2.43-kg/de7589058ae3dd8f54f7e2254d3e5ccf.JPEG"
+    },
+    {
+      "id": 37,
+      "title": "Стиральный порошок Persil",
+      "price": 23,
+      "description": "Стиральный порошок «Персил» Color, 3 кг",
+      "category": "washing powder",
+      "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/2287/00002287/norm/00002287.n_3.png"
+    },
+    {
+      "id": 38,
+      "title": "Средство для мытья посуды",
+      "price": 10,
+      "description": "Средство для мытья посуды Fairy Сочный лимон (1.35л)",
+      "category": "Dishwashing liquid",
+      "image": "https://pwa-api.eva.ua/img/512/512/resize/5/9/592448_1_1666776608.jpg"
+    },
+    {
+      "id": 39,
+      "title": "Таблетки для посудомоечной машины",
+      "price": 50,
+      "description": "Таблетки для посудомоечной машины Finish Powerball Quantum All in 1 (84 шт)",
+      "category": "Dishwasher tablets",
+      "image": "https://img.5element.by/import/images/ut/goods/good_8ca419a2-99ca-11ee-8db3-005056012b6d/tabletki-dlya-pmm-finish-powerball-quantum-84-sht-1_600.jpg"
+    },
+    {
+      "id": 40,
       "title": "Кондиционер для белья ВЕРНЕЛЬ",
       "price": 15,
       "description": "Кондиционер для белья ВЕРНЕЛЬ Свежий бриз VERNEL концентрированный, 910 мл",
