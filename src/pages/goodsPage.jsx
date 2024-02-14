@@ -36,10 +36,30 @@ export function GoodsPage() {
 
 
 
-    const LoadingCard = () => {
+    // const LoadingCard = ({ id }) => {
+    //     return (
+    //         // <Spinner animation="border" variant="secondary" style={{margin: "200px auto" }}/>
+    //         <Card key={Card.key} className='goods__card' style={{ width: '196px', height: '394px' }}>
+    //             <Placeholder animation="glow" style={{ width: "196px", height: "196px", display: "flex", justifyContent: "center", alignItems: "center" }} lg={1}>
+    //                 <Spinner animation="border" variant="secondary" />
+    //             </Placeholder>
+    //             <Card.Body>
+    //                 <Placeholder as={Card.Title} animation="glow">
+    //                     <Placeholder xs={6} />
+    //                 </Placeholder>
+    //                 <Placeholder as={Card.Text} animation="glow">
+    //                     <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />{' '}
+    //                     <Placeholder xs={6} /> <Placeholder xs={8} />
+    //                 </Placeholder>
+    //                 <Placeholder.Button style={{ width: '100%' }} className='goods__btn' variant="primary" xs={6} />
+    //             </Card.Body>
+    //         </Card>
+    //     )
+    // }
+    // const loadingList = new Array(quantityOfGoodsOnPage).fill(<LoadingCard />);
+    const loadingList = new Array(10).fill(null).map((good, index) => {
         return (
-            // <Spinner animation="border" variant="secondary" style={{margin: "200px auto" }}/>
-            <Card className='goods__card' style={{ width: '196px', height: '394px' }}>
+            <Card key={index} className='goods__card' style={{ width: '196px', height: '394px' }}>
                 <Placeholder animation="glow" style={{ width: "196px", height: "196px", display: "flex", justifyContent: "center", alignItems: "center" }} lg={1}>
                     <Spinner animation="border" variant="secondary" />
                 </Placeholder>
@@ -51,12 +71,13 @@ export function GoodsPage() {
                         <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />{' '}
                         <Placeholder xs={6} /> <Placeholder xs={8} />
                     </Placeholder>
-                    <Placeholder.Button className='goods__btn' variant="primary" xs={6} />
+                    <Placeholder.Button style={{ width: '100%' }} className='goods__btn' variant="primary" xs={6} />
                 </Card.Body>
             </Card>
+
         )
-    }
-    const loadingList = new Array(quantityOfGoodsOnPage).fill(<LoadingCard />)
+    })
+    //const loadingList = new Array(quantityOfGoodsOnPage).map((item, index) => <LoadingCard id={index} />);
     // const loadingList = new Array(quantityOfGoodsOnPage).map((item, index) => {
     //     return (
     //         <Card key={index} className='goods__card' style={{ width: '196px', height: '394px' }}>
