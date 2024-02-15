@@ -9,8 +9,13 @@ import { useGetAllGoodsQuery } from '../query/goodsApiSlice';
 import { useState } from 'react';
 
 
+
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 export function GoodsPage() {
-    const quantityOfGoodsOnPage = 10;
+    const quantityOfGoodsOnPage = 12;
     const [curentPage, setCurentPage] = useState(1);
     const { data: goods = [], isLoading } = useGetAllGoodsQuery();
 
@@ -18,6 +23,7 @@ export function GoodsPage() {
 
     const goodsList = goods.map(good => {
         return (
+            // <Col className="p-2 gx-5" sm={{ span: 5, offset: 1 }} xs={{ span: 11, offset: 0 }} xxl={{ span: 2, offset: 0 }} style={{ display: "flex", justifyContent: "center" }}>
             <Card className='goods__card' key={good.id} style={{ width: '196px', height: '394px' }}>
                 <Card.Img className='goods__img' variant="top" src={good.image} style={{ display: "flex", justifyContent: "center", alignItems: "center" }} />
                 <Card.Body className='goods__body'>
@@ -29,7 +35,7 @@ export function GoodsPage() {
                     <Button className='goods__btn' variant="primary">В корзину</Button>
                 </Card.Body>
             </Card>
-
+            //  </Col> 
         )
     })
 
@@ -57,8 +63,9 @@ export function GoodsPage() {
     //     )
     // }
     // const loadingList = new Array(quantityOfGoodsOnPage).fill(<LoadingCard />);
-    const loadingList = new Array(10).fill(null).map((good, index) => {
+    const loadingList = new Array(quantityOfGoodsOnPage).fill(null).map((good, index) => {
         return (
+            // <Col md="auto">
             <Card key={index} className='goods__card' style={{ width: '196px', height: '394px' }}>
                 <Placeholder animation="glow" style={{ width: "196px", height: "196px", display: "flex", justifyContent: "center", alignItems: "center" }} lg={1}>
                     <Spinner animation="border" variant="secondary" />
@@ -74,7 +81,7 @@ export function GoodsPage() {
                     <Placeholder.Button style={{ width: '100%' }} className='goods__btn' variant="primary" xs={6} />
                 </Card.Body>
             </Card>
-
+            //</Col>
         )
     })
     //const loadingList = new Array(quantityOfGoodsOnPage).map((item, index) => <LoadingCard id={index} />);
@@ -99,15 +106,15 @@ export function GoodsPage() {
     // })
 
     const paginationItems = goods.map((item, index) => {
-        if (index % 10 === 0) {
+        if (index % quantityOfGoodsOnPage === 0) {
 
-            if (((index / 10) + 1) === curentPage) {
+            if (((index / quantityOfGoodsOnPage) + 1) === curentPage) {
                 return (
-                    <Pagination.Item onClick={() => setCurentPage((index / 10) + 1)} active key={(index / 10) + 1}>{(index / 10) + 1}</Pagination.Item>
+                    <Pagination.Item onClick={() => setCurentPage((index / quantityOfGoodsOnPage) + 1)} active key={(index / quantityOfGoodsOnPage) + 1}>{(index / 12) + 1}</Pagination.Item>
                 )
             } else {
                 return (
-                    <Pagination.Item onClick={() => setCurentPage((index / 10) + 1)} key={(index / 10) + 1}>{(index / 10) + 1}</Pagination.Item>
+                    <Pagination.Item onClick={() => setCurentPage((index / quantityOfGoodsOnPage) + 1)} key={(index / quantityOfGoodsOnPage) + 1}>{(index / quantityOfGoodsOnPage) + 1}</Pagination.Item>
                 )
             }
 
@@ -122,6 +129,15 @@ export function GoodsPage() {
     return (
 
         <section className='goods'>
+
+            {/* <Container fluid>
+                <Row className="justify-content-center">
+                    {isLoading ? loadingList : goodsList.slice(quantityOfGoodsOnPage * (curentPage - 1), quantityOfGoodsOnPage * (curentPage - 1) + quantityOfGoodsOnPage)}
+                </Row>
+            </Container> */}
+
+
+
             <div className='goods__list' style={{ gridTemplateRows: `repeat(${quantityOfGoodsOnPage / 5}, 394px )` }}>
                 {isLoading ? loadingList : goodsList.slice(quantityOfGoodsOnPage * (curentPage - 1), quantityOfGoodsOnPage * (curentPage - 1) + quantityOfGoodsOnPage)}
             </div>

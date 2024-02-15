@@ -5,6 +5,8 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import { Link } from 'react-router-dom';
 import Logo from '../../images/logo/logo2.svg';
 // import { useAuth } from '../../hooks/useAuth';
@@ -15,14 +17,19 @@ import { removeUser } from '../../slices/userSlice';
 import { FaBasketShopping } from "react-icons/fa6";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from 'react-redux';
+import { useGetAllCaregoriesQuery } from '../../query/categoriesApiSlice';
 
 const Header = () => {
     const basket = useSelector(state => state.user.basket);
     const isAuth = useSelector(state => state.user.isAuth);
     const name = useSelector(state => state.user.name);
-    //const { isAuth, name } = useAuth();
+    const { data: categories = [] } = useGetAllCaregoriesQuery();
     const dispatch = useDispatch();
-    console.log(isAuth);
+    console.log(categories);
+
+
+
+
     const Name = () => {
         return (
             <>
@@ -36,6 +43,30 @@ const Header = () => {
         dispatch(removeUser());
         localStorage.setItem("userId", null);
     }
+
+    const cat = categories.map((item, index) => {
+
+        const subCat = item.subcategories.map((data, i) => {
+            return (
+                <NavDropdown.Item key={i}>{data}</NavDropdown.Item>
+            )
+        })
+
+        return (
+            // <DropdownButton drop="end" title={item.name} key={index} style={{ width: "100%" }}>
+            //     <Dropdown.Item style={{ width: "100%" }}>Action</Dropdown.Item>
+            // </DropdownButton>
+
+            <NavDropdown key={index} title={item.name} drop="end" id="basic-nav-dropdown" className='d-block'>
+                {subCat}
+                {/* <NavDropdown.Item href="#action/3.4">Все</NavDropdown.Item> */}
+            </NavDropdown>
+
+
+        )
+    })
+
+
     return (
         <header>
             <Navbar expand="lg" className="bg-body-tertiary header">
@@ -45,11 +76,12 @@ const Header = () => {
                     <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                         <Nav className="me-right">
                             <NavDropdown title="Категории" id="basic-nav-dropdown" className='d-block'>
-                                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                                {cat}
+                                {/* <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.2">
                                     Another action
                                 </NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item> */}
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="#action/3.4">
                                     Все

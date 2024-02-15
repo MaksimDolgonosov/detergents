@@ -3,18 +3,14 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const goodsApiSlice = createApi({
     reducerPath: 'apiGoods',
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001' }),
-    tagTypes: [],
+    tagTypes: ["goods"],
     endpoints: (builder) => ({
         getAllGoods: builder.query({
             query: () => `/goods/`,
-            providesTags: []
+            providesTags: ["goods"]
         }),
-        // addUser: builder.mutation({
-        //     query: (user) => ({
-        //         url: `users/`,
-        //         method: 'POST',
-        //         body: user,
-        //     }),
+        // getAllFilters: builder.query({
+        //     query: () => "/categories",
         //     invalidatesTags: []
         // }),
     }),

@@ -1,11 +1,15 @@
 .goods {
     max-width: 1320px;
     margin: 0 auto;
+    padding: 5px 0 0 0;
+    min-height: 300px;
 
     &__list {
         display: grid;
-        grid-template-columns: repeat(5, 196px);
-        grid-template-rows: repeat(4, 394px);
+
+        grid-template-columns: repeat(6, 196px);
+
+        grid-template-rows: repeat(minmax(2, 12), 394px);
         row-gap: 15px;
         column-gap: 25px;
         padding: 20px 0px;
@@ -65,20 +69,49 @@
     }
 }
 
-@media(max-width: 1300px) {}
+@media(max-width: 1300px) {
+    .goods {
 
-@media(max-width: 1180px) {
-    
+        &__list {
+            grid-template-columns: repeat(4, 196px);
+            // grid-template-rows: repeat(3, 394px);
+        }
+    }
 }
 
-@media(max-width: 992px) {}
+@media(max-width: 1180px) {
+    // .goods {
+    //     &__list {
+    //         grid-template-columns: repeat(4, 196px);
+    //         grid-template-rows: repeat(3, 394px);
+    //     }
+    // }
+}
+
+@media(max-width: 992px) {
+    .goods {
+
+        &__list {
+            grid-template-columns: repeat(3, 196px);
+            // grid-template-rows: repeat(4, 394px);
+        }
+    }
+}
 
 @media(max-width: 768px) {
+    .goods {
+
+        &__list {
+            grid-template-columns: repeat(2, 196px);
+            // grid-template-rows: repeat(6, 394px);
+        }
+    }
 
     .main {
         &__presentation {
             height: 236px;
         }
+
         &__descr {
             padding: 30px 10px;
             font-size: 16px;
@@ -90,6 +123,16 @@
 
 @media(max-width: 576px) {}
 
-@media(max-width: 429px) {}
+@media(max-width: 429px) {
+    .goods {
+
+        &__list {
+            grid-template-columns: repeat(1, 196px);
+            // grid-template-rows: repeat(6, 394px);
+            justify-content: center;
+        }
+
+    }
+}
 
 @media(max-width: 391px) {}
