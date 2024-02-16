@@ -5,11 +5,12 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+// import Dropdown from 'react-bootstrap/Dropdown';
+// import DropdownButton from 'react-bootstrap/DropdownButton';
 import { Link } from 'react-router-dom';
 import Logo from '../../images/logo/logo2.svg';
 // import { useAuth } from '../../hooks/useAuth';
+import { setActiveCategory } from '../../slices/categorySlice';
 
 import { FaArrowRightToBracket } from "react-icons/fa6";
 // import EnterLogo from '../../images/logo/enter.svg';
@@ -25,8 +26,6 @@ const Header = () => {
     const name = useSelector(state => state.user.name);
     const { data: categories = [] } = useGetAllCaregoriesQuery();
     const dispatch = useDispatch();
-    console.log(categories);
-
 
 
 
@@ -44,11 +43,13 @@ const Header = () => {
         localStorage.setItem("userId", null);
     }
 
+
     const cat = categories.map((item, index) => {
+
 
         const subCat = item.subcategories.map((data, i) => {
             return (
-                <NavDropdown.Item key={i}>{data}</NavDropdown.Item>
+                <NavDropdown.Item key={i} style={{ fontSize: "15px" }} onClick={() => dispatch(setActiveCategory(data))}>{data}</NavDropdown.Item >
             )
         })
 
@@ -57,7 +58,14 @@ const Header = () => {
             //     <Dropdown.Item style={{ width: "100%" }}>Action</Dropdown.Item>
             // </DropdownButton>
 
-            <NavDropdown key={index} title={item.name} drop="end" id="basic-nav-dropdown" className='d-block'>
+            <NavDropdown
+                key={index}
+                title={item.name}
+                drop="end"
+                id="basic-nav-dropdown"
+                className='d-block'
+                style={{ fontSize: "15px" }}
+            >
                 {subCat}
                 {/* <NavDropdown.Item href="#action/3.4">Все</NavDropdown.Item> */}
             </NavDropdown>
@@ -83,7 +91,7 @@ const Header = () => {
                                 </NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item> */}
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action/3.4">
+                                <NavDropdown.Item onClick={() => dispatch(setActiveCategory("Все"))}>
                                     Все
                                 </NavDropdown.Item>
                             </NavDropdown>

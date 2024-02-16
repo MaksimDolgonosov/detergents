@@ -7,21 +7,22 @@ import Spinner from 'react-bootstrap/Spinner';
 import Pagination from 'react-bootstrap/Pagination';
 import { useGetAllGoodsQuery } from '../query/goodsApiSlice';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 
-
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+// import Container from 'react-bootstrap/Container';
+// import Row from 'react-bootstrap/Row';
+// import Col from 'react-bootstrap/Col';
 
 export function GoodsPage() {
+    const { activeCategory } = useSelector(state => state.category)
     const quantityOfGoodsOnPage = 12;
     const [curentPage, setCurentPage] = useState(1);
     const { data: goods = [], isLoading } = useGetAllGoodsQuery();
 
+    const filteredGoods = activeCategory === "Все" ? goods : goods.filter(item=>item.category===activeCategory);
 
-
-    const goodsList = goods.map(good => {
+    const goodsList = filteredGoods.map(good => {
         return (
             // <Col className="p-2 gx-5" sm={{ span: 5, offset: 1 }} xs={{ span: 11, offset: 0 }} xxl={{ span: 2, offset: 0 }} style={{ display: "flex", justifyContent: "center" }}>
             <Card className='goods__card' key={good.id} style={{ width: '196px', height: '394px' }}>
@@ -105,7 +106,7 @@ export function GoodsPage() {
     //     )
     // })
 
-    const paginationItems = goods.map((item, index) => {
+    const paginationItems = filteredGoods.map((item, index) => {
         if (index % quantityOfGoodsOnPage === 0) {
 
             if (((index / quantityOfGoodsOnPage) + 1) === curentPage) {

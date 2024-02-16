@@ -10,7 +10,6 @@ const Footer = () => {
     //     new Date().getFullYear()
     // },[]);
 
-    console.log(date)
     return (
         <footer className='footer bg-body-tertiary'>
             {/* <a className='footer__link' href="http://webmaks.site">&copy; {date} powered by webmaks</a> */}
