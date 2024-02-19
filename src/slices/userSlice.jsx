@@ -31,9 +31,12 @@ const userSlice = createSlice({
             state.basket = [];
             state.history = [];
             state.isAuth = false;
+        },
+        addBasket(state, action) {
+            state.basket.push(action.payload);
         }
     }
 })
 
-export const { setUser, removeUser } = userSlice.actions;
+export const { setUser, removeUser, addBasket } = userSlice.actions;
 export default userSlice.reducer;

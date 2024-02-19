@@ -17,7 +17,15 @@ export const userApiSlice = createApi({
             }),
             invalidatesTags: []
         }),
+        addBasket: builder.mutation({
+            query: (id, newItem) => ({
+                url: `users/${id}`,
+                method: 'PATCH',
+                body: { basket: newItem },
+            }),
+            invalidatesTags: []
+        }),
     }),
 })
 
-export const { useGetUserQuery, useAddUserMutation } = userApiSlice;
+export const { useGetUserQuery, useAddUserMutation, useAddBasketMutation } = userApiSlice;

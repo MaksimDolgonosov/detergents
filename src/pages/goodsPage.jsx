@@ -9,7 +9,10 @@ import { useGetAllGoodsQuery } from '../query/goodsApiSlice';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
+import { useDispatch } from 'react-redux';
+import { addBasket } from '../slices/userSlice';
 
+import { useAddBasketMutation } from '../query/userApiSlice';
 // import Container from 'react-bootstrap/Container';
 // import Row from 'react-bootstrap/Row';
 // import Col from 'react-bootstrap/Col';
@@ -19,8 +22,18 @@ export function GoodsPage() {
     const quantityOfGoodsOnPage = 12;
     const [curentPage, setCurentPage] = useState(1);
     const { data: goods = [], isLoading } = useGetAllGoodsQuery();
+    const dispatch = useDispatch();
+    const filteredGoods = activeCategory === "Все" ? goods : goods.filter(item => item.category === activeCategory);
 
-    const filteredGoods = activeCategory === "Все" ? goods : goods.filter(item=>item.category===activeCategory);
+
+    const [updateBasket, isLoad] = useAddBasketMutation();
+
+    const addBasketHandle = (id, title, price) => {
+        dispatch(addBasket({ title, price }));
+        updateBasket({ id, title, price }).unwrap();
+    }
+
+
 
     const goodsList = filteredGoods.map(good => {
         return (
@@ -33,7 +46,7 @@ export function GoodsPage() {
                         {good.description}
                     </Card.Text>
                     <div className='goods__price'>{good.price} руб.</div>
-                    <Button className='goods__btn' variant="primary">В корзину</Button>
+                    <Button className='goods__btn' variant="primary" onClick={() => addBasketHandle(good.id, good.title, good.price)}>В корзину</Button>
                 </Card.Body>
             </Card>
             //  </Col> 

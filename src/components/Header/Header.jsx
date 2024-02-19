@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 import Logo from '../../images/logo/logo2.svg';
 // import { useAuth } from '../../hooks/useAuth';
 import { setActiveCategory } from '../../slices/categorySlice';
-
+import { useNavigate, useLocation } from 'react-router-dom';
 import { FaArrowRightToBracket } from "react-icons/fa6";
 // import EnterLogo from '../../images/logo/enter.svg';
 import { removeUser } from '../../slices/userSlice';
@@ -26,7 +26,8 @@ const Header = () => {
     const name = useSelector(state => state.user.name);
     const { data: categories = [] } = useGetAllCaregoriesQuery();
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
+    const location = useLocation();
 
 
     const Name = () => {
@@ -43,13 +44,21 @@ const Header = () => {
         localStorage.setItem("userId", null);
     }
 
+    const setCategory = (category) => {
+
+        if (location.pathname !== "/goods") {
+            navigate("/goods");
+        }
+        dispatch(setActiveCategory(category));
+    }
+
 
     const cat = categories.map((item, index) => {
 
 
         const subCat = item.subcategories.map((data, i) => {
             return (
-                <NavDropdown.Item key={i} style={{ fontSize: "15px" }} onClick={() => dispatch(setActiveCategory(data))}>{data}</NavDropdown.Item >
+                <NavDropdown.Item key={i} style={{ fontSize: "15px" }} onClick={() => setCategory(data)}>{data}</NavDropdown.Item >
             )
         })
 
@@ -91,7 +100,7 @@ const Header = () => {
                                 </NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item> */}
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item onClick={() => dispatch(setActiveCategory("Все"))}>
+                                <NavDropdown.Item onClick={(e) => setCategory(e.target.textContent)}>
                                     Все
                                 </NavDropdown.Item>
                             </NavDropdown>
