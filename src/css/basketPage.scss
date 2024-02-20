@@ -1,0 +1,13 @@
+.basket {
+    &__btn {
+        width: 26px;
+        height: 26px;
+        border-radius: 90%;
+        border: none;
+        line-height: 26px;
+    }
+
+    &__quantity {
+        margin: 0 10px;
+    }
+}

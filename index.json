@@ -408,7 +408,9 @@
       "status": "admin",
       "basket": [
         {
+          "id": 50,
           "item": "Кондиционер для белья ВЕРНЕЛЬ",
+          "quantity": 1,
           "price": 15
         }
       ],
