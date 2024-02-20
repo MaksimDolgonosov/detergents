@@ -1,13 +1,40 @@
 .basket {
+
+    &__items {
+        list-style-type: none;
+        width: 60%;
+        padding: 0;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        img {
+            margin-right: 10px;
+            // box-shadow: rgba(0, 0, 0, 1) 0px 12px 24px;
+        }
+    }
+
+    &__name {
+        margin-right: auto;
+    }
+
     &__btn {
         width: 26px;
         height: 26px;
         border-radius: 90%;
-        border: none;
-        line-height: 26px;
+        border: 1px solid grey;
+        line-height: 22px;
     }
 
     &__quantity {
         margin: 0 10px;
+    }
+
+    &__counter {
+        // justify-self: end;
+        margin-right: 50px;
     }
 }

@@ -12,11 +12,15 @@ export function BasketPage() {
     return (
 
       <li className="basket__item" key={item.id}>
-        <span >{item.item}</span>
-        <button className="basket__btn">-</button>
-        <span className='basket__quantity'>{item.quantity}</span>
-        <button className="basket__btn">+</button>
-        <MdDelete />
+        <img src={item.image} alt={item.item} style={{ with: "40px", height: "40px", borderRadius: "100%", border: "2px solid #6495ED" }} />
+        <span className="basket__name">{item.item}</span>
+        <div className="basket__counter">
+          <button className="basket__btn">-</button>
+          <span className='basket__quantity'>{item.quantity}</span>
+          <button className="basket__btn">+</button>
+        </div>
+
+        <MdDelete style={{ display: "block", width: "22px", height: "22px", cursor:"pointer" }} />
       </li>
 
     )
@@ -28,7 +32,7 @@ export function BasketPage() {
     <div className="container">
       <div className="basket">
         <h3>Корзина</h3>
-        <ul>
+        <ul className="basket__items">
           {basketList}
         </ul>
       </div>
