@@ -32,7 +32,7 @@ function App() {
       .then(data => dispatch(setUser({
         name: data[0].name,
         email: data[0].email,
-        id: data[0].uid,
+        id: data[0].id,
         status: data[0].status,
         basket: data[0].basket,
         history: data[0].history
@@ -45,12 +45,13 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
+          <Route path="/" element={<MainPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/goods" element={<GoodsPage />} />
           <Route path="/basket" element={<BasketPage />} />
           <Route path="/personal" element={<PersonalPage />} />
-          <Route path="/" element={<MainPage />} />
+
         </Routes>
         <Footer />
       </BrowserRouter>

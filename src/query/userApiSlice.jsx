@@ -25,7 +25,11 @@ export const userApiSlice = createApi({
             }),
             invalidatesTags: []
         }),
+        // getBasket: builder.query({
+        //     query: (id) => `/users/${id}/basket`,
+        //     providesTags: []
+        // })
     }),
 })
 
-export const { useGetUserQuery, useAddUserMutation, useAddBasketMutation } = userApiSlice;
+export const { useGetUserQuery, useAddUserMutation, useAddBasketMutation, useGetBasketQuery } = userApiSlice;

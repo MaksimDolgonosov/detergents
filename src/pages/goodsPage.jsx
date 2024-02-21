@@ -18,7 +18,7 @@ import { useAddBasketMutation } from '../query/userApiSlice';
 // import Col from 'react-bootstrap/Col';
 
 export function GoodsPage() {
-    const { activeCategory } = useSelector(state => state.category)
+    const  activeCategory  = useSelector(state => state.category.activeCategory)
     const quantityOfGoodsOnPage = 12;
     const [curentPage, setCurentPage] = useState(1);
     const { data: goods = [], isLoading } = useGetAllGoodsQuery();
