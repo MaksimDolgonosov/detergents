@@ -6,6 +6,11 @@ import Placeholder from 'react-bootstrap/Placeholder';
 import Spinner from 'react-bootstrap/Spinner';
 import Pagination from 'react-bootstrap/Pagination';
 import { useGetAllGoodsQuery } from '../query/goodsApiSlice';
+
+import { useLazyGetUserQuery } from '../query/userApiSlice';
+import { useGetUserQuery } from '../query/userApiSlice';
+
+
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -18,19 +23,30 @@ import { useAddBasketMutation } from '../query/userApiSlice';
 // import Col from 'react-bootstrap/Col';
 
 export function GoodsPage() {
-    const  activeCategory  = useSelector(state => state.category.activeCategory)
+    const activeCategory = useSelector(state => state.category.activeCategory);
+    const userId = useSelector(state => state.user.id)
     const quantityOfGoodsOnPage = 12;
     const [curentPage, setCurentPage] = useState(1);
     const { data: goods = [], isLoading } = useGetAllGoodsQuery();
+
+    const [setUserId] = useLazyGetUserQuery();
+
     const dispatch = useDispatch();
     const filteredGoods = activeCategory === "Все" ? goods : goods.filter(item => item.category === activeCategory);
 
-
+    //Добавление в корзину (доработать)
     const [updateBasket, isLoad] = useAddBasketMutation();
 
-    const addBasketHandle = (id, title, price) => {
-        dispatch(addBasket({ title, price }));
-        updateBasket({ id, title, price }).unwrap();
+    const addBasketHandle = async (id, title, price, image) => {
+        const user = await setUserId(userId);
+        const currentBasket = user.data.basket.slice();
+
+        const newItem = { id, title, price, quantity: 1, image };
+        currentBasket.push(newItem);
+
+        dispatch(addBasket(newItem));
+        console.log({ userId, currentBasket });
+        await updateBasket({ userId, currentBasket }).unwrap();
     }
 
 
@@ -46,7 +62,7 @@ export function GoodsPage() {
                         {good.description}
                     </Card.Text>
                     <div className='goods__price'>{good.price} руб.</div>
-                    <Button className='goods__btn' variant="primary" onClick={() => addBasketHandle(good.id, good.title, good.price)}>В корзину</Button>
+                    <Button className='goods__btn' variant="primary" onClick={() => addBasketHandle(good.id, good.title, good.price, good.image)}>В корзину</Button>
                 </Card.Body>
             </Card>
             //  </Col> 

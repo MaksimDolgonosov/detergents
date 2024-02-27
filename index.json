@@ -408,11 +408,18 @@
       "status": "admin",
       "basket": [
         {
-          "id": 50,
-          "item": "Кондиционер для белья ВЕРНЕЛЬ",
-          "quantity": 1,
+          "id": 45,
+          "title": "Кондиционер для белья ВЕРНЕЛЬ",
           "price": 15,
+          "quantity": 1,
           "image": "https://mila.by/images/cache/_thumb_500x500xin_upload_iblock_cce_60kvv7xcycvt7ps53qu00bht6d9lcs3t_9000101075076.jpg"
+        },
+        {
+          "id": 46,
+          "title": "Стиральный порошок Persil",
+          "price": 20,
+          "quantity": 1,
+          "image": "https://static.price.ru/images/models/296x296/bitovaya-himiya/persil-poroshok-stiralniy-avtomat-premium-dlya-belogo-belya-2.43-kg/de7589058ae3dd8f54f7e2254d3e5ccf.JPEG"
         }
       ],
       "history": [

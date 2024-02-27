@@ -34,9 +34,12 @@ const userSlice = createSlice({
         },
         addBasket(state, action) {
             state.basket.push(action.payload);
+        },
+        removeFromBasket(state, action) {
+            state.basket=state.basket.filter(item => item.id !== action.payload);
         }
     }
 })
 
-export const { setUser, removeUser, addBasket } = userSlice.actions;
+export const { setUser, removeUser, addBasket, removeFromBasket } = userSlice.actions;
 export default userSlice.reducer;

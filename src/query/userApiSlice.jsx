@@ -3,11 +3,12 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const userApiSlice = createApi({
     reducerPath: 'apiUser',
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001' }),
-    tagTypes: [],
+    tagTypes: ["basket"],
     endpoints: (builder) => ({
         getUser: builder.query({
             query: (id) => `/users/${id}`,
-            providesTags: []
+            providesTags: ["basket"],
+            //invalidatesTags: ["basket"]
         }),
         addUser: builder.mutation({
             query: (user) => ({
@@ -18,12 +19,17 @@ export const userApiSlice = createApi({
             invalidatesTags: []
         }),
         addBasket: builder.mutation({
-            query: (id, newItem) => ({
-                url: `users/${id}`,
-                method: 'PATCH',
-                body: { basket: newItem },
-            }),
-            invalidatesTags: []
+            query: ({ userId, currentBasket }) => ({
+                    url: `users/${userId}`,
+                    method: 'PATCH',
+                    body: { basket: currentBasket },
+                    headers: {
+                        'Content-Type': 'application/json'
+                        // Заголовки
+                    }
+                }),
+            // providesTags: ["basket"],
+            invalidatesTags: ["basket"]
         }),
         // getBasket: builder.query({
         //     query: (id) => `/users/${id}/basket`,
@@ -32,4 +38,4 @@ export const userApiSlice = createApi({
     }),
 })
 
-export const { useGetUserQuery, useAddUserMutation, useAddBasketMutation, useGetBasketQuery } = userApiSlice;
+export const { useGetUserQuery, useLazyGetUserQuery, useAddUserMutation, useAddBasketMutation, useGetBasketQuery } = userApiSlice;
