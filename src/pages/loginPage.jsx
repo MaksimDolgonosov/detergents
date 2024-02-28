@@ -25,6 +25,8 @@ export const LoginPage = () => {
                     .then(data => data.filter(serverUser => serverUser.id === user.uid))
                     .then(data => dispatch(setUser({
                         name: data[0].name,
+                        surname: data[0].surname,
+                        tel: data[0].tel,
                         email: user.email,
                         id: user.uid,
                         status: data[0].status,

@@ -404,6 +404,9 @@
   "users": [
     {
       "name": "Максим",
+      "surname": null,
+      "tel": null,
+      "email": "max_air@bk.ru",
       "id": "x8m1HZZWYrd9eE9lqxY0e19EL4H2",
       "status": "admin",
       "basket": [
@@ -422,11 +425,11 @@
           "image": "https://static.price.ru/images/models/296x296/bitovaya-himiya/persil-poroshok-stiralniy-avtomat-premium-dlya-belogo-belya-2.43-kg/de7589058ae3dd8f54f7e2254d3e5ccf.JPEG"
         },
         {
-          "id": 2,
-          "title": "Стиральный порошок Persil",
-          "price": 23,
+          "id": 4,
+          "title": "Таблетки для посудомоечной машины",
+          "price": 50,
           "quantity": 1,
-          "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/2287/00002287/norm/00002287.n_3.png"
+          "image": "https://img.5element.by/import/images/ut/goods/good_8ca419a2-99ca-11ee-8db3-005056012b6d/tabletki-dlya-pmm-finish-powerball-quantum-84-sht-1_600.jpg"
         }
       ],
       "history": [
@@ -439,6 +442,8 @@
     },
     {
       "name": "Петя",
+      "surname": null,
+      "tel": null,
       "email": "peter@mail.ch",
       "id": "kfc8ucSqWzcwVpoCV9BPvMEEdz33",
       "status": "customer",

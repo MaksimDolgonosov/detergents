@@ -10,22 +10,22 @@ import { RegisterPage } from './pages/registerPage';
 import { GoodsPage } from './pages/goodsPage';
 import { BasketPage } from './pages/basketPage';
 import { PersonalPage } from './pages/personalPage';
-import { setUser } from './slices/userSlice';
-import { useDispatch } from 'react-redux';
-import { useGetUserQuery } from './query/userApiSlice';
-import { useHttp } from './hooks/useHttp';
+// import { setUser } from './slices/userSlice';
+// import { useDispatch } from 'react-redux';
+// import { useGetUserQuery } from './query/userApiSlice';
+// import { useHttp } from './hooks/useHttp';
 
 
 
 
 function App() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   // const id = localStorage.getItem("userId")
   // console.log(id);
   // const { data } = useGetUserQuery("x8m1HZZWYrd9eE9lqxY0e19EL4H2");
   // console.log(data);
   // dispatch(setUser(data));
-  const { request } = useHttp();
+  // const { request } = useHttp();
   
   // if (localStorage.getItem("userId") !== "null" && localStorage.getItem("userId") !== null) {
     

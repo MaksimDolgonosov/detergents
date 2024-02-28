@@ -26,11 +26,12 @@ const reducers = combineReducers({
     [userApiSlice.reducerPath]: userApiSlice.reducer,
     [goodsApiSlice.reducerPath]: goodsApiSlice.reducer,
     [categoriesApiSlice.reducerPath]: categoriesApiSlice.reducer,
-})
+});
 
 const persistConfig = {
     key: 'auth',
     storage,
+    blacklist: ['apiGoods', 'apiCategories', 'categories', 'apiUser','category']
 }
 const persistedReducer = persistReducer(persistConfig, reducers)
 

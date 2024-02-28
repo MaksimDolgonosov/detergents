@@ -25,6 +25,8 @@ export const RegisterPage = () => {
             .then(({ user }) => {
                 const newUser = {
                     name: name,
+                    surname: null,
+                    tel: null,
                     email: user.email,
                     id: user.uid,
                     status: "customer",
