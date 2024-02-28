@@ -420,6 +420,13 @@
           "price": 20,
           "quantity": 1,
           "image": "https://static.price.ru/images/models/296x296/bitovaya-himiya/persil-poroshok-stiralniy-avtomat-premium-dlya-belogo-belya-2.43-kg/de7589058ae3dd8f54f7e2254d3e5ccf.JPEG"
+        },
+        {
+          "id": 2,
+          "title": "Стиральный порошок Persil",
+          "price": 23,
+          "quantity": 1,
+          "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/2287/00002287/norm/00002287.n_3.png"
         }
       ],
       "history": [

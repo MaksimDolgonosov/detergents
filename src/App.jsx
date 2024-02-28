@@ -27,19 +27,19 @@ function App() {
   // dispatch(setUser(data));
   const { request } = useHttp();
   
-  if (localStorage.getItem("userId") !== "null" && localStorage.getItem("userId") !== null) {
+  // if (localStorage.getItem("userId") !== "null" && localStorage.getItem("userId") !== null) {
     
-    request("http://localhost:3001/users")
-      .then(data => data.filter(serverUser => serverUser.id === localStorage.getItem("userId")))
-      .then(data => dispatch(setUser({
-        name: data[0].name,
-        email: data[0].email,
-        id: data[0].id,
-        status: data[0].status,
-        basket: data[0].basket,
-        history: data[0].history
-      })))
-  }
+  //   request("http://localhost:3001/users")
+  //     .then(data => data.filter(serverUser => serverUser.id === localStorage.getItem("userId")))
+  //     .then(data => dispatch(setUser({
+  //       name: data[0].name,
+  //       email: data[0].email,
+  //       id: data[0].id,
+  //       status: data[0].status,
+  //       basket: data[0].basket,
+  //       history: data[0].history
+  //     })))
+  // }
 
 
   return (

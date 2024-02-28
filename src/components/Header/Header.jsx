@@ -23,7 +23,7 @@ import { useGetAllCaregoriesQuery } from '../../query/categoriesApiSlice';
 const Header = () => {
     const basket = useSelector(state => state.user.basket);
 
-    
+
     const isAuth = useSelector(state => state.user.isAuth);
     const name = useSelector(state => state.user.name);
     const { data: categories = [] } = useGetAllCaregoriesQuery();
@@ -43,7 +43,7 @@ const Header = () => {
 
     const onLogout = () => {
         dispatch(removeUser());
-        localStorage.setItem("userId", null);
+        // localStorage.setItem("userId", null);
     }
 
     const setCategory = (category) => {

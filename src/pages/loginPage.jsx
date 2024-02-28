@@ -31,7 +31,7 @@ export const LoginPage = () => {
                         basket: data[0].basket,
                         history: data[0].history
                     })))
-                localStorage.setItem("userId", user.uid);
+                // localStorage.setItem("userId", user.uid);
                 navigate("/goods");
             })
             .catch((error) => {
