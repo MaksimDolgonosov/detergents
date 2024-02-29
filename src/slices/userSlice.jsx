@@ -18,8 +18,8 @@ const userSlice = createSlice({
     reducers: {
         setUser(state, action) {
             state.name = action.payload.name;
-            state.surname= action.payload.surname;
-            state.tel= action.payload.tel;
+            state.surname = action.payload.surname;
+            state.tel = action.payload.tel;
             state.email = action.payload.email;
             state.id = action.payload.id;
             state.status = action.payload.status;
@@ -29,8 +29,8 @@ const userSlice = createSlice({
         },
         removeUser(state) {
             state.name = null;
-            state.surname= null;
-            state.tel= null;
+            state.surname = null;
+            state.tel = null;
             state.email = null;
             state.id = null;
             state.status = null;
@@ -42,10 +42,19 @@ const userSlice = createSlice({
             state.basket.push(action.payload);
         },
         removeFromBasket(state, action) {
-            state.basket=state.basket.filter(item => item.id !== action.payload);
+            state.basket = state.basket.filter(item => item.id !== action.payload);
+        },
+        addQuantityToBasket(state, action) {
+            state.basket = state.basket.map(product => {
+                if (product.id === action.payload) {
+                    product.quantity += 1;
+                }
+                return product;
+            })
         }
+
     }
 })
 
-export const { setUser, removeUser, addBasket, removeFromBasket } = userSlice.actions;
+export const { setUser, removeUser, addBasket, removeFromBasket, addQuantityToBasket } = userSlice.actions;
 export default userSlice.reducer;
