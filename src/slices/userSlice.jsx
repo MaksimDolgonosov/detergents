@@ -51,10 +51,18 @@ const userSlice = createSlice({
                 }
                 return product;
             })
+        },
+        removeQuantityFromBasket(state, action) {
+            state.basket = state.basket.map(product => {
+                if (product.id === action.payload) {
+                    product.quantity -= 1;
+                }
+                return product;
+            })
         }
 
     }
 })
 
-export const { setUser, removeUser, addBasket, removeFromBasket, addQuantityToBasket } = userSlice.actions;
+export const { setUser, removeUser, addBasket, removeFromBasket, addQuantityToBasket, removeQuantityFromBasket } = userSlice.actions;
 export default userSlice.reducer;
