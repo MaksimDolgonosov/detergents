@@ -22,8 +22,8 @@ import { useGetAllCaregoriesQuery } from '../../query/categoriesApiSlice';
 
 const Header = () => {
     const basket = useSelector(state => state.user.basket);
-
-
+    const basketLength = basket.reduce(((sum, current) => sum + current.quantity), 0);
+    
     const isAuth = useSelector(state => state.user.isAuth);
     const name = useSelector(state => state.user.name);
     const { data: categories = [] } = useGetAllCaregoriesQuery();
@@ -140,7 +140,7 @@ const Header = () => {
                                     Корзина
                                 </Link>
 
-                                <BasketItems quantity={basket.length} />
+                                <BasketItems quantity={basketLength} />
                             </>
 
 

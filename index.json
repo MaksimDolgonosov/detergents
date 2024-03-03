@@ -27,7 +27,7 @@
     {
       "id": 4,
       "title": "Таблетки для посудомоечной машины",
-      "price": 50,
+      "price": 50.75,
       "description": "Таблетки для посудомоечной машины Finish Powerball Quantum All in 1 (84 шт)",
       "category": "Таблетки для мытья посуды",
       "image": "https://img.5element.by/import/images/ut/goods/good_8ca419a2-99ca-11ee-8db3-005056012b6d/tabletki-dlya-pmm-finish-powerball-quantum-84-sht-1_600.jpg"
@@ -355,7 +355,7 @@
     {
       "id": 45,
       "title": "Кондиционер для белья ВЕРНЕЛЬ",
-      "price": 15,
+      "price": 15.15,
       "description": "Кондиционер для белья ВЕРНЕЛЬ Свежий бриз VERNEL концентрированный, 910 мл",
       "category": "Кондиционеры для белья",
       "image": "https://mila.by/images/cache/_thumb_500x500xin_upload_iblock_cce_60kvv7xcycvt7ps53qu00bht6d9lcs3t_9000101075076.jpg"
@@ -363,7 +363,7 @@
     {
       "id": 46,
       "title": "Стиральный порошок Persil",
-      "price": 20,
+      "price": 20.45,
       "description": "Стиральный порошок Персил Premium Гигиена и чистота, 2.43 кг",
       "category": "Стиральные порошки",
       "image": "https://static.price.ru/images/models/296x296/bitovaya-himiya/persil-poroshok-stiralniy-avtomat-premium-dlya-belogo-belya-2.43-kg/de7589058ae3dd8f54f7e2254d3e5ccf.JPEG"
@@ -411,25 +411,25 @@
       "status": "admin",
       "basket": [
         {
-          "id": 45,
-          "title": "Кондиционер для белья ВЕРНЕЛЬ",
-          "price": 15,
-          "quantity": 1,
-          "image": "https://mila.by/images/cache/_thumb_500x500xin_upload_iblock_cce_60kvv7xcycvt7ps53qu00bht6d9lcs3t_9000101075076.jpg"
-        },
-        {
           "id": 46,
           "title": "Стиральный порошок Persil",
-          "price": 20,
+          "price": 20.35,
           "quantity": 1,
           "image": "https://static.price.ru/images/models/296x296/bitovaya-himiya/persil-poroshok-stiralniy-avtomat-premium-dlya-belogo-belya-2.43-kg/de7589058ae3dd8f54f7e2254d3e5ccf.JPEG"
         },
         {
           "id": 4,
           "title": "Таблетки для посудомоечной машины",
-          "price": 50,
+          "price": 50.75,
           "quantity": 1,
           "image": "https://img.5element.by/import/images/ut/goods/good_8ca419a2-99ca-11ee-8db3-005056012b6d/tabletki-dlya-pmm-finish-powerball-quantum-84-sht-1_600.jpg"
+        },
+        {
+          "id": 45,
+          "title": "Кондиционер для белья ВЕРНЕЛЬ",
+          "price": 15.15,
+          "quantity": 2,
+          "image": "https://mila.by/images/cache/_thumb_500x500xin_upload_iblock_cce_60kvv7xcycvt7ps53qu00bht6d9lcs3t_9000101075076.jpg"
         }
       ],
       "history": [

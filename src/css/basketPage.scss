@@ -1,4 +1,11 @@
 .basket {
+    padding-top: 5px;
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+
 
     &__items {
         list-style-type: none;
@@ -11,6 +18,9 @@
         align-items: center;
         justify-content: space-between;
         margin: 5px 0;
+        padding-bottom: 5px;
+        border-bottom: 1px solid rgba(122, 122, 122, 0.253);
+        
 
         img {
             margin-right: 10px;
@@ -31,11 +41,110 @@
     }
 
     &__quantity {
+        display: inline-block;
+        text-align: center;
+        width: 20px;
         margin: 0 10px;
     }
 
     &__counter {
-        // justify-self: end;
-        margin-right: 50px;
+        display: flex;
+        justify-content: space-around;
+        width: 90px;
+        margin-right: 40px;
     }
+
+    &__toOrder {
+        padding: 20px;
+        border: 1px solid rgba(49, 49, 49, 0.418);
+        width: 30%;
+        height: 100%;
+        box-shadow: 0 4px 16px rgba(6, 10, 13, .06), 0 1px 4px rgba(6, 10, 13, .08);
+        border-radius: 12px;
+
+        span {
+            display: block;
+        }
+
+        &_underline {
+            background-color: rgba(122, 122, 122, 0.418);
+            width: 100%;
+            height: 1px;
+            margin: 5px 0 10px 0;
+        }
+
+        h6 {
+            font-size: 18px;
+        }
+
+        &__total,
+        &__goods,
+        &__delivery {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &__total {
+            font-size: 14px;
+
+            span {
+                font-size: 16px;
+                font-weight: 500;
+            }
+        }
+
+        &__goods,
+        &__delivery,
+        &__deliveryLabel,
+        &__deliverySelect {
+
+
+
+            font-size: 14px;
+
+            span {
+                font-size: 14px;
+            }
+        }
+
+        &__deliverySelect {
+            background-color: #fff;
+            border: 1px solid #6f6f6f;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        &__deliveryChoise {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &__deliveryComment {
+            margin-top: 10px;
+            color: #a0a1a3;
+            font-size: 12px;
+            line-height: 15px;
+        }
+
+        &__deliveryBtn {
+            display: block;
+            margin: 20px auto 0 auto;
+            color: white;
+            background-color: rgb(100, 149, 237);
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 5px;
+            width: 100%;
+            height: 48px;
+            transition: .3s all;
+
+            &:hover {
+                background-color: rgba(100, 148, 237, 0.808);
+                transition: .3s all;
+            }
+        }
+    }
+
 }

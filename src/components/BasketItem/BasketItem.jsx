@@ -19,19 +19,24 @@ const BasketItem = ({ item }) => {
         await updateBasket({ userId, currentBasket: newBasket }).unwrap();
     }
 
-    const onChangeQuantity = async (itemId, simbol) => {
-        const user = await setUserId(userId);
-        const currentBasket = user.data.basket.slice();
-        const newBasket = currentBasket.map(product => {
-            if (product.id === itemId) {
-                const obj = simbol === "plus" ? { quantity: item.quantity + 1 } : { quantity: item.quantity - 1 }
-                // const obj = { quantity: item.quantity + 1 };
-                return { ...product, ...obj }
-            }
-            return product;
-        })
-        simbol === "plus" ?  dispatch(addQuantityToBasket(itemId)) : dispatch(removeQuantityFromBasket(itemId))
-        await updateBasket({ userId, currentBasket: newBasket }).unwrap();
+    const onChangeQuantity = async (itemId, simbol, quantity) => {
+        if (quantity === 1 && simbol === "minus") {
+            return
+        } else {
+            const user = await setUserId(userId);
+            const currentBasket = user.data.basket.slice();
+            const newBasket = currentBasket.map(product => {
+                if (product.id === itemId) {
+                    const obj = simbol === "plus" ? { quantity: item.quantity + 1 } : { quantity: item.quantity - 1 }
+                    // const obj = { quantity: item.quantity + 1 };
+                    return { ...product, ...obj }
+                }
+                return product;
+            })
+            simbol === "plus" ? dispatch(addQuantityToBasket(itemId)) : dispatch(removeQuantityFromBasket(itemId))
+            await updateBasket({ userId, currentBasket: newBasket }).unwrap();
+        }
+
     }
 
 
@@ -54,15 +59,15 @@ const BasketItem = ({ item }) => {
 
     return (
         <li className="basket__item">
-            <img src={item.image} alt={item.title} style={{ with: "40px", height: "40px", borderRadius: "100%", border: "2px solid #6495ED" }} />
+            <img src={item.image} alt={item.title} style={{ with: "35px", height: "40px", borderRadius: "100%", border: "1px solid #6495ED" }} />
             <span className="basket__name">{item.title}</span>
             <div className="basket__counter">
-                <button className="basket__btn" onClick={() => onChangeQuantity(item.id, "minus")}>-</button>
+                <button className="basket__btn" onClick={() => onChangeQuantity(item.id, "minus", item.quantity)}>-</button>
                 <span className='basket__quantity'>{item.quantity}</span>
                 <button className="basket__btn" onClick={() => onChangeQuantity(item.id, "plus")}>+</button>
             </div>
-
-            <MdDelete style={{ display: "block", width: "22px", height: "22px", cursor: "pointer" }} onClick={() => onRemoveItem(item.id)} title='Удалить товар' />
+            <div className="basket__price" style={{ width: "85px" }}>{(item.price * item.quantity).toFixed(2)} руб.</div>
+            <MdDelete style={{ display: "block", width: "22px", height: "22px", cursor: "pointer", marginLeft: "10px" }} onClick={() => onRemoveItem(item.id)} title='Удалить товар' />
         </li>
     )
 }
