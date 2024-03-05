@@ -4,7 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-
+    min-height: calc(80vh - 126px);
 
 
     &__items {
@@ -20,7 +20,7 @@
         margin: 5px 0;
         padding-bottom: 5px;
         border-bottom: 1px solid rgba(122, 122, 122, 0.253);
-        
+
 
         img {
             margin-right: 10px;
@@ -108,6 +108,7 @@
         }
 
         &__deliverySelect {
+            margin-top: 5px;
             background-color: #fff;
             border: 1px solid #6f6f6f;
             cursor: pointer;
@@ -144,6 +145,12 @@
                 background-color: rgba(100, 148, 237, 0.808);
                 transition: .3s all;
             }
+        }
+
+        &__deliveryMessage {
+            margin-top: 5px;
+            color: red;
+            font-size: 12px;
         }
     }
 

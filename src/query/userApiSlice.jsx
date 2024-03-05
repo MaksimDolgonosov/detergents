@@ -31,10 +31,7 @@ export const userApiSlice = createApi({
             // providesTags: ["basket"],
             invalidatesTags: ["basket"]
         }),
-        // getBasket: builder.query({
-        //     query: (id) => `/users/${id}/basket`,
-        //     providesTags: []
-        // })
+
     }),
 })
 

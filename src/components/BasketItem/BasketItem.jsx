@@ -14,7 +14,7 @@ const BasketItem = ({ item }) => {
     const onRemoveItem = async (itemId) => {
         const user = await setUserId(userId);
         const currentBasket = user.data.basket.slice();
-        const newBasket = currentBasket.filter(item => item.id !== itemId)
+        const newBasket = await currentBasket.filter(item => item.id !== itemId)
         dispatch(removeFromBasket(itemId));
         await updateBasket({ userId, currentBasket: newBasket }).unwrap();
     }
@@ -25,7 +25,7 @@ const BasketItem = ({ item }) => {
         } else {
             const user = await setUserId(userId);
             const currentBasket = user.data.basket.slice();
-            const newBasket = currentBasket.map(product => {
+            const newBasket = await currentBasket.map(product => {
                 if (product.id === itemId) {
                     const obj = simbol === "plus" ? { quantity: item.quantity + 1 } : { quantity: item.quantity - 1 }
                     // const obj = { quantity: item.quantity + 1 };
@@ -33,7 +33,7 @@ const BasketItem = ({ item }) => {
                 }
                 return product;
             })
-            simbol === "plus" ? dispatch(addQuantityToBasket(itemId)) : dispatch(removeQuantityFromBasket(itemId))
+            simbol === "plus" ? await dispatch(addQuantityToBasket(itemId)) : await dispatch(removeQuantityFromBasket(itemId))
             await updateBasket({ userId, currentBasket: newBasket }).unwrap();
         }
 

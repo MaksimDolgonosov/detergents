@@ -9,7 +9,8 @@ const initialState = {
     status: null,
     basket: [],
     history: [],
-    isAuth: false
+    isAuth: false,
+    delivery: "-"
 }
 
 const userSlice = createSlice({
@@ -26,6 +27,7 @@ const userSlice = createSlice({
             state.basket = action.payload.basket;
             state.history = action.payload.history;
             state.isAuth = true;
+            state.delivery = "";
         },
         removeUser(state) {
             state.name = null;
@@ -37,6 +39,7 @@ const userSlice = createSlice({
             state.basket = [];
             state.history = [];
             state.isAuth = false;
+            state.delivery = "-";
         },
         addBasket(state, action) {
             state.basket.push(action.payload);
@@ -59,10 +62,13 @@ const userSlice = createSlice({
                 }
                 return product;
             })
-        }
+        },
+        setDeliveryUser(state, action) {
+            state.delivery = action.payload;
+        },
 
     }
 })
 
-export const { setUser, removeUser, addBasket, removeFromBasket, addQuantityToBasket, removeQuantityFromBasket } = userSlice.actions;
+export const { setUser, removeUser, addBasket, removeFromBasket, addQuantityToBasket, removeQuantityFromBasket, setDeliveryUser } = userSlice.actions;
 export default userSlice.reducer;

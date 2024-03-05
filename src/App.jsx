@@ -10,6 +10,7 @@ import { RegisterPage } from './pages/registerPage';
 import { GoodsPage } from './pages/goodsPage';
 import { BasketPage } from './pages/basketPage';
 import { PersonalPage } from './pages/personalPage';
+import { OrderPage } from './pages/orderPage';
 // import { setUser } from './slices/userSlice';
 // import { useDispatch } from 'react-redux';
 // import { useGetUserQuery } from './query/userApiSlice';
@@ -26,9 +27,9 @@ function App() {
   // console.log(data);
   // dispatch(setUser(data));
   // const { request } = useHttp();
-  
+
   // if (localStorage.getItem("userId") !== "null" && localStorage.getItem("userId") !== null) {
-    
+
   //   request("http://localhost:3001/users")
   //     .then(data => data.filter(serverUser => serverUser.id === localStorage.getItem("userId")))
   //     .then(data => dispatch(setUser({
@@ -53,7 +54,12 @@ function App() {
           <Route path="/goods" element={<GoodsPage />} />
           <Route path="/basket" element={<BasketPage />} />
           <Route path="/personal" element={<PersonalPage />} />
+          <Route path="/order"
 
+             element={<OrderPage />}
+           // element={props => <OrderPage text="Hello " {...props} />}
+         // render={props => <OrderPage text="Hello " {...props}/>}
+          />
         </Routes>
         <Footer />
       </BrowserRouter>
