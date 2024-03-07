@@ -35,7 +35,7 @@ export function GoodsPage() {
     const filteredGoods = activeCategory === "Все" ? goods : goods.filter(item => item.category === activeCategory);
 
     //Добавление в корзину (доработать)
-    const [updateBasket, isLoad] = useAddBasketMutation();
+    const [updateBasket] = useAddBasketMutation();
 
     const addBasketHandle = async (id, title, price, image) => {
         const user = await setUserId(userId);

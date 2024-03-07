@@ -47,6 +47,9 @@ const userSlice = createSlice({
         removeFromBasket(state, action) {
             state.basket = state.basket.filter(item => item.id !== action.payload);
         },
+        clearBasket(state) {
+            state.basket = [];
+        },
         addQuantityToBasket(state, action) {
             state.basket = state.basket.map(product => {
                 if (product.id === action.payload) {
@@ -70,5 +73,5 @@ const userSlice = createSlice({
     }
 })
 
-export const { setUser, removeUser, addBasket, removeFromBasket, addQuantityToBasket, removeQuantityFromBasket, setDeliveryUser } = userSlice.actions;
+export const { setUser, removeUser, addBasket, removeFromBasket, addQuantityToBasket, removeQuantityFromBasket, setDeliveryUser, clearBasket } = userSlice.actions;
 export default userSlice.reducer;

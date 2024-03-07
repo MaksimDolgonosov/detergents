@@ -404,39 +404,24 @@
   "users": [
     {
       "name": "Максим",
-      "surname": null,
-      "tel": null,
+      "surname": "",
+      "tel": "",
       "email": "max_air@bk.ru",
       "id": "x8m1HZZWYrd9eE9lqxY0e19EL4H2",
       "status": "admin",
-      "basket": [
-        {
-          "id": 46,
-          "title": "Стиральный порошок Persil",
-          "price": 20.35,
-          "quantity": 1,
-          "image": "https://static.price.ru/images/models/296x296/bitovaya-himiya/persil-poroshok-stiralniy-avtomat-premium-dlya-belogo-belya-2.43-kg/de7589058ae3dd8f54f7e2254d3e5ccf.JPEG"
-        },
-        {
-          "id": 9,
-          "title": "Таблетки для посудомоечной машины",
-          "price": 50,
-          "quantity": 1,
-          "image": "https://img.5element.by/import/images/ut/goods/good_8ca419a2-99ca-11ee-8db3-005056012b6d/tabletki-dlya-pmm-finish-powerball-quantum-84-sht-1_600.jpg"
-        },
-        {
-          "id": 5,
-          "title": "Кондиционер для белья ВЕРНЕЛЬ",
-          "price": 15,
-          "quantity": 1,
-          "image": "https://mila.by/images/cache/_thumb_500x500xin_upload_iblock_cce_60kvv7xcycvt7ps53qu00bht6d9lcs3t_9000101075076.jpg"
-        }
-      ],
+      "basket": [],
       "history": [
         {
-          "item": "Средство для мытья посуды",
-          "quantity": 1,
+          "order": "Средство для мытья посуды",
           "date": "11.04.2023"
+        },
+        {
+          "order": [
+            "Стиральный порошок Persil, 1шт.",
+            "Таблетки для посудомоечной машины, 1шт.",
+            "Кондиционер для белья ВЕРНЕЛЬ, 1шт."
+          ],
+          "date": "07.02.2024"
         }
       ]
     },

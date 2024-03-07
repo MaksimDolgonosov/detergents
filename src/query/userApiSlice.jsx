@@ -20,19 +20,32 @@ export const userApiSlice = createApi({
         }),
         addBasket: builder.mutation({
             query: ({ userId, currentBasket }) => ({
-                    url: `users/${userId}`,
-                    method: 'PATCH',
-                    body: { basket: currentBasket },
-                    headers: {
-                        'Content-Type': 'application/json'
-                        // Заголовки
-                    }
-                }),
+                url: `users/${userId}`,
+                method: 'PATCH',
+                body: { basket: currentBasket },
+                headers: {
+                    'Content-Type': 'application/json'
+                    // Заголовки
+                }
+            }),
             // providesTags: ["basket"],
             invalidatesTags: ["basket"]
+        }),
+        addHistory: builder.mutation({
+            query: ({ userId, currentHistory }) => ({
+                url: `users/${userId}`,
+                method: 'PATCH',
+                body: { history: currentHistory },
+                headers: {
+                    'Content-Type': 'application/json'
+                    // Заголовки
+                }
+            }),
+            // providesTags: ["basket"],
+            // invalidatesTags: ["basket"]
         }),
 
     }),
 })
 
-export const { useGetUserQuery, useLazyGetUserQuery, useAddUserMutation, useAddBasketMutation, useGetBasketQuery } = userApiSlice;
+export const { useGetUserQuery, useLazyGetUserQuery, useAddUserMutation, useAddBasketMutation, useGetBasketQuery, useAddHistoryMutation } = userApiSlice;
