@@ -1,3 +1,5 @@
+import '../css/orderPage.scss';
+
 import { useSelector } from "react-redux"
 import InputMask from 'react-input-mask';
 import { useState } from "react";
@@ -80,33 +82,39 @@ export function OrderPage() {
 
     if (delivery === "9") {
         return (
-            <div className="order">
-                <div className="container">
-                    <h3>Данные для доставки</h3>
+
+            <div className="container">
+                <h3>Данные для доставки</h3>
+                <div className="order">
                     <form className="order__form" onSubmit={onSubmitOrder}>
                         <input name="name" required type="text" placeholder={name} value={orderName} onChange={(e) => setOrderName(e.target.value)}></input>
                         <input name="surname" required type="text" placeholder={orderSurname ? orderSurname : "Фамилия"} value={orderSurname}
                             onChange={(e) => setOrderSurname(e.target.value)}
                         ></input>
                         <input name="postnumber" required type="number" placeholder="Номер отделения европочты" value={orderPostNumber} onChange={(e) => setOrderPostNumber(e.target.value)}></input>
-
-
                         <InputMask required name="tel" mask="+375 99 999 99 99" placeholder={tel ? tel : "Ваш номер телефона"} value={orderTel} onChange={(e) => setOrderTel(e.target.value)}></InputMask>
-                        <input type="submit" name="send" value="Доставить товары"  ></input>
+                       <div className="order__privacy">
+                       <input type='checkbox'required className='order__checkbox'/> <span>Я согласен с политикой конфиденциальности данного сайти и даю свое согласие на обработку персональных данных</span>
+                        </div> 
+                        <input className='order__submit' type="submit" name="send" value="Доставить товары"  ></input>
                     </form>
                 </div>
             </div>
         )
     } else {
         return (
-            <div className="order">
-                <div className="container">
-                    <h3>Данные для доставки</h3>
+
+            <div className="container">
+                <h3>Данные для доставки</h3>
+                <div className="order">
                     <form className="order__form" onSubmit={onSubmitOrder}>
                         <input name="name" required type="text" placeholder={name} value={orderName} onChange={(e) => setOrderName(e.target.value)}></input>
                         <input type="text" placeholder="Адрес доставки в Могилеве" value={orderAddress} onChange={(e) => setOrderAddress(e.target.value)}></input>
                         <InputMask required name="tel" mask="+375 99 999 99 99" placeholder={tel ? tel : "Ваш номер телефона"} value={orderTel} onChange={(e) => setOrderTel(e.target.value)}></InputMask>
-                        <input type="submit" name="send" value="Доставить товары"  ></input>
+                        <div className="order__privacy">
+                       <input type='checkbox'required className='order__checkbox'/> <span>Я согласен с политикой конфиденциальности данного сайти и даю свое согласие на обработку персональных данных</span>
+                        </div> 
+                        <input className='order__submit' type="submit" name="send" value="Доставить товары"  ></input>
                     </form>
                 </div>
             </div>

@@ -409,7 +409,15 @@
       "email": "max_air@bk.ru",
       "id": "x8m1HZZWYrd9eE9lqxY0e19EL4H2",
       "status": "admin",
-      "basket": [],
+      "basket": [
+        {
+          "id": 3,
+          "title": "Средство для мытья посуды",
+          "price": 10,
+          "quantity": 1,
+          "image": "https://pwa-api.eva.ua/img/512/512/resize/5/9/592448_1_1666776608.jpg"
+        }
+      ],
       "history": [
         {
           "order": "Средство для мытья посуды",
