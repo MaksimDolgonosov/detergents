@@ -42,7 +42,7 @@ export function BasketPage() {
 
   return (
     <div className="container">
-      <h3 style={{ marginTop: "5px" }}>Корзина</h3>
+      <h3 style={{ marginTop: "5px" }} className='title'>Корзина</h3>
       <div className="basket">
         <ul className="basket__items">
           {userId || isLoading ? basketList : <Spinner animation="border" />}

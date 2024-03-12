@@ -84,7 +84,7 @@ export function OrderPage() {
         return (
 
             <div className="container">
-                <h3>Данные для доставки</h3>
+                <h3 className='order__title title'>Данные для доставки</h3>
                 <div className="order">
                     <form className="order__form" onSubmit={onSubmitOrder}>
                         <input name="name" required type="text" placeholder={name} value={orderName} onChange={(e) => setOrderName(e.target.value)}></input>
@@ -105,7 +105,7 @@ export function OrderPage() {
         return (
 
             <div className="container">
-                <h3>Данные для доставки</h3>
+                <h3 className='order__title title'>Данные для доставки</h3>
                 <div className="order">
                     <form className="order__form" onSubmit={onSubmitOrder}>
                         <input name="name" required type="text" placeholder={name} value={orderName} onChange={(e) => setOrderName(e.target.value)}></input>

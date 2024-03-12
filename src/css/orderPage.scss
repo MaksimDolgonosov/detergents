@@ -8,11 +8,14 @@
     justify-content: space-between;
     align-items: center;
 
+    &__title {
+        margin: 10px 0;
+    }
+
     &__form {
-        width: 50%;
+        width: 30%;
         padding: 20px;
         border: 1px solid rgba(49, 49, 49, 0.418);
-        width: 30%;
         height: 100%;
         box-shadow: 0 4px 16px rgba(6, 10, 13, 0.06), 0 1px 4px rgba(6, 10, 13, 0.08);
         border-radius: 12px;
@@ -76,3 +79,50 @@
     }
 
 }
+
+@media(max-width: 1300px) {}
+
+@media(max-width: 1180px) {
+    .order {
+        &__form {
+            width: 40%;
+            margin: 10px 0;
+        }
+    }
+}
+
+@media(max-width: 992px) {
+    .order {
+        &__form {
+            width: 50%;
+        }
+    }
+}
+
+@media(max-width: 768px) {
+    .order {
+        &__form {
+            width: 70%;
+        }
+        &__title {
+            text-align: center;
+        }
+    }
+}
+
+@media(max-width: 576px) {
+    .order {
+
+        min-height: calc(70vh - 126px);
+
+        &__form {
+            width: 90%;
+        }
+    }
+}
+
+@media(max-width: 429px) {
+    
+}
+
+@media(max-width: 391px) {}

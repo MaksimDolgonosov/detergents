@@ -5,7 +5,7 @@ import App from './App';
 import { Provider } from 'react-redux';
 import store, { persistor } from './store';
 import "./firebase";
-
+import './App.scss';
 import { PersistGate } from 'redux-persist/integration/react'
 
 

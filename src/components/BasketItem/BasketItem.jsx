@@ -66,11 +66,13 @@ const BasketItem = ({ item }) => {
                 <span className='basket__quantity'>{item.quantity}</span>
                 <button className="basket__btn" onClick={() => onChangeQuantity(item.id, "plus")}>+</button>
             </div>
-            <div className="basket__price" style={{ width: "85px" }}>{(item.price * item.quantity).toFixed(2)} руб.</div>
-            <MdDelete style={{ display: "block", width: "22px", height: "22px", cursor: "pointer", marginLeft: "10px" }} onClick={() => onRemoveItem(item.id)} title='Удалить товар' />
+            <div className="basket__price" style={{ width: "85px" }}>{(item.price * item.quantity).toFixed(2)} руб</div>
+            <MdDelete onClick={() => onRemoveItem(item.id)} title='Удалить товар' />
         </li>
     )
 }
 
 
-export default BasketItem
+export default BasketItem;
+
+//style={{ display: "block", width: "22px", height: "22px", cursor: "pointer", marginLeft: "10px" }}
