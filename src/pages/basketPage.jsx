@@ -43,6 +43,7 @@ export function BasketPage() {
   return (
     <div className="container">
       <h3 style={{ marginTop: "5px" }} className='title'>Корзина</h3>
+      {basketLength === 0 ? <h5>В вашей корзине нет товаров</h5> : null}
       <div className="basket">
         <ul className="basket__items">
           {userId || isLoading ? basketList : <Spinner animation="border" />}
@@ -81,7 +82,7 @@ export function BasketPage() {
             <div className="basket__toOrder__deliveryComment">*
               Доставка по беларуси осуществляется посредством почтового сервиса Европочта.
             </div>
-            <button type="submit" className="basket__toOrder__deliveryBtn" onClick={onOrder} disabled={basketLength === 0 }>Оформить заказ</button>
+            <button type="submit" className="basket__toOrder__deliveryBtn" onClick={onOrder} disabled={basketLength === 0}>Оформить заказ</button>
           </form>
         </div>
 

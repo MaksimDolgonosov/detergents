@@ -268,7 +268,10 @@
 
 @media(max-width: 429px) {
     .basket {
-
+        &__name {
+            display: block;
+            width: 140px;
+        }
         &__price {
 
             letter-spacing: -1px;

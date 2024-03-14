@@ -8,7 +8,7 @@ import Pagination from 'react-bootstrap/Pagination';
 import { useGetAllGoodsQuery } from '../query/goodsApiSlice';
 
 import { useLazyGetUserQuery } from '../query/userApiSlice';
-import { useGetUserQuery } from '../query/userApiSlice';
+// import { useGetUserQuery } from '../query/userApiSlice';
 
 
 import { useState } from 'react';
@@ -54,7 +54,7 @@ export function GoodsPage() {
     const goodsList = filteredGoods.map(good => {
         return (
             // <Col className="p-2 gx-5" sm={{ span: 5, offset: 1 }} xs={{ span: 11, offset: 0 }} xxl={{ span: 2, offset: 0 }} style={{ display: "flex", justifyContent: "center" }}>
-            <Card className='goods__card' key={good.id} style={{ width: '196px', height: '394px' }}>
+            <Card className='goods__card' key={good.id} >
                 <Card.Img className='goods__img' variant="top" src={good.image} style={{ display: "flex", justifyContent: "center", alignItems: "center" }} />
                 <Card.Body className='goods__body'>
                     <Card.Title className='goods__title'>{good.title}</Card.Title>
@@ -69,7 +69,7 @@ export function GoodsPage() {
         )
     })
 
-
+//style={{ width: '196px', height: '394px' }}
 
 
     // const LoadingCard = ({ id }) => {

@@ -117,8 +117,11 @@ const Header = () => {
                                 <>
                                     {/* <IoPersonCircleOutline style={{ marginTop: "5%" }} /> */}
                                     <NavDropdown title={<Name />} id="basic-nav-dropdown" className='d-block header_black'>
-                                        <NavDropdown.Item href="/personal">Личный кабинет</NavDropdown.Item>
-                                        <NavDropdown.Item href="/basket">Корзина</NavDropdown.Item>
+                                        <Link className="dropdown-item" to="/personal">Личный кабинет</Link>
+                                        {/* <NavDropdown.Item href="/personal">Личный кабинет</NavDropdown.Item> */}
+                                        <Link className="dropdown-item" to="/history">История заказов</Link>
+                                        <Link className="dropdown-item" to="/basket">Корзина</Link>
+                                        {/* <NavDropdown.Item   href="/basket">Корзина</NavDropdown.Item> */}
                                         <NavDropdown.Divider />
                                         <NavDropdown.Item onClick={onLogout}>Выйти</NavDropdown.Item>
                                     </NavDropdown>

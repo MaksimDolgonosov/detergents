@@ -11,6 +11,7 @@ import { GoodsPage } from './pages/goodsPage';
 import { BasketPage } from './pages/basketPage';
 import { PersonalPage } from './pages/personalPage';
 import { OrderPage } from './pages/orderPage';
+import { HistoryPage} from './pages/historyPage';
 // import { setUser } from './slices/userSlice';
 // import { useDispatch } from 'react-redux';
 // import { useGetUserQuery } from './query/userApiSlice';
@@ -54,6 +55,7 @@ function App() {
           <Route path="/goods" element={<GoodsPage />} />
           <Route path="/basket" element={<BasketPage />} />
           <Route path="/personal" element={<PersonalPage />} />
+          <Route path="/history" element={<HistoryPage />} />
           <Route path="/order"
 
              element={<OrderPage />}

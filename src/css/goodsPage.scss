@@ -1,3 +1,5 @@
+@import "../App.scss";
+
 .goods {
     max-width: 1320px;
     margin: 0 auto;
@@ -18,6 +20,8 @@
 
     &__card {
         box-shadow: rgba(0, 0, 0, 0.16) 0px 12px 24px;
+        width: 196px;
+        height: 394px;
     }
 
     &__body {
@@ -127,12 +131,26 @@
     .goods {
 
         &__list {
-            grid-template-columns: repeat(1, 196px);
-            // grid-template-rows: repeat(6, 394px);
-            justify-content: center;
+            column-gap: 5px;
+            // grid-template-columns: repeat(1, 196px);
+            // // grid-template-rows: repeat(6, 394px);
+            // justify-content: center;
         }
 
     }
 }
 
-@media(max-width: 391px) {}
+@media(max-width: 391px) {
+    .goods {
+        &__card {
+            width: 180px;
+        }
+
+        &__list {
+            grid-template-columns: repeat(2, 180px);
+        }
+
+    }
+
+
+}

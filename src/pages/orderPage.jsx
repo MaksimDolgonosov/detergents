@@ -4,7 +4,7 @@ import { useSelector } from "react-redux"
 import InputMask from 'react-input-mask';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useAddBasketMutation, useAddHistoryMutation, useGetUserQuery, useLazyGetUserQuery } from "../query/userApiSlice";
+import { useAddBasketMutation, useAddHistoryMutation, useLazyGetUserQuery } from "../query/userApiSlice";
 import { clearBasket } from "../slices/userSlice";
 
 export function OrderPage() {
@@ -18,15 +18,15 @@ export function OrderPage() {
     const totalPrice = basket.reduce(((sum, current) => sum + current.price * current.quantity), 0).toFixed(2);
     const basketList = basket.map(item => `${item.title}, ${item.quantity}шт.`)
 
-    const { data: user = { history: [] } } = useGetUserQuery(userId);
-    const userHistory = user.history;
+    // const { data: user = { history: [] } } = useGetUserQuery(userId);
+    // const userHistory = user.history;
     const [updateHistory] = useAddHistoryMutation();
     const [updateBasket] = useAddBasketMutation();
     const [setUserId] = useLazyGetUserQuery();
-    // console.log(userHistory);
+     console.log(totalPrice);
     // const date = new Date()
     // console.log(date.getDate(), date.getMonth() + 1, date.getFullYear());
-
+    // console.log(`${new Date().getSeconds()}-${new Date().getMonth()}-${new Date().getMinutes()}`)
 
     const [orderName, setOrderName] = useState(name);
     // const [orderSurname, setOrderSurname] = useState(surname === null ? undefined : surname);
@@ -55,7 +55,9 @@ export function OrderPage() {
         const stringDate = await `${addZero(date.getDate())}.${addZero(date.getMonth())}.` + date.getFullYear();
         const user = await setUserId(userId);
         const currentHistory = user.data.history.slice();
-        currentHistory.push({ order: basketList, date: stringDate });
+        const id = await `${new Date().getSeconds()}-${new Date().getMonth()}-${new Date().getMinutes()}`;
+        currentHistory.push({ id, order: basketList, date: stringDate });
+
         await updateHistory({ userId, currentHistory }).unwrap();
 
         await updateBasket({ userId, currentBasket: [] }).unwrap();
@@ -93,10 +95,10 @@ export function OrderPage() {
                         ></input>
                         <input name="postnumber" required type="number" placeholder="Номер отделения европочты" value={orderPostNumber} onChange={(e) => setOrderPostNumber(e.target.value)}></input>
                         <InputMask required name="tel" mask="+375 99 999 99 99" placeholder={tel ? tel : "Ваш номер телефона"} value={orderTel} onChange={(e) => setOrderTel(e.target.value)}></InputMask>
-                       <div className="order__privacy">
-                       <input type='checkbox'required className='order__checkbox'/> <span>Я согласен с политикой конфиденциальности данного сайти и даю свое согласие на обработку персональных данных</span>
-                        </div> 
-                        <input className='order__submit' type="submit" name="send" value="Доставить товары"  ></input>
+                        <div className="order__privacy">
+                            <input type='checkbox' required className='order__checkbox' /> <span>Я согласен с политикой конфиденциальности данного сайти и даю свое согласие на обработку персональных данных</span>
+                        </div>
+                        <input className='order__submit' type="submit" disabled={totalPrice === "0.00" } name="send" value="Доставить товары"  ></input>
                     </form>
                 </div>
             </div>
@@ -109,12 +111,12 @@ export function OrderPage() {
                 <div className="order">
                     <form className="order__form" onSubmit={onSubmitOrder}>
                         <input name="name" required type="text" placeholder={name} value={orderName} onChange={(e) => setOrderName(e.target.value)}></input>
-                        <input type="text" placeholder="Адрес доставки в Могилеве" value={orderAddress} onChange={(e) => setOrderAddress(e.target.value)}></input>
+                        <input type="text" required placeholder="Адрес доставки в Могилеве" value={orderAddress} onChange={(e) => setOrderAddress(e.target.value)}></input>
                         <InputMask required name="tel" mask="+375 99 999 99 99" placeholder={tel ? tel : "Ваш номер телефона"} value={orderTel} onChange={(e) => setOrderTel(e.target.value)}></InputMask>
                         <div className="order__privacy">
-                       <input type='checkbox'required className='order__checkbox'/> <span>Я согласен с политикой конфиденциальности данного сайти и даю свое согласие на обработку персональных данных</span>
-                        </div> 
-                        <input className='order__submit' type="submit" name="send" value="Доставить товары"  ></input>
+                            <input type='checkbox' required className='order__checkbox' /> <span>Я согласен с политикой конфиденциальности данного сайти и даю свое согласие на обработку персональных данных</span>
+                        </div>
+                        <input className='order__submit' type="submit" disabled={totalPrice === "0.00" } name="send" value="Доставить товары"  ></input>
                     </form>
                 </div>
             </div>
