@@ -41,6 +41,11 @@ const userSlice = createSlice({
             state.isAuth = false;
             state.delivery = "-";
         },
+        setUserData(state, action) {
+            state.name = action.payload.name;
+            state.surname = action.payload.surname;
+            state.tel = action.payload.tel;
+        },
         addBasket(state, action) {
             state.basket.push(action.payload);
         },
@@ -73,5 +78,5 @@ const userSlice = createSlice({
     }
 })
 
-export const { setUser, removeUser, addBasket, removeFromBasket, addQuantityToBasket, removeQuantityFromBasket, setDeliveryUser, clearBasket } = userSlice.actions;
+export const { setUser, removeUser, addBasket, removeFromBasket, addQuantityToBasket, removeQuantityFromBasket, setDeliveryUser, clearBasket, setUserData } = userSlice.actions;
 export default userSlice.reducer;

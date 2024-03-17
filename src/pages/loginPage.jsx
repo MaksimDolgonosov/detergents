@@ -49,7 +49,7 @@ export const LoginPage = () => {
             <div className="form">
 
                 <div className="login__login">Логин</div>
-                <input type="email" placeholder='Ваш email' value={email} onChange={e => setEmail(e.target.value)} />
+                <input name="email" type="email" placeholder='Ваш email' value={email} onChange={e => setEmail(e.target.value)} />
 
                 <div className="login__password">Пароль</div>
                 <input type="password" value={password} onChange={e => setPassword(e.target.value)} />

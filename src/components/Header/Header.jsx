@@ -57,7 +57,6 @@ const Header = () => {
 
     const cat = categories.map((item, index) => {
 
-
         const subCat = item.subcategories.map((data, i) => {
             return (
                 <NavDropdown.Item key={i} style={{ fontSize: "15px" }} onClick={() => setCategory(data)}>{data}</NavDropdown.Item >
@@ -75,7 +74,7 @@ const Header = () => {
                 drop="end"
                 id="basic-nav-dropdown"
                 className='d-block'
-                style={{ fontSize: "15px" }}
+                style={{ fontSize: "15px", paddingLeft: "8px" }}
             >
                 {subCat}
                 {/* <NavDropdown.Item href="#action/3.4">Все</NavDropdown.Item> */}
@@ -129,8 +128,8 @@ const Header = () => {
 
                                 // <Link to="/personal"><IoPersonCircleOutline /> {name}</Link> 
                                 :
-                                <Nav.Link href="/login"><FaArrowRightToBracket className='nav_login' />
-                                    Войти</Nav.Link>}
+                                <Link to="/login" style={{ marginRight: "10px" }}><FaArrowRightToBracket className='nav_login' />
+                                    Войти</Link>}
 
                             {/* </Nav.Link> */}
 
@@ -139,7 +138,7 @@ const Header = () => {
 
                             <>
 
-                                <Link to="/basket">
+                                <Link to="/basket" >
                                     <FaBasketShopping className='nav_basket' style={{ marginTop: "0px", display: "inline" }} />
                                     Корзина
                                 </Link>

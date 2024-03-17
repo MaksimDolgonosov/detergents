@@ -18,6 +18,21 @@ export const userApiSlice = createApi({
             }),
             invalidatesTags: []
         }),
+        setUserData: builder.mutation({
+            query: ({ userId, currentData }) => ({
+                url: `users/${userId}`,
+                method: 'PATCH',
+                body: {
+                    name: currentData.name,
+                    surname: currentData.surname,
+                    tel: currentData.tel
+                },
+                headers: {
+                    'Content-Type': 'application/json'
+                    // Заголовки
+                }
+            }),
+        }),
         addBasket: builder.mutation({
             query: ({ userId, currentBasket }) => ({
                 url: `users/${userId}`,
@@ -48,4 +63,4 @@ export const userApiSlice = createApi({
     }),
 })
 
-export const { useGetUserQuery, useLazyGetUserQuery, useAddUserMutation, useAddBasketMutation, useGetBasketQuery, useAddHistoryMutation } = userApiSlice;
+export const { useGetUserQuery, useLazyGetUserQuery, useAddUserMutation, useAddBasketMutation, useGetBasketQuery, useAddHistoryMutation, useSetUserDataMutation } = userApiSlice;
