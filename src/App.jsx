@@ -11,37 +11,23 @@ import { GoodsPage } from './pages/goodsPage';
 import { BasketPage } from './pages/basketPage';
 import { PersonalPage } from './pages/personalPage';
 import { OrderPage } from './pages/orderPage';
-import { HistoryPage} from './pages/historyPage';
-// import { setUser } from './slices/userSlice';
-// import { useDispatch } from 'react-redux';
-// import { useGetUserQuery } from './query/userApiSlice';
-// import { useHttp } from './hooks/useHttp';
+import { HistoryPage } from './pages/historyPage';
+
 
 
 
 
 function App() {
-  // const dispatch = useDispatch();
-  // const id = localStorage.getItem("userId")
-  // console.log(id);
-  // const { data } = useGetUserQuery("x8m1HZZWYrd9eE9lqxY0e19EL4H2");
-  // console.log(data);
-  // dispatch(setUser(data));
-  // const { request } = useHttp();
+  fetch("http://localhost:3001/categories", {
 
-  // if (localStorage.getItem("userId") !== "null" && localStorage.getItem("userId") !== null) {
-
-  //   request("http://localhost:3001/users")
-  //     .then(data => data.filter(serverUser => serverUser.id === localStorage.getItem("userId")))
-  //     .then(data => dispatch(setUser({
-  //       name: data[0].name,
-  //       email: data[0].email,
-  //       id: data[0].id,
-  //       status: data[0].status,
-  //       basket: data[0].basket,
-  //       history: data[0].history
-  //     })))
-  // }
+    headers: {
+      mode: "no-cors",
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  })
+    .then(res => res.json())
+    .then(res => console.log(res))
 
 
   return (
@@ -56,12 +42,7 @@ function App() {
           <Route path="/basket" element={<BasketPage />} />
           <Route path="/personal" element={<PersonalPage />} />
           <Route path="/history" element={<HistoryPage />} />
-          <Route path="/order"
-
-             element={<OrderPage />}
-           // element={props => <OrderPage text="Hello " {...props} />}
-         // render={props => <OrderPage text="Hello " {...props}/>}
-          />
+          <Route path="/order" element={<OrderPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>
