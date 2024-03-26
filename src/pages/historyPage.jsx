@@ -6,9 +6,9 @@ import Spinner from 'react-bootstrap/Spinner';
 
 export function HistoryPage() {
     const userId = useSelector(state => state.user.id);
-    const { data: user = { history: [] }, isLoading } = useGetUserQuery(userId);
-    const history = user.history;
-    // console.lo
+    const { data: user = [{ history: [] }], isLoading } = useGetUserQuery(userId);
+    const history = user[0].history || [];
+    
 
     const HistoryItem = (props) => {
         return (
@@ -31,7 +31,7 @@ export function HistoryPage() {
 
     const historyItems = history.map(order => {
         return (
-            <HistoryItem key={order.id} items={order.order} date={order.date} id={order.id}/>
+            <HistoryItem key={order.id} items={order.order} date={order.date} id={order.id} />
         )
     })
 

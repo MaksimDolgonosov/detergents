@@ -11,13 +11,19 @@ import { useNavigate } from 'react-router-dom';
 
 
 export function BasketPage() {
-  const [delivery, setDelivery] = useState("");
+
+
+  // const userId = useSelector(state => state.user.id);
+  // const { data: user = { basket: [] }, isLoading } = useGetUserQuery(userId);
+  // console.log(user);
+
+
   const userId = useSelector(state => state.user.id);
-  const { data: user = { basket: [] }, isLoading } = useGetUserQuery(userId);
+  const { data: user = [{ history: [] }], isLoading } = useGetUserQuery(userId);
+  const [delivery, setDelivery] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  //console.log(user);
-  const basket = user.basket;
+  const basket = user[0].basket || [];
   const totalPrice = basket.reduce(((sum, current) => sum + current.price * current.quantity), 0).toFixed(2);
 
   const basketList = basket.map(item => <BasketItem item={item} key={item.id} />)

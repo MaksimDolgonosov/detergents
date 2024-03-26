@@ -18,16 +18,16 @@ import { HistoryPage } from './pages/historyPage';
 
 
 function App() {
-  fetch("http://localhost:3001/categories", {
+  // fetch("http://localhost:3001/categories", {
 
-    headers: {
-      mode: "no-cors",
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    }
-  })
-    .then(res => res.json())
-    .then(res => console.log(res))
+  //   headers: {
+  //     mode: "no-cors",
+  //     'Content-Type': 'application/json',
+  //     'Accept': 'application/json'
+  //   }
+  // })
+  //   .then(res => res.json())
+  //   .then(res => console.log(res))
 
 
   return (

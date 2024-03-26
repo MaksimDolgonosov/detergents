@@ -6,7 +6,7 @@ export const userApiSlice = createApi({
     tagTypes: ["basket"],
     endpoints: (builder) => ({
         getUser: builder.query({
-            query: (id) => `/users/${id}`,
+            query: (id) => `/api/users/${id}`,
             providesTags: ["basket"],
             //invalidatesTags: ["basket"]
         }),
@@ -35,7 +35,7 @@ export const userApiSlice = createApi({
         }),
         addBasket: builder.mutation({
             query: ({ userId, currentBasket }) => ({
-                url: `users/${userId}`,
+                url: `/api/users/${userId}`,
                 method: 'PATCH',
                 body: { basket: currentBasket },
                 headers: {

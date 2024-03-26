@@ -54,7 +54,6 @@ const Header = () => {
         dispatch(setActiveCategory(category));
     }
 
-    console.log(categories)
     const cat = categories.map((item, index) => {
 
         const subCat = item.subcategories.map((data, i) => {

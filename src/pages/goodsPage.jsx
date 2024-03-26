@@ -30,21 +30,23 @@ export function GoodsPage() {
     const { data: goods = [], isLoading } = useGetAllGoodsQuery();
 
     const [setUserId] = useLazyGetUserQuery();
-
+    // console.log(userId)
+    // console.log(setUserId(userId));
     const dispatch = useDispatch();
     const filteredGoods = activeCategory === "Все" ? goods : goods.filter(item => item.category === activeCategory);
 
-    //Добавление в корзину (доработать)
+    //Добавление в корзину:
     const [updateBasket] = useAddBasketMutation();
 
     const addBasketHandle = async (id, title, price, image) => {
         const user = await setUserId(userId);
-        const currentBasket = user.data.basket.slice();
+        // console.log(user.data)
+        const currentBasket = await user.data[0].basket.slice();
 
         const newItem = { id, title, price, quantity: 1, image };
         currentBasket.push(newItem);
 
-        dispatch(addBasket(newItem));
+        // dispatch(addBasket(newItem));
         console.log({ userId, currentBasket });
         await updateBasket({ userId, currentBasket }).unwrap();
     }
@@ -69,7 +71,7 @@ export function GoodsPage() {
         )
     })
 
-//style={{ width: '196px', height: '394px' }}
+    //style={{ width: '196px', height: '394px' }}
 
 
     // const LoadingCard = ({ id }) => {
