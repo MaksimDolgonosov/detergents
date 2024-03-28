@@ -13,7 +13,7 @@ const BasketItem = ({ item }) => {
 
     const onRemoveItem = async (itemId) => {
         const user = await setUserId(userId);
-        console.log(user)
+
         const currentBasket = user.data[0].basket.slice();
         const newBasket = await currentBasket.filter(item => item.id !== itemId)
         dispatch(removeFromBasket(itemId));
@@ -25,7 +25,7 @@ const BasketItem = ({ item }) => {
             return
         } else {
             const user = await setUserId(userId);
-            console.log(user)
+
             const currentBasket = user.data[0].basket.slice();
             const newBasket = await currentBasket.map(product => {
                 if (product.id === itemId) {

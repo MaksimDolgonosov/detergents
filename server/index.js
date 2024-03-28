@@ -2,7 +2,7 @@ const express = require('express');
 let cors = require('cors');
 const mysql = require('mysql');
 const fs = require("fs");
-const db = require("./index.json");
+let db = require("./index.json");
 
 const PORT = 3001;
 
@@ -53,8 +53,8 @@ app.patch("/api/users/:id", async (req, res) => {
         return u;
     });
     console.log(updateUsers)
-    const updateDb = { ...db, users: updateUsers }
-    await fs.writeFileSync("./index.json", JSON.stringify(updateDb), { encoding: "utf-8" });
+    db = { ...db, users: updateUsers }
+    await fs.writeFileSync("./index.json", JSON.stringify(db), { encoding: "utf-8" });
     res.status(201).json(req.body);
 
 });

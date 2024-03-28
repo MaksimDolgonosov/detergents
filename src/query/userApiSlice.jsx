@@ -35,7 +35,7 @@ export const userApiSlice = createApi({
         }),
         addBasket: builder.mutation({
             query: ({ userId, currentBasket }) => {
-                console.log(currentBasket);
+                // console.log(currentBasket);
                 return {
                     url: `/api/users/${userId}`,
                     method: 'PATCH',
