@@ -46,8 +46,8 @@ export function GoodsPage() {
         const newItem = { id, title, price, quantity: 1, image };
         currentBasket.push(newItem);
 
-        // dispatch(addBasket(newItem));
-        console.log({ userId, currentBasket });
+        dispatch(addBasket(newItem));
+        // console.log({ userId, currentBasket });
         await updateBasket({ userId, currentBasket }).unwrap();
     }
 

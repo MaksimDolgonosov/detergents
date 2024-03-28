@@ -21,7 +21,7 @@ export const LoginPage = () => {
         const auth = getAuth();
         signInWithEmailAndPassword(auth, email, password)
             .then(({ user }) => {
-                request("http://localhost:3001/users")
+                request("http://localhost:3001/api/users")
                     .then(data => data.filter(serverUser => serverUser.id === user.uid))
                     .then(data => dispatch(setUser({
                         name: data[0].name,

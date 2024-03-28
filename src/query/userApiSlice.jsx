@@ -12,7 +12,7 @@ export const userApiSlice = createApi({
         }),
         addUser: builder.mutation({
             query: (user) => ({
-                url: `users/`,
+                url: `api/users/`,
                 method: 'POST',
                 body: user,
             }),
@@ -20,7 +20,7 @@ export const userApiSlice = createApi({
         }),
         setUserData: builder.mutation({
             query: ({ userId, currentData }) => ({
-                url: `users/${userId}`,
+                url: `/api/users/${userId}`,
                 method: 'PATCH',
                 body: {
                     name: currentData.name,
@@ -34,21 +34,24 @@ export const userApiSlice = createApi({
             }),
         }),
         addBasket: builder.mutation({
-            query: ({ userId, currentBasket }) => ({
-                url: `/api/users/${userId}`,
-                method: 'PATCH',
-                body: { basket: currentBasket },
-                headers: {
-                    'Content-Type': 'application/json'
-                    // Заголовки
+            query: ({ userId, currentBasket }) => {
+                console.log(currentBasket);
+                return {
+                    url: `/api/users/${userId}`,
+                    method: 'PATCH',
+                    body: { basket: currentBasket },
+                    headers: {
+                        'Content-Type': 'application/json'
+                        // Заголовки
+                    }
                 }
-            }),
+            },
             // providesTags: ["basket"],
             invalidatesTags: ["basket"]
         }),
         addHistory: builder.mutation({
             query: ({ userId, currentHistory }) => ({
-                url: `users/${userId}`,
+                url: `/api/users/${userId}`,
                 method: 'PATCH',
                 body: { history: currentHistory },
                 headers: {

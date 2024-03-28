@@ -4,7 +4,6 @@ const mysql = require('mysql');
 const fs = require("fs");
 const db = require("./index.json");
 
-console.log(db.users)
 const PORT = 3001;
 
 const app = express();
@@ -46,16 +45,24 @@ app.get("/api/goods", cors(), (req, res) => {
 });
 
 app.patch("/api/users/:id", async (req, res) => {
-    // console.log(req.body)
-    // console.log(req.params.id)
-    const data = await fs.readFileSync("./index.json", { encoding: "utf-8" });
-    const dataObj = await JSON.parse(data);
-    const users = await dataObj.users;
-    const user = await users.filter(u => u.id === req.params.id);
-    user[0].basket = req.body.basket;
+    console.log(req.body)
+    const updateUsers = await db.users.map(u => {
+        if (u.id === req.params.id) {
+            return { ...u, ...req.body }
+        }
+        return u;
+    });
+    console.log(updateUsers)
+    const updateDb = { ...db, users: updateUsers }
+    await fs.writeFileSync("./index.json", JSON.stringify(updateDb), { encoding: "utf-8" });
+    res.status(201).json(req.body);
 
-    console.log(user[0])
-    // res.json(user)
+});
+
+app.post("/api/users/", async (req, res) => {
+    db.users.push(req.body);
+    await fs.writeFileSync("./index.json", JSON.stringify(db), { encoding: "utf-8" });
+    res.status(201).json(req.body.basket);
 
 });
 
