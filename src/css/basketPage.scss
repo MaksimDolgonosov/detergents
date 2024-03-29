@@ -8,6 +8,10 @@
     align-items: flex-start;
     min-height: calc(80vh - 126px);
 
+    a {
+        text-decoration: none;
+        cursor: pointer;
+    }
 
     &__items {
         list-style-type: none;
@@ -272,13 +276,16 @@
             display: block;
             width: 140px;
         }
+
         &__price {
 
             letter-spacing: -1px;
         }
+
         &__counter {
             margin: 0 10px;
         }
+
         &__quantity {
 
             width: 15px;

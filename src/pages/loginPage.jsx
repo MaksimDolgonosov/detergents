@@ -17,7 +17,8 @@ export const LoginPage = () => {
 
     //const { data: user = {} } = useGetUserQuery("kfc8ucSqWzcwVpoCV9BPvMEEdz33");
     //console.log(user);
-    const onLogin = (email, password) => {
+    const onLogin = (e) => {
+        e.preventDefault();
         const auth = getAuth();
         signInWithEmailAndPassword(auth, email, password)
             .then(({ user }) => {
@@ -46,7 +47,7 @@ export const LoginPage = () => {
         <div className="login_page">
             <h2>Войти</h2>
             <h3>Что бы продолжить</h3>
-            <div className="form">
+            <form className="form" onSubmit={onLogin} >
 
                 <div className="login__login">Логин</div>
                 <input name="email" type="email" placeholder='Ваш email' value={email} onChange={e => setEmail(e.target.value)} />
@@ -55,9 +56,9 @@ export const LoginPage = () => {
                 <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
 
                 <div>
-                    <button onClick={() => onLogin(email, password)}>Войти</button>
+                    <button type="submit">Войти</button>
                 </div>
-            </div>
+            </form>
             <div className="login_redirect">Нет аккаунта? <Link to="/register">Зарегистрироваться</Link></div>
         </div>
 
