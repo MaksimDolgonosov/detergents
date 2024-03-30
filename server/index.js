@@ -1,14 +1,20 @@
 const express = require('express');
 let cors = require('cors');
-const mysql = require('mysql');
+//const mysql = require('mysql');
 const fs = require("fs");
 let db = require("./index.json");
+const path = require("path");
 
 const PORT = 3001;
 
 const app = express();
 app.use(cors());
 app.use(express.json())
+app.use(express.static(path.resolve(__dirname, "../build")));
+
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../build", "index.html"));
+})
 
 app.get("/api/users", (req, res) => {
 
