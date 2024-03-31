@@ -29,8 +29,7 @@ export function PersonalPage() {
     <div className='container'>
       <h3 style={{ marginTop: "5px" }} className='title'>Личный кабинет</h3>
       <div className="personal">
-        <label htmlFor="name">Ваше имя:</label>
-        <input type="text" name="name" placeholder={name} value={name} onChange={(e) => setName(e.target.value)}></input>
+        <span htmlFor="name">Ваше имя:</span><input type="text" name="name" placeholder={name} value={name} onChange={(e) => setName(e.target.value)}></input>
         <label htmlFor="surname">Ваша фамилия:</label>
         <input type="text" name="surname" placeholder={surname} value={surname} onChange={(e) => setSurname(e.target.value)}></input>
         <label htmlFor="tel">Ваш номер телефона:</label>
@@ -39,7 +38,7 @@ export function PersonalPage() {
         <label htmlFor="email">Ваш email:</label>
         <input type="text" name="email" placeholder={email} disabled></input>
 
-        <button onClick={setPersonalData}>Сохранить изменения</button>
+        <button onClick={setPersonalData} className="basket__toOrder__deliveryBtn">Сохранить изменения</button>
       </div>
     </div>
   )

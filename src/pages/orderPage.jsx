@@ -23,7 +23,7 @@ export function OrderPage() {
     const [updateHistory] = useAddHistoryMutation();
     const [updateBasket] = useAddBasketMutation();
     const [setUserId] = useLazyGetUserQuery();
-     console.log(totalPrice);
+
     // const date = new Date()
     // console.log(date.getDate(), date.getMonth() + 1, date.getFullYear());
     // console.log(`${new Date().getSeconds()}-${new Date().getMonth()}-${new Date().getMinutes()}`)

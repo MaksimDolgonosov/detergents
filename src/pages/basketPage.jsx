@@ -35,7 +35,7 @@ export function BasketPage() {
       navigate("/order");
     }
   }
-  console.log(userId)
+
 
   return (
     <div className="container">
