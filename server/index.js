@@ -12,9 +12,10 @@ app.use(cors());
 app.use(express.json())
 app.use(express.static(path.resolve(__dirname, "../build")));
 
-app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "../build", "index.html"));
-})
+// app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "../build", "index.html"));
+// })
+
 
 app.get("/api/users", (req, res) => {
 
@@ -73,7 +74,8 @@ app.post("/api/users/", async (req, res) => {
 });
 
 
-app.listen(PORT, () => {
-    console.log(`Server is starting on port:${PORT}`)
-});
+// app.listen(PORT, () => {
+//     console.log(`Server is starting on port:${PORT}`)
+// });
+app.listen(PORT);
 app.set()
