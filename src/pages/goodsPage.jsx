@@ -28,6 +28,8 @@ export function GoodsPage() {
     const quantityOfGoodsOnPage = 12;
     const [curentPage, setCurentPage] = useState(1);
     const { data: goods = [], isLoading } = useGetAllGoodsQuery();
+    const basket = useSelector(state => state.user.basket);
+    const basketIds = basket.map(item => item.id);
 
     const [setUserId] = useLazyGetUserQuery();
     // console.log(userId)
@@ -64,7 +66,11 @@ export function GoodsPage() {
                         {good.description}
                     </Card.Text>
                     <div className='goods__price'>{good.price} руб.</div>
-                    <Button className='goods__btn' variant="primary" onClick={() => addBasketHandle(good.id, good.title, good.price, good.image)}>В корзину</Button>
+                    <Button className='goods__btn'
+                        variant="primary"
+                        onClick={() => addBasketHandle(good.id, good.title, good.price, good.image)}
+                        disabled={basketIds.indexOf(good.id) >= 0 ? true : false}
+                    >{basketIds.indexOf(good.id) >= 0 ? "В корзине" : "В корзину"}</Button>
                 </Card.Body>
             </Card>
             //  </Col> 
