@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../slices/userSlice";
 import { useHttp } from "../hooks/useHttp";
+import Spinner from 'react-bootstrap/Spinner';
 import '../css/loginPage.scss';
 //import { useGetUserQuery } from '../query/userApiSlice';
 
@@ -14,12 +15,17 @@ export const LoginPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { request } = useHttp();
-
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
     //const { data: user = {} } = useGetUserQuery("kfc8ucSqWzcwVpoCV9BPvMEEdz33");
     //console.log(user);
+
+
     const onLogin = (e) => {
         e.preventDefault();
+        setLoading(true)
         const auth = getAuth();
+
         signInWithEmailAndPassword(auth, email, password)
             .then(({ user }) => {
                 request("http://localhost:3001/api/users")
@@ -35,14 +41,19 @@ export const LoginPage = () => {
                         history: data[0].history
                     })))
                 // localStorage.setItem("userId", user.uid);
+                setLoading(false)
+                setError(null)
                 navigate("/goods");
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorCode, errorMessage)
+                setError(error.code)
+                setLoading(false)
+                // errorCode = error.code;
+                // const errorMessage = error.message;
+
             });
     }
+
     return (
         <div className="login_page">
             <h2>Войти</h2>
@@ -54,9 +65,9 @@ export const LoginPage = () => {
 
                 <div className="login__password">Пароль</div>
                 <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-
+                {error === "auth/invalid-login-credentials" ? <div className="login__password" style={{ color: "red" }}>Неверный логин или пароль</div> : null}
                 <div>
-                    <button type="submit">Войти</button>
+                    <button disabled={loading ? true : false} type="submit">{loading ? <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /> : "Войти"}</button>
                 </div>
             </form>
             <div className="login_redirect">Нет аккаунта? <Link to="/register">Зарегистрироваться</Link></div>

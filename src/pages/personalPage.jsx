@@ -38,7 +38,7 @@ export function PersonalPage() {
         <label htmlFor="email">Ваш email:</label>
         <input type="text" name="email" placeholder={email} disabled></input>
 
-        <button onClick={setPersonalData} className="basket__toOrder__deliveryBtn">Сохранить изменения</button>
+        <button onClick={setPersonalData} className="personal__submit">Сохранить изменения</button>
       </div>
     </div>
   )

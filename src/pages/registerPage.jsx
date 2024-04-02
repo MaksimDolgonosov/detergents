@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../slices/userSlice";
 import { useAddUserMutation } from "../query/userApiSlice";
+import Spinner from 'react-bootstrap/Spinner';
 import '../css/registerPage.scss';
 
 
@@ -15,10 +16,11 @@ export const RegisterPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [updateUsers] = useAddUserMutation();
+    const [loading, setLoading] = useState(false);
 
-
-    const onRegister = (email, password) => {
-        // event.preventDefault();
+    const onRegister = (event) => {
+        event.preventDefault();
+        setLoading(true)
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, email, password)
 
@@ -35,7 +37,8 @@ export const RegisterPage = () => {
                 }
                 dispatch(setUser(newUser));
                 updateUsers(newUser).unwrap();
-                localStorage.setItem("userId", user.uid);
+                setLoading(false)
+                // localStorage.setItem("userId", user.uid);
                 navigate("/goods");
             })
             .catch((error) => {
@@ -49,7 +52,7 @@ export const RegisterPage = () => {
             <h2>Зарегистрируйтесь</h2>
             <h3>Что бы продолжить</h3>
 
-            <div className="form">
+            <form className="form" onSubmit={onRegister}>
                 <div className="register__name">Ваше имя</div>
                 <input type="text" name="name" autoComplete="off" value={name} onChange={(e) => setName(e.target.value)} />
 
@@ -61,11 +64,11 @@ export const RegisterPage = () => {
                 <input type="password" name="password" autoComplete="off" value={password} onChange={(e) => setPassword(e.target.value)} />
 
                 <div>
-                    <button onClick={() => onRegister(email, password)}>Зарегистрироваться</button>
+                    <button disabled={loading ? true : false} type="submit">{loading ? <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /> : "Зарегистрироваться"}</button>
                 </div>
 
                 <div className="login_redirect">Уже зарегистрированы? <Link to="/login">Войти</Link></div>
-            </div>
+            </form>
         </div>
     )
 

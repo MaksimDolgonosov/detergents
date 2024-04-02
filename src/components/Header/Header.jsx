@@ -43,7 +43,6 @@ const Header = () => {
 
     const onLogout = () => {
         dispatch(removeUser());
-        // localStorage.setItem("userId", null);
     }
 
     const setCategory = (category) => {
