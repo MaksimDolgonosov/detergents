@@ -1,3 +1,4 @@
+@import '../App.scss';
 .order {
     width: 100%;
     min-height: calc(80vh - 126px);
@@ -62,7 +63,7 @@
             display: block;
             margin: 20px auto 0 auto;
             color: white;
-            background-color: rgb(100, 149, 237);
+            background-color:$main_color;
             border: none;
             font-size: 14px;
             font-weight: 500;
@@ -72,7 +73,7 @@
             transition: 0.3s all;
 
             &:hover {
-                background-color: rgba(100, 148, 237, 0.808);
+                background-color: $main_color_dark;
                 transition: .3s all;
             }
         }

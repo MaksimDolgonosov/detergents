@@ -85,7 +85,7 @@ const Header = () => {
 
     return (
         <header>
-            <Navbar expand="lg" className="bg-body-tertiary header">
+            <Navbar expand="lg" className="header">
                 <Container >
                     <Navbar.Brand  > <Link to="/"><img src={Logo} className='logo' alt='logo' /></Link></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -132,7 +132,7 @@ const Header = () => {
                             {/* </Nav.Link> */}
 
                         </Nav>
-                        <Nav style={{ position: "relative" }}>
+                        <Nav style={{ position: "relative", padding: "8px 0" }}>
 
                             <>
 

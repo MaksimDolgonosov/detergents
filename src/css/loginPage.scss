@@ -1,7 +1,9 @@
+@import '../App.scss';
+
 .login_page {
 
     // max-width: 350px;
-    margin: 30px auto;
+    margin: 30px auto calc(80vh - 540px) auto;
     border-radius: 1rem;
     background-color: white;
     transition-duration: 200ms;
@@ -53,7 +55,7 @@
         width: 100%;
         padding: 0.625rem 1.25rem;
         margin: 20px 0;
-        background-color: #103FEF;
+        background-color: $main_color;
         color: white;
         border: none;
         border-radius: 0.375rem;
@@ -62,6 +64,13 @@
         text-align: center;
         text-transform: uppercase;
         letter-spacing: 0.5px;
+        transition: .3s all;
+
+        &:hover {
+            background-color: $main_color_dark;
+            // background-color: rgba(100, 148, 237, 0.808);
+            transition: .3s all;
+        }
     }
 
 }
@@ -80,5 +89,6 @@
 
     a {
         text-decoration: none;
+        color: $main_color;
     }
 }

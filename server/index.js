@@ -48,7 +48,6 @@ app.get("/api/goods", cors(), (req, res) => {
 
     // const data = fs.readFileSync("./index.json", { encoding: "utf-8" });
     // const dataObj = JSON.parse(data);
-    console.log(db.goods);
     res.json(db.goods);
 });
 

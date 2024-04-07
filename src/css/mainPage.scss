@@ -1,4 +1,8 @@
+@import '../App.scss';
+
 .main {
+    min-height: calc(80vh - 126px);
+
     &__presentation {
         width: 100%;
         height: 436px;
@@ -7,9 +11,9 @@
         background-size: cover;
         background-position: center center;
         background-blend-mode: multiply;
-        box-shadow: 0px 0px 8px 8px rgba(0, 0, 0, .2);
-      //  background-color: rgba(0, 0, 0, 0.2);
-      z-index: 99;
+        box-shadow: 0px 0px 8px 8px $main_color_light;
+        //  background-color: rgba(0, 0, 0, 0.2);
+        z-index: 99;
     }
 
     &__descr {
@@ -18,8 +22,9 @@
         text-align: center;
         margin: 0 auto;
         font-size: 18px;
+
         a {
-            color:rgb(85, 134, 238);
+            color: $main_color;
             text-decoration: none;
             cursor: pointer;
         }
@@ -41,6 +46,7 @@
         &__presentation {
             height: 236px;
         }
+
         &__descr {
             padding: 30px 10px;
             font-size: 16px;

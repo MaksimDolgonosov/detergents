@@ -1,9 +1,13 @@
-//$main_color: rgb(100, 149, 237);
-// $main_color: #5984d6;
-$main_color: #2e56e9;
-
+$main_color: #03A9F4;
+$main_color_light: #B3E5FC;
+$main_color_dark: #0288D1;
+$accent_color: #FFC107;
+$white_text: #FFFFFF;
+$black_text: #212121;
+$grey_text: #757575;
+$divider_color: #BDBDBD;
+// @import '../App.scss';
 .title {
     margin-top: 10px;
-    color: rgb(46, 109, 228);
     color: $main_color;
 }

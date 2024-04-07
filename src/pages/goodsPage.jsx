@@ -18,6 +18,8 @@ import { useDispatch } from 'react-redux';
 import { addBasket } from '../slices/userSlice';
 
 import { useAddBasketMutation } from '../query/userApiSlice';
+import Sale from "../images/sale.png"
+
 // import Container from 'react-bootstrap/Container';
 // import Row from 'react-bootstrap/Row';
 // import Col from 'react-bootstrap/Col';
@@ -59,6 +61,7 @@ export function GoodsPage() {
         return (
             // <Col className="p-2 gx-5" sm={{ span: 5, offset: 1 }} xs={{ span: 11, offset: 0 }} xxl={{ span: 2, offset: 0 }} style={{ display: "flex", justifyContent: "center" }}>
             <Card className='goods__card' key={good.id} >
+                {good.sale ? <img className='goods__sale' src={Sale} alt="sale"/> : null}
                 <Card.Img className='goods__img' variant="top" src={good.image} style={{ display: "flex", justifyContent: "center", alignItems: "center" }} />
                 <Card.Body className='goods__body'>
                     <Card.Title className='goods__title'>{good.title}</Card.Title>
@@ -70,6 +73,7 @@ export function GoodsPage() {
                         variant="primary"
                         onClick={() => addBasketHandle(good.id, good.title, good.price, good.image)}
                         disabled={basketIds.indexOf(good.id) >= 0 ? true : false}
+                        style={basketIds.indexOf(good.id) >= 0 ? { backgroundColor: " #B3E5FC" } : { backgroundColor: " #03A9F4" }}
                     >{basketIds.indexOf(good.id) >= 0 ? "В корзине" : "В корзину"}</Button>
                 </Card.Body>
             </Card>
@@ -77,30 +81,7 @@ export function GoodsPage() {
         )
     })
 
-    //style={{ width: '196px', height: '394px' }}
 
-
-    // const LoadingCard = ({ id }) => {
-    //     return (
-    //         // <Spinner animation="border" variant="secondary" style={{margin: "200px auto" }}/>
-    //         <Card key={Card.key} className='goods__card' style={{ width: '196px', height: '394px' }}>
-    //             <Placeholder animation="glow" style={{ width: "196px", height: "196px", display: "flex", justifyContent: "center", alignItems: "center" }} lg={1}>
-    //                 <Spinner animation="border" variant="secondary" />
-    //             </Placeholder>
-    //             <Card.Body>
-    //                 <Placeholder as={Card.Title} animation="glow">
-    //                     <Placeholder xs={6} />
-    //                 </Placeholder>
-    //                 <Placeholder as={Card.Text} animation="glow">
-    //                     <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />{' '}
-    //                     <Placeholder xs={6} /> <Placeholder xs={8} />
-    //                 </Placeholder>
-    //                 <Placeholder.Button style={{ width: '100%' }} className='goods__btn' variant="primary" xs={6} />
-    //             </Card.Body>
-    //         </Card>
-    //     )
-    // }
-    // const loadingList = new Array(quantityOfGoodsOnPage).fill(<LoadingCard />);
     const loadingList = new Array(quantityOfGoodsOnPage).fill(null).map((good, index) => {
         return (
             // <Col md="auto">
@@ -122,26 +103,7 @@ export function GoodsPage() {
             //</Col>
         )
     })
-    //const loadingList = new Array(quantityOfGoodsOnPage).map((item, index) => <LoadingCard id={index} />);
-    // const loadingList = new Array(quantityOfGoodsOnPage).map((item, index) => {
-    //     return (
-    //         <Card key={index} className='goods__card' style={{ width: '196px', height: '394px' }}>
-    //             <Placeholder animation="glow" style={{ width: "196px", height: "196px", display: "flex", justifyContent: "center", alignItems: "center" }} lg={1}>
-    //                 <Spinner animation="border" variant="secondary" />
-    //             </Placeholder>
-    //             <Card.Body>
-    //                 <Placeholder as={Card.Title} animation="glow">
-    //                     <Placeholder xs={6} />
-    //                 </Placeholder>
-    //                 <Placeholder as={Card.Text} animation="glow">
-    //                     <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />{' '}
-    //                     <Placeholder xs={6} /> <Placeholder xs={8} />
-    //                 </Placeholder>
-    //                 <Placeholder.Button className='goods__btn' variant="primary" xs={6} />
-    //             </Card.Body>
-    //         </Card>
-    //     )
-    // })
+
 
     const paginationItems = filteredGoods.map((item, index) => {
         if (index % quantityOfGoodsOnPage === 0) {
@@ -188,7 +150,7 @@ export function GoodsPage() {
                     {/* <Pagination.Ellipsis />
                     <Pagination.Item>{goods.length / quantityOfGoodsOnPage}</Pagination.Item> */}
                     <Pagination.Next onClick={() => goods.length / quantityOfGoodsOnPage > curentPage ? setCurentPage(curentPage + 1) : null} />
-                    <Pagination.Last onClick={() => setCurentPage(goods.length / quantityOfGoodsOnPage)} />
+                    <Pagination.Last onClick={() => setCurentPage(Math.ceil(goods.length / quantityOfGoodsOnPage))} />
                 </Pagination>
             </div>
             {/* {goods.length / quantityOfGoodsOnPage} */}

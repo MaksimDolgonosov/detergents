@@ -1,3 +1,5 @@
+@import '../../App.scss';
+
 .logo {
     font-weight: 600;
     font-size: 20px;
@@ -10,7 +12,9 @@
 }
 
 header {
-    border-bottom: 1px solid rgba(75, 74, 74, 0.808);
+
+    border-bottom: 1px solid $divider_color;
+
     a {
         text-decoration: none;
         color: black;
@@ -26,13 +30,14 @@ header {
 
         width: 15px;
         height: 15px;
-        color: white;
-        background-color: brown;
+        color: rgb(0, 0, 0);
+        background-color: $accent_color;
+        // background-color: brown;
         border-radius: 100%;
         border-color: black;
         position: absolute;
         text-align: center;
-        top: -5px;
+        top: 0px;
         left: 7px;
         font-size: 10px;
         font-family: sans-serif;

@@ -158,7 +158,7 @@
             transition: .3s all;
 
             &:hover {
-                background-color: rgba(46, 109, 228, 0.95);
+                background-color: $main_color_dark;
                 // background-color: rgba(100, 148, 237, 0.808);
                 transition: .3s all;
             }
