@@ -111,7 +111,7 @@ export function OrderPage() {
                 <div className="order">
                     <form className="order__form" onSubmit={onSubmitOrder}>
                         <input name="name" required type="text" placeholder={name} value={orderName} onChange={(e) => setOrderName(e.target.value)}></input>
-                        <input type="text" required placeholder="Адрес доставки в Могилеве" value={orderAddress} onChange={(e) => setOrderAddress(e.target.value)}></input>
+                        <input name="adress" type="text" required placeholder="Адрес доставки в Могилеве" value={orderAddress} onChange={(e) => setOrderAddress(e.target.value)}></input>
                         <InputMask required name="tel" mask="+375 99 999 99 99" placeholder={tel ? tel : "Ваш номер телефона"} value={orderTel} onChange={(e) => setOrderTel(e.target.value)}></InputMask>
                         <div className="order__privacy">
                             <input type='checkbox' required className='order__checkbox' /> <span>Я согласен с политикой конфиденциальности данного сайти и даю свое согласие на обработку персональных данных</span>
