@@ -3,17 +3,23 @@
 .main {
     min-height: calc(80vh - 126px);
 
-    &__presentation {
+    // &__presentation {
+    //     width: 100%;
+    //     height: 436px;
+    //     //margin-top: 95px;
+    //     background: url('../images/sm3_full2.jpg');
+    //     background-size: cover;
+    //     background-position: center center;
+    //     background-blend-mode: multiply;
+    //     box-shadow: 0px 0px 8px 8px $main_color_light;
+    //     //  background-color: rgba(0, 0, 0, 0.2);
+    //     z-index: 99;
+    // }
+
+    &__img {
+        object-fit: cover;
         width: 100%;
         height: 436px;
-        //margin-top: 95px;
-        background: url('../images/sm3_full2.jpg');
-        background-size: cover;
-        background-position: center center;
-        background-blend-mode: multiply;
-        box-shadow: 0px 0px 8px 8px $main_color_light;
-        //  background-color: rgba(0, 0, 0, 0.2);
-        z-index: 99;
     }
 
     &__descr {
@@ -43,7 +49,7 @@
 @media(max-width: 768px) {
 
     .main {
-        &__presentation {
+        &__img {
             height: 236px;
         }
 
