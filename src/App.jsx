@@ -12,7 +12,7 @@ import { BasketPage } from './pages/basketPage';
 import { PersonalPage } from './pages/personalPage';
 import { OrderPage } from './pages/orderPage';
 import { HistoryPage } from './pages/historyPage';
-
+import { ContactsPage } from './pages/contactsPage';
 
 
 
@@ -43,6 +43,7 @@ function App() {
           <Route path="/personal" element={<PersonalPage />} />
           <Route path="/history" element={<HistoryPage />} />
           <Route path="/order" element={<OrderPage />} />
+          <Route path="/contacts" element={<ContactsPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -3,8 +3,8 @@ import '../css/mainPage.scss';
 import { Link } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
 import main1 from "../images/sm3_full2.jpg"
-import main2 from "../images/slider/9.jpg"
-import main3 from "../images/sm3_full2.jpg"
+import main2 from "../images/slider/7sm.jpg"
+import main3 from "../images/slider/12.webp"
 import main4 from "../images/sm3_full2.jpg"
 import main5 from "../images/sm3_full2.jpg"
 export const MainPage = () => {
@@ -28,7 +28,9 @@ export const MainPage = () => {
                 <Carousel.Item>
                     <img className="main__img" src={main2} alt="First slide"/>
                 </Carousel.Item>
-
+                <Carousel.Item>
+                    <img className="main__img" src={main3} alt="First slide"/>
+                </Carousel.Item>
             </Carousel>
             <div className='main__descr'>
                 <p>{isAuth ? `${name}, добро` : `Добро`} пожаловать в интернет-магазин бытовой химии. Здесь вы можете найти интересующие вас <Link to="/goods">товары</Link> и мы доставим их в любую точку Республики Беларусь. Подробнее о доставке вы можете прочитать в <Link>соответствующем разделе</Link>. </p>

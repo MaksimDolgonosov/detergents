@@ -105,7 +105,7 @@ const Header = () => {
                             </NavDropdown>
                             <Nav.Link href="#action/3.4" >О нас</Nav.Link>
                             <Nav.Link href="#action/3.4" >Доставка</Nav.Link>
-                            <Nav.Link href="#action/3.4" >Контакты</Nav.Link>
+                            <Link to="/contacts" style={{padding: "8px 0"}}>Контакты</Link>
 
                         </Nav>
                         <Nav >
