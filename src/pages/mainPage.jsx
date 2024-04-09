@@ -5,8 +5,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import main1 from "../images/sm3_full2.jpg"
 import main2 from "../images/slider/7sm.jpg"
 import main3 from "../images/slider/12.webp"
-import main4 from "../images/sm3_full2.jpg"
-import main5 from "../images/sm3_full2.jpg"
+
 export const MainPage = () => {
     const { isAuth } = useSelector(state => state.user);
     const { name } = useSelector(state => state.user)
@@ -45,28 +44,3 @@ export const MainPage = () => {
 
 }
 
-const Main1 = () => {
-    return (
-        <img src={main1} alt="first slide" />
-    )
-}
-const Main2 = () => {
-    return (
-        <img src={main2} alt="second slide" />
-    )
-}
-const Main3 = () => {
-    return (
-        <img src={main3} alt="third slide" />
-    )
-}
-const Main4 = () => {
-    return (
-        <img src={main4} alt="fourth slide" />
-    )
-}
-const Main5 = () => {
-    return (
-        <img src={main5} alt="fifth slide" />
-    )
-}
