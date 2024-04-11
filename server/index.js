@@ -10,17 +10,14 @@ const PORT = 3001;
 const app = express();
 app.use(cors());
 app.use(express.json())
-app.use(express.static(path.resolve(__dirname, "../build")));
 
-// app.get("*", (req, res) => {
-//     res.sendFile(path.resolve(__dirname, "../build", "index.html"));
-// })
+// app.use(express.static(path.resolve(__dirname, "../build")));
+app.use(express.static('public'))
+
 
 
 app.get("/api/users", (req, res) => {
 
-    // const data = fs.readFileSync("./index.json", { encoding: "utf-8" });
-    // const dataObj = JSON.parse(data);
     res.json(db.users)
 
 });
@@ -52,14 +49,12 @@ app.get("/api/goods", cors(), (req, res) => {
 });
 
 app.patch("/api/users/:id", async (req, res) => {
-    console.log(req.body)
     const updateUsers = await db.users.map(u => {
         if (u.id === req.params.id) {
             return { ...u, ...req.body }
         }
         return u;
     });
-    console.log(updateUsers)
     db = { ...db, users: updateUsers }
     await fs.writeFileSync("./index.json", JSON.stringify(db), { encoding: "utf-8" });
     res.status(201).json(req.body);
@@ -73,9 +68,15 @@ app.post("/api/users/", async (req, res) => {
 
 });
 
+app.get('/', function (req, res) {
+    res.render('index', { version: process.version })
+})
 
-app.listen(PORT, () => {
-    console.log(`Server is starting on port:${PORT}`)
-});
+const server = app.listen()
+
+// app.listen(PORT, () => {
+//     console.log(`Server is starting on port:${PORT}`)
+// });
 // app.listen();
-app.set()
+//const server = app.listen()
+// app.set()
