@@ -84,6 +84,14 @@
             transition: .3s all;
         }
     }
+    &__message {
+        a {
+            text-decoration: none;
+            cursor: pointer;
+            color: $main_color;
+        }
+        margin-top: 20px;
+    }
 
 
     &__pagination {

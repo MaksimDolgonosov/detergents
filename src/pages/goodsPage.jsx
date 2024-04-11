@@ -9,7 +9,7 @@ import { useGetAllGoodsQuery } from '../query/goodsApiSlice';
 
 import { useLazyGetUserQuery } from '../query/userApiSlice';
 // import { useGetUserQuery } from '../query/userApiSlice';
-
+import { Link } from 'react-router-dom';
 
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -44,14 +44,14 @@ export function GoodsPage() {
 
     const addBasketHandle = async (id, title, price, image) => {
         const user = await setUserId(userId);
-        // console.log(user.data)
+
         const currentBasket = await user.data[0].basket.slice();
 
         const newItem = { id, title, price, quantity: 1, image };
         currentBasket.push(newItem);
 
         dispatch(addBasket(newItem));
-        // console.log({ userId, currentBasket });
+
         await updateBasket({ userId, currentBasket }).unwrap();
     }
 
@@ -61,7 +61,7 @@ export function GoodsPage() {
         return (
             // <Col className="p-2 gx-5" sm={{ span: 5, offset: 1 }} xs={{ span: 11, offset: 0 }} xxl={{ span: 2, offset: 0 }} style={{ display: "flex", justifyContent: "center" }}>
             <Card className='goods__card' key={good.id} >
-                {good.sale ? <img className='goods__sale' src={Sale} alt="sale"/> : null}
+                {good.sale ? <img className='goods__sale' src={Sale} alt="sale" /> : null}
                 <Card.Img className='goods__img' variant="top" src={good.image} style={{ display: "flex", justifyContent: "center", alignItems: "center" }} />
                 <Card.Body className='goods__body'>
                     <Card.Title className='goods__title'>{good.title}</Card.Title>
@@ -72,7 +72,7 @@ export function GoodsPage() {
                     <Button className='goods__btn'
                         variant="primary"
                         onClick={() => addBasketHandle(good.id, good.title, good.price, good.image)}
-                        disabled={basketIds.indexOf(good.id) >= 0 ? true : false}
+                        disabled={basketIds.indexOf(good.id) >= 0 || !userId ? true : false}
                         style={basketIds.indexOf(good.id) >= 0 ? { backgroundColor: " #B3E5FC" } : { backgroundColor: " #03A9F4" }}
                     >{basketIds.indexOf(good.id) >= 0 ? "В корзине" : "В корзину"}</Button>
                 </Card.Body>
@@ -124,7 +124,7 @@ export function GoodsPage() {
     })
 
 
-
+    console.log(userId)
 
     return (
 
@@ -136,7 +136,7 @@ export function GoodsPage() {
                 </Row>
             </Container> */}
 
-
+            {!userId ? <h5 className='goods__message'>Вам необходимо <Link to='/login'>войти</Link> или <Link to='/login'>зарегистрироваться</Link> для добавления товаров в корзину</h5> : null}
 
             <div className='goods__list' style={{ gridTemplateRows: `repeat(${quantityOfGoodsOnPage / 5}, 394px )` }}>
                 {isLoading ? loadingList : goodsList.slice(quantityOfGoodsOnPage * (curentPage - 1), quantityOfGoodsOnPage * (curentPage - 1) + quantityOfGoodsOnPage)}

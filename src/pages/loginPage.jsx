@@ -28,7 +28,8 @@ export const LoginPage = () => {
 
         signInWithEmailAndPassword(auth, email, password)
             .then(({ user }) => {
-                request("http://localhost:3001/api/users")
+                // request("http://localhost:3001/api/users")
+                request("https://test.webmaks.site/api/users")
                     .then(data => data.filter(serverUser => serverUser.id === user.uid))
                     .then(data => dispatch(setUser({
                         name: data[0].name,
@@ -40,7 +41,6 @@ export const LoginPage = () => {
                         basket: data[0].basket,
                         history: data[0].history
                     })))
-                // localStorage.setItem("userId", user.uid);
                 setLoading(false)
                 setError(null)
                 navigate("/goods");

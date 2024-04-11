@@ -2,11 +2,12 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const categoriesApiSlice = createApi({
     reducerPath: 'apiCategories',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001/api' }),
+    // baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://test.webmaks.site' }),
     tagTypes: [],
     endpoints: (builder) => ({
         getAllCaregories: builder.query({
-            query: () => `/categories/`,
+            query: () => `/api/categories/`,
             providesTags: []
         }),
 

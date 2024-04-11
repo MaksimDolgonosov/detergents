@@ -13,9 +13,10 @@ import { PersonalPage } from './pages/personalPage';
 import { OrderPage } from './pages/orderPage';
 import { HistoryPage } from './pages/historyPage';
 import { ContactsPage } from './pages/contactsPage';
-
-
-
+import { DeliveryPage } from './pages/deliveryPage';
+import { PolicyPage } from './pages/policyPage';
+import { AgreementPage } from './pages/agreementPage';
+import { PersonalInfoPage } from './pages/personalInfoPage';
 
 function App() {
   // fetch("http://localhost:3001/categories", {
@@ -44,6 +45,10 @@ function App() {
           <Route path="/history" element={<HistoryPage />} />
           <Route path="/order" element={<OrderPage />} />
           <Route path="/contacts" element={<ContactsPage />} />
+          <Route path="/delivery" element={<DeliveryPage />} />
+          <Route path="/policy" element={<PolicyPage />} />
+          <Route path="/agreement" element={<AgreementPage />} />
+          <Route path="/personalInfo" element={<PersonalInfoPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>

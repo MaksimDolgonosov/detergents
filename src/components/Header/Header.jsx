@@ -93,19 +93,20 @@ const Header = () => {
                         <Nav className="me-right">
                             <NavDropdown title="Категории" id="basic-nav-dropdown" className='d-block'>
                                 {cat}
-                                {/* <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">
-                                    Another action
-                                </NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item> */}
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item onClick={(e) => setCategory(e.target.textContent)}>
                                     Все
                                 </NavDropdown.Item>
                             </NavDropdown>
-                            <Nav.Link href="#action/3.4" >О нас</Nav.Link>
-                            <Nav.Link href="#action/3.4" >Доставка</Nav.Link>
-                            <Link to="/contacts" style={{padding: "8px 0"}}>Контакты</Link>
+                            {/* <Link to="/about" style={{ padding: "8px 8px 8px 0" }}>О нас</Link> */}
+                            <NavDropdown title='О нас' id="basic-nav-dropdown" style={{ paddingRight: "8px" }} className='d-block'>
+                                <Link className="dropdown-item" to="/policy">Политика конфиденциальности</Link>
+                                <Link className="dropdown-item" to="/agreement">Договор аферты</Link>
+                                <Link className="dropdown-item" to="/personalInfo">Обработка персональных данных</Link>
+                            </NavDropdown>
+
+                            <Link to="/delivery" style={{ padding: "8px 8px 8px 0" }}>Доставка</Link>
+                            <Link to="/contacts" style={{ padding: "8px 8px 8px 0" }}>Контакты</Link>
 
                         </Nav>
                         <Nav >
@@ -126,7 +127,7 @@ const Header = () => {
 
                                 // <Link to="/personal"><IoPersonCircleOutline /> {name}</Link> 
                                 :
-                                <Link to="/login" style={{ marginRight: "10px" }}><FaArrowRightToBracket className='nav_login' />
+                                <Link to="/login" style={{ padding: "8px 8px 8px 0", color: "black" }}><FaArrowRightToBracket className='nav_login' />
                                     Войти</Link>}
 
                             {/* </Nav.Link> */}
@@ -136,7 +137,7 @@ const Header = () => {
 
                             <>
 
-                                <Link to="/basket" >
+                                <Link to="/basket" style={{ color: "black" }} >
                                     <FaBasketShopping className='nav_basket' style={{ marginTop: "0px", display: "inline" }} />
                                     Корзина
                                 </Link>

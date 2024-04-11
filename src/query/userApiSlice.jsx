@@ -2,7 +2,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const userApiSlice = createApi({
     reducerPath: 'apiUser',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001' }),
+    // baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://test.webmaks.site' }),
     tagTypes: ["basket"],
     endpoints: (builder) => ({
         getUser: builder.query({
@@ -12,7 +13,7 @@ export const userApiSlice = createApi({
         }),
         addUser: builder.mutation({
             query: (user) => ({
-                url: `api/users/`,
+                url: `/api/users/`,
                 method: 'POST',
                 body: user,
             }),
