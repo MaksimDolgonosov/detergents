@@ -124,8 +124,6 @@ export function GoodsPage() {
     })
 
 
-    console.log(userId)
-
     return (
 
         <section className='goods'>

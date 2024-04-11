@@ -68,15 +68,15 @@ app.post("/api/users/", async (req, res) => {
 
 });
 
-app.get('/', function (req, res) {
-    res.render('index', { version: process.version })
-})
+// app.get('/', function (req, res) {
+//     res.render('index', { version: process.version })
+// })
 
-const server = app.listen()
+// const server = app.listen()
 
-// app.listen(PORT, () => {
-//     console.log(`Server is starting on port:${PORT}`)
-// });
+app.listen(PORT, () => {
+    console.log(`Server is starting on port:${PORT}`)
+});
 // app.listen();
 //const server = app.listen()
 // app.set()
