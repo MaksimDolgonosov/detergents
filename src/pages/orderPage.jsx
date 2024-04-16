@@ -49,12 +49,14 @@ export function OrderPage() {
         if (delivery === "9") {
             console.log(`Заказ для ${orderName} ${orderSurname}, тел: ${orderTel}, в отделение Европочты №${orderPostNumber} на сумму ${totalPrice}руб. + 9руб. за доставку, товары: ${basketList} `);
         } else {
-            console.log(`Заказ для ${orderName}, тел: ${orderTel}, по адресу №${orderAddress} на сумму ${totalPrice}руб., товары: ${basketList} `);
+            console.log(`Заказ для ${orderName}, тел: ${orderTel}, по адресу: ${orderAddress} на сумму ${totalPrice}руб., товары: ${basketList} `);
         }
         const date = await new Date();
-        const stringDate = await `${addZero(date.getDate())}.${addZero(date.getMonth())}.` + date.getFullYear();
+        const stringDate = await `${addZero(date.getDate())}.${addZero(date.getMonth() + 1)}.` + date.getFullYear();
         const user = await setUserId(userId);
-        const currentHistory = user.data.history.slice();
+
+        const currentHistory = user.data[0].history.slice();
+
         const id = await `${new Date().getSeconds()}-${new Date().getMonth()}-${new Date().getMinutes()}`;
         currentHistory.push({ id, order: basketList, date: stringDate });
 
@@ -98,7 +100,7 @@ export function OrderPage() {
                         <div className="order__privacy">
                             <input type='checkbox' required className='order__checkbox' /> <span>Я согласен с политикой конфиденциальности данного сайти и даю свое согласие на обработку персональных данных</span>
                         </div>
-                        <input className='order__submit' type="submit" disabled={totalPrice === "0.00" } name="send" value="Доставить товары"  ></input>
+                        <input className='order__submit' type="submit" disabled={totalPrice === "0.00"} name="send" value="Доставить товары"  ></input>
                     </form>
                 </div>
             </div>
@@ -116,7 +118,7 @@ export function OrderPage() {
                         <div className="order__privacy">
                             <input type='checkbox' required className='order__checkbox' /> <span>Я согласен с политикой конфиденциальности данного сайти и даю свое согласие на обработку персональных данных</span>
                         </div>
-                        <input className='order__submit' type="submit" disabled={totalPrice === "0.00" } name="send" value="Доставить товары"  ></input>
+                        <input className='order__submit' type="submit" disabled={totalPrice === "0.00"} name="send" value="Доставить товары"  ></input>
                     </form>
                 </div>
             </div>
