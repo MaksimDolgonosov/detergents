@@ -25,20 +25,20 @@ app.use(express.static('public'))
 
 //Настройка для реального сервера hoster.by
 const conn = mysql.createConnection({
-    host: "11.110.0.24",
+    host: "localhost",
     user: "webmakss_e_market",
     database: "webmakss_detergents",
     password: "263832263832nM"
 });
 
-conn.connect(err => {
-    if (err) {
-        console.log(err);
-        return err
-    } else {
-        console.log("Database--------OK")
-    }
-})
+// conn.connect(err => {
+//     if (err) {
+//         console.log(err);
+//         return err
+//     } else {
+//         console.log("Database--------OK")
+//     }
+// })
 
 
 
