@@ -1,4 +1,5 @@
 @import '../App.scss';
+
 .order {
     width: 100%;
     min-height: calc(80vh - 126px);
@@ -8,6 +9,8 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+     position: relative;
+    z-index: 99;
 
     &__title {
         margin: 10px 0;
@@ -63,7 +66,7 @@
             display: block;
             margin: 20px auto 0 auto;
             color: white;
-            background-color:$main_color;
+            background-color: $main_color;
             border: none;
             font-size: 14px;
             font-weight: 500;
@@ -105,6 +108,7 @@
         &__form {
             width: 70%;
         }
+
         &__title {
             text-align: center;
         }
@@ -122,8 +126,6 @@
     }
 }
 
-@media(max-width: 429px) {
-    
-}
+@media(max-width: 429px) {}
 
 @media(max-width: 391px) {}
