@@ -3,11 +3,11 @@
 .modal__wrapper {
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(255, 255, 255, 0);
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 98;
+    z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,6 +15,15 @@
     transition: 0.5s all;
 
     &_active {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.4);
         opacity: 1;
         z-index: 100;
         transition: 0.5s all;
@@ -23,11 +32,52 @@
 
 .modal__content {
     background-color: white;
-    width: 20%;
+    width: 30%;
     height: 30%;
     border-radius: 10px;
     padding: 20px;
     border: 2px solid $main_color;
     text-align: center;
     align-content: center;
+}
+
+@media(max-width: 1300px) {
+
+}
+
+@media(max-width: 1180px) {
+    .modal__content {
+        width: 40%;
+    }
+}
+
+@media(max-width: 992px) {
+    .modal__content {
+        width: 50%;
+    }
+}
+
+@media(max-width: 768px) {
+    .modal__content {
+        width: 60%;
+    }
+}
+
+@media(max-width: 576px) {
+    .modal__content {
+        width: 70%;
+    }
+}
+
+@media(max-width: 429px) {
+    .modal__content {
+        width: 80%;
+        font-size: 17px;
+    }
+}
+
+@media(max-width: 391px) {
+    .modal__content {
+        width: 90%;
+    }
 }

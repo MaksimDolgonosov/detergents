@@ -15,7 +15,7 @@ let transporter = nodemailer.createTransport({
     secure: true,
     auth: {
         user: "dolgonosov_90@mail.ru",
-        pass: 'MmTfkaUaq5cvFKJTR6Bh'
+        pass: 'KpGrWcXiaDBkhdhdz4Vy'
     },
 });
 
@@ -40,6 +40,8 @@ const conn = mysql.createConnection({
     database: "detergents",
     password: "root"
 });
+
+
 
 //Настройка для реального сервера hoster.by
 // const conn = mysql.createConnection({
@@ -85,10 +87,29 @@ app.get("/api/users/:id", async (req, res) => {
 
 
 
-app.get("/api/categories", cors(), (req, res) => {
+app.get("/api/categories", cors(), async (req, res) => {
+    let cat = [];
+    conn.query("SELECT * FROM categories", async (err, result) => {
+        console.log(result)
+        cat.push(result)
 
-    // const data = fs.readFileSync("./index.json", { encoding: "utf-8" });
-    // const dataObj = JSON.parse(data);
+    })
+
+    // const cat = await conn.query("SELECT * FROM categories", (err, result) => result)
+    console.log(cat)
+
+
+    // const subCat = conn.query("SELECT * FROM subcategories", (err, result) =>{return result});
+    // const result = cat.map(item => {
+    //     item.subcategories = [];
+    //     subCat.forEach(element => {
+    //         if (element.id_category === item.id) {
+    //             item.subcategories.push(element.subcategory)
+    //         }
+    //     });
+    //     return item;
+    // })
+    // console.log(result);
     res.json(db.categories)
 });
 
@@ -119,34 +140,36 @@ app.post("/api/sendEmail", async (req, res) => {
     console.log("request------OK")
 
     const body = await req.body;
-    // console.log(body)
-    if (body.delivery) {
-         transporter.sendMail({
-            from: '"Бытовая химия" <dolgonosov_90@mail.ru>',
-            to: 'max_air@bk.ru',
-            subject: 'Новый заказ',
-            text: `Заказ для ${body.orderName} ${body.orderSurname}, тел: ${body.orderTel}, в отделение Европочты №${body.orderPostNumber} на сумму ${body.totalPrice}руб. + 9руб. за доставку, товары: ${body.basketList}`,
 
-        }, (err, data)=>{
-            if (err) {
-                console.log("Error Occurs: " + err);
-            } else {
-                console.log("Email sent successfully: " + data.messageId);
-            }
-        });
+    //Отключена отправка писем
 
-    } else {
-        let result = transporter.sendMail({
-            from: '"Бытовая химия" <dolgonosov_90@mail.ru>',
-            to: 'max_air@bk.ru',
-            subject: 'Новый заказ',
-            text: `Заказ для ${body.orderName}, тел: ${body.orderTel}, по адресу: ${body.orderAddress} на сумму ${body.totalPrice}руб., товары: ${body.basketList}`,
+    // if (body.delivery) {
+    //      transporter.sendMail({
+    //         from: 'dolgonosov_90@mail.ru',
+    //         to: 'max_air@bk.ru',
+    //         subject: 'Новый заказ',
+    //         text: `Заказ для ${body.orderName} ${body.orderSurname}, тел: ${body.orderTel}, в отделение Европочты №${body.orderPostNumber} на сумму ${body.totalPrice}руб. + 9руб. за доставку, товары: ${body.basketList}`,
 
-        });
-        console.log(result)
-    }
+    //     }, (err, data)=>{
+    //         if (err) {
+    //             console.log("Error Occurs: " + err);
+    //         } else {
+    //             console.log("Email sent successfully: " + data.messageId);
+    //         }
+    //     });
 
-    // console.log(result)
+    // } else {
+    //     let result = transporter.sendMail({
+    //         from: '"Бытовая химия" <dolgonosov_90@mail.ru>',
+    //         to: 'max_air@bk.ru',
+    //         subject: 'Новый заказ',
+    //         text: `Заказ для ${body.orderName}, тел: ${body.orderTel}, по адресу: ${body.orderAddress} на сумму ${body.totalPrice}руб., товары: ${body.basketList}`,
+
+    //     });
+    //     console.log(result)
+    // }
+
+
     res.status(201).json(req.body);
 })
 

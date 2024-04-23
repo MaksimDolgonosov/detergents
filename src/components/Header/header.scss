@@ -12,7 +12,8 @@
 }
 
 header {
-
+    position: relative;
+    z-index: 99;
     border-bottom: 1px solid $divider_color;
 
     a {

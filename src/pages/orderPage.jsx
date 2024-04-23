@@ -8,7 +8,7 @@ import { useAddBasketMutation, useAddHistoryMutation, useLazyGetUserQuery } from
 import { clearBasket } from "../slices/userSlice";
 import { useNavigate } from "react-router-dom";
 import { Modal } from '../components/modal/modal';
-
+import Spinner from 'react-bootstrap/Spinner';
 
 export function OrderPage() {
     const dispatch = useDispatch();
@@ -30,7 +30,8 @@ export function OrderPage() {
     // const date = new Date()
     // console.log(date.getDate(), date.getMonth() + 1, date.getFullYear());
     // console.log(`${new Date().getSeconds()}-${new Date().getMonth()}-${new Date().getMinutes()}`)
-
+    const [loading, setLoading] = useState(false);
+    const [modal, setModal] = useState(false);
     const [orderName, setOrderName] = useState(name);
     // const [orderSurname, setOrderSurname] = useState(surname === null ? undefined : surname);
     const [orderSurname, setOrderSurname] = useState(surname);
@@ -49,6 +50,7 @@ export function OrderPage() {
 
     const onSubmitOrder = async (e) => {
         e.preventDefault();
+        setLoading(true);
         if (delivery === "9") {
             fetch('http://localhost:3001/api/sendEmail', {
                 method: "POST", headers: {
@@ -73,6 +75,7 @@ export function OrderPage() {
             })
             console.log(`Заказ для ${orderName}, тел: ${orderTel}, по адресу: ${orderAddress} на сумму ${totalPrice}руб., товары: ${basketList}`);
         }
+
         // const date = await new Date();
         // const stringDate = await `${addZero(date.getDate())}.${addZero(date.getMonth() + 1)}.` + date.getFullYear();
         // const user = await setUserId(userId);
@@ -87,6 +90,22 @@ export function OrderPage() {
         // await updateBasket({ userId, currentBasket: [] }).unwrap();
         // dispatch(clearBasket());
 
+        setLoading(false);
+        setModal(true);
+
+        setTimeout(() => {
+            setModal(false);
+            setOrderName(name);
+            setOrderSurname(surname);
+            setOrderAddress("");
+            setOrderPostNumber("");
+            // navigate('/');
+        }, 5000)
+        setTimeout(() => {
+
+            navigate('/');
+        }, 6000)
+
         // setOrderName(name);
         // setOrderSurname(surname);
         // setOrderAddress("");
@@ -95,11 +114,12 @@ export function OrderPage() {
     }
 
 
+
+
     if (delivery === "9") {
         return (
             <>
-
-                <Modal active={false} />
+                <Modal active={modal} />
                 <div className="container">
                     <h3 className='order__title title'>Данные для доставки</h3>
                     <div className="order">
@@ -113,7 +133,8 @@ export function OrderPage() {
                             <div className="order__privacy">
                                 <input type='checkbox' required className='order__checkbox' /> <span>Я согласен с политикой конфиденциальности данного сайти и даю свое согласие на обработку персональных данных</span>
                             </div>
-                            <input className='order__submit' type="submit" disabled={totalPrice === "0.00"} name="send" value="Доставить товары"  ></input>
+                            {/* <button disabled={loading ? true : false} type="submit">{loading ? <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /> : "Войти"}</button> */}
+                            <button type="submit" disabled={totalPrice === "0.00" || loading} name="send"  >{loading ? <Spinner animation="border" variant="light" size="md" role="status" /> : "Доставить товары"}</button>
                         </form>
                     </div>
                 </div>
@@ -121,21 +142,24 @@ export function OrderPage() {
         )
     } else {
         return (
-
-            <div className="container">
-                <h3 className='order__title title'>Данные для доставки</h3>
-                <div className="order">
-                    <form className="order__form" onSubmit={onSubmitOrder}>
-                        <input name="name" required type="text" placeholder={name} value={orderName} onChange={(e) => setOrderName(e.target.value)}></input>
-                        <input name="adress" type="text" required placeholder="Адрес доставки в Могилеве" value={orderAddress} onChange={(e) => setOrderAddress(e.target.value)}></input>
-                        <InputMask required name="tel" mask="+375 99 999 99 99" placeholder={tel ? tel : "Ваш номер телефона"} value={orderTel} onChange={(e) => setOrderTel(e.target.value)}></InputMask>
-                        <div className="order__privacy">
-                            <input type='checkbox' required className='order__checkbox' /> <span>Я согласен с политикой конфиденциальности данного сайти и даю свое согласие на обработку персональных данных</span>
-                        </div>
-                        <input className='order__submit' type="submit" disabled={totalPrice === "0.00"} name="send" value="Доставить товары"  ></input>
-                    </form>
+            <>
+                <Modal active={modal} />
+                <div className="container">
+                    <h3 className='order__title title'>Данные для доставки</h3>
+                    <div className="order">
+                        <form className="order__form" onSubmit={onSubmitOrder}>
+                            <input name="name" required type="text" placeholder={name} value={orderName} onChange={(e) => setOrderName(e.target.value)}></input>
+                            <input name="adress" type="text" required placeholder="Адрес доставки в Могилеве" value={orderAddress} onChange={(e) => setOrderAddress(e.target.value)}></input>
+                            <InputMask required name="tel" mask="+375 99 999 99 99" placeholder={tel ? tel : "Ваш номер телефона"} value={orderTel} onChange={(e) => setOrderTel(e.target.value)}></InputMask>
+                            <div className="order__privacy">
+                                <input type='checkbox' required className='order__checkbox' /> <span>Я согласен с политикой конфиденциальности данного сайти и даю свое согласие на обработку персональных данных</span>
+                            </div>
+                            <button type="submit" disabled={totalPrice === "0.00" || loading} name="send"  >{loading ? <Spinner animation="border" variant="light" size="md" role="status" /> : "Доставить товары"}</button>
+                            {/* <input className='order__submit' type="submit" disabled={totalPrice === "0.00"} name="send" value="Доставить товары"  ></input> */}
+                        </form>
+                    </div>
                 </div>
-            </div>
+            </>
         )
     }
 
