@@ -19,7 +19,8 @@ import { AgreementPage } from './pages/agreementPage';
 import { PersonalInfoPage } from './pages/personalInfoPage';
 
 function App() {
-  // fetch("http://localhost:3001/api/addUser", {
+  fetch("http://localhost:3001/api/users/x8m1HZZWYrd9eE9lqxY0e19EL4H2")
+  //, {
   //   method: "POST",
   //   headers: {
   //     'Content-Type': 'application/json',
@@ -33,8 +34,8 @@ function App() {
   //     email: "ivan@hr.cj"
   //   })
   // })
-  //   .then(res => res.json())
-  //   .then(res => console.log(res))
+    //  .then(res => res.json())
+    //  .then(res => console.log(res))
 
 
   return (

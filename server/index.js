@@ -86,6 +86,10 @@ app.get("/api/users/:id", async (req, res) => {
 
     const user = await db.users.filter(u => u.id === req.params.id);
 
+    // const userM = syncConn.query(`SELECT * FROM users where id = '${req.params.id}'`);
+    // const basketM = syncConn.query(`SELECT * FROM basket where id_user = '${req.params.id}'`);
+    // userM[0].basket = [...basketM];
+    // console.log(userM[0]);
 
     res.json(user)
 

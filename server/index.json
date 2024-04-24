@@ -462,7 +462,7 @@
                     "title": "Стиральный порошок Persil",
                     "price": 23,
                     "quantity": 1,
-                    "image": "http://localhost:3001/api/images/2"
+                    "image": "https://test.webmaks.site//api/images/2"
                 }
             ],
             "history": [
