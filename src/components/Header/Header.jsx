@@ -46,7 +46,6 @@ const Header = () => {
     }
 
     const setCategory = (category) => {
-
         if (location.pathname !== "/goods") {
             navigate("/goods");
         }

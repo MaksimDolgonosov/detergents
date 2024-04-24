@@ -34,7 +34,7 @@ export function GoodsPage() {
     const basketIds = basket.map(item => item.id);
 
     const [setUserId] = useLazyGetUserQuery();
-    // console.log(userId)
+    // console.log(goods)
     // console.log(setUserId(userId));
     const dispatch = useDispatch();
     const filteredGoods = activeCategory === "Все" ? goods : goods.filter(item => item.category === activeCategory);

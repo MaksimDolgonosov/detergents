@@ -1,6 +1,7 @@
 const express = require('express');
 let cors = require('cors');
 const mysql = require('mysql');
+const syncMysql = require('sync-mysql');
 const fs = require("fs");
 let db = require("./index.json");
 const path = require("path");
@@ -33,14 +34,17 @@ app.use(bodyParser.json())
 app.use(express.static('public'))
 
 //Настройка для локального сервера MAMP
-const conn = mysql.createConnection({
+const settingsMysql = {
     host: "localhost",
     port: 3306,
     user: "root",
     database: "detergents",
     password: "root"
-});
+}
 
+const conn = mysql.createConnection(settingsMysql);
+
+const syncConn = new syncMysql(settingsMysql);
 
 
 //Настройка для реального сервера hoster.by
@@ -80,7 +84,9 @@ app.get("/api/users", (req, res) => {
 
 app.get("/api/users/:id", async (req, res) => {
 
-    const user = await db.users.filter(u => u.id === req.params.id)
+    const user = await db.users.filter(u => u.id === req.params.id);
+
+
     res.json(user)
 
 });
@@ -88,29 +94,22 @@ app.get("/api/users/:id", async (req, res) => {
 
 
 app.get("/api/categories", cors(), async (req, res) => {
-    let cat = [];
-    conn.query("SELECT * FROM categories", async (err, result) => {
-        console.log(result)
-        cat.push(result)
 
+    const cat = syncConn.query("SELECT * FROM categories");
+    const subCat = syncConn.query("SELECT * FROM subcategories");
+
+    const result = cat.map(item => {
+        item.subcategories = [];
+        subCat.forEach(element => {
+            if (element.id_category === item.id) {
+                item.subcategories.push(element.subcategory)
+            }
+        });
+        return item;
     })
 
-    // const cat = await conn.query("SELECT * FROM categories", (err, result) => result)
-    console.log(cat)
-
-
-    // const subCat = conn.query("SELECT * FROM subcategories", (err, result) =>{return result});
-    // const result = cat.map(item => {
-    //     item.subcategories = [];
-    //     subCat.forEach(element => {
-    //         if (element.id_category === item.id) {
-    //             item.subcategories.push(element.subcategory)
-    //         }
-    //     });
-    //     return item;
-    // })
-    // console.log(result);
-    res.json(db.categories)
+    res.json(result)
+    //res.json(db.categories)
 });
 
 app.get("/api/goods", cors(), (req, res) => {
@@ -185,6 +184,28 @@ app.post("/api/users/", async (req, res) => {
 // })
 
 // const server = app.listen()
+
+
+
+app.post("/api/addUser/", async (req, res) => {
+    // const queryStr = `INSERT INTO 'users'('id', 'name', 'surname', 'tel', 'email', 'status') VALUES ('[${req.body.id}]','[${req.body.name}]','[${req.body.surname}]','[${req.body.tel}]','[${req.body.email}]','[${req.body.status}]')`;
+    let query = "INSERT INTO users(id, name, surname, tel, email, status) VALUES ?";
+    const values = [
+        [req.body.id, req.body.name, req.body.surname, req.body.tel, req.body.email, req.body.status]
+    ]
+    conn.query(query, [values], (err, result) => {
+        if (err) throw err;
+        console.log(result)
+    })
+
+    // syncConn.query(queryStr);
+
+    res.status(201).json(req.body);
+})
+
+
+
+
 
 app.listen(PORT, () => {
     console.log(`Server is starting on port:${PORT}`)

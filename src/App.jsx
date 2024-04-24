@@ -19,13 +19,19 @@ import { AgreementPage } from './pages/agreementPage';
 import { PersonalInfoPage } from './pages/personalInfoPage';
 
 function App() {
-  // fetch("http://localhost:3001/categories", {
-
+  // fetch("http://localhost:3001/api/addUser", {
+  //   method: "POST",
   //   headers: {
-  //     mode: "no-cors",
   //     'Content-Type': 'application/json',
-  //     'Accept': 'application/json'
-  //   }
+  //   },
+  //   body: JSON.stringify({
+  //     name: "Ivan",
+  //     surname: "Petrichenko",
+  //     id: "124124124124",
+  //     tel: "80(44)516-90-78",
+  //     status: "customer",
+  //     email: "ivan@hr.cj"
+  //   })
   // })
   //   .then(res => res.json())
   //   .then(res => console.log(res))
