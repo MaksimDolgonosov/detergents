@@ -34,7 +34,7 @@ export function GoodsPage() {
     const basketIds = basket.map(item => item.id);
 
     const [setUserId] = useLazyGetUserQuery();
-    // console.log(goods)
+    // console.log(activeCategory);
     // console.log(setUserId(userId));
     const dispatch = useDispatch();
     const filteredGoods = activeCategory === "Все" ? goods : goods.filter(item => item.category === activeCategory);
@@ -56,13 +56,21 @@ export function GoodsPage() {
     }
 
 
-
     const goodsList = filteredGoods.map(good => {
+        let loaded = false;
+        const img = new Image();
+        img.src = good.image;
+        img.onload = function () {
+            loaded = true;
+        };
+
         return (
             // <Col className="p-2 gx-5" sm={{ span: 5, offset: 1 }} xs={{ span: 11, offset: 0 }} xxl={{ span: 2, offset: 0 }} style={{ display: "flex", justifyContent: "center" }}>
             <Card className='goods__card' key={good.id} >
                 {good.sale ? <img className='goods__sale' src={Sale} alt="sale" /> : null}
-                <Card.Img className='goods__img' variant="top" src={good.image} style={{ display: "flex", justifyContent: "center", alignItems: "center" }} />
+
+                {!loaded ? <Card.Img className='goods__img' variant="top" src={good.image} style={{ display: "flex", justifyContent: "center", alignItems: "center" }} /> : null}
+
                 <Card.Body className='goods__body'>
                     <Card.Title className='goods__title'>{good.title}</Card.Title>
                     <Card.Text className='goods__text'>

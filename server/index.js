@@ -70,6 +70,7 @@ conn.connect(err => {
 app.get("/api/images/:id", async (req, res) => {
     res.setHeader("Content-Type", "image/jpeg");
     fs.readFile(`./goods/${req.params.id}.jpg`, (err, image) => {
+        
         res.end(image)
     })
 });

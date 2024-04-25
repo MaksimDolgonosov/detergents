@@ -76,19 +76,19 @@ export function OrderPage() {
             console.log(`Заказ для ${orderName}, тел: ${orderTel}, по адресу: ${orderAddress} на сумму ${totalPrice}руб., товары: ${basketList}`);
         }
 
-        // const date = await new Date();
-        // const stringDate = await `${addZero(date.getDate())}.${addZero(date.getMonth() + 1)}.` + date.getFullYear();
-        // const user = await setUserId(userId);
+        const date = await new Date();
+        const stringDate = await `${addZero(date.getDate())}.${addZero(date.getMonth() + 1)}.` + date.getFullYear();
+        const user = await setUserId(userId);
 
-        // const currentHistory = user.data[0].history.slice();
+        const currentHistory = user.data[0].history.slice();
 
-        // const id = await `${new Date().getSeconds()}-${new Date().getMonth()}-${new Date().getMinutes()}`;
-        // currentHistory.push({ id, order: basketList, date: stringDate });
+        const id = await `${new Date().getSeconds()}-${new Date().getMonth()}-${new Date().getMinutes()}`;
+        currentHistory.push({ id, order: basketList, date: stringDate });
 
-        // await updateHistory({ userId, currentHistory }).unwrap();
+        await updateHistory({ userId, currentHistory }).unwrap();
 
-        // await updateBasket({ userId, currentBasket: [] }).unwrap();
-        // dispatch(clearBasket());
+        await updateBasket({ userId, currentBasket: [] }).unwrap();
+        dispatch(clearBasket());
 
         setLoading(false);
         setModal(true);
@@ -106,11 +106,11 @@ export function OrderPage() {
             navigate('/');
         }, 6000)
 
-        // setOrderName(name);
-        // setOrderSurname(surname);
-        // setOrderAddress("");
-        // setOrderPostNumber("");
-        // navigate('/');
+        setOrderName(name);
+        setOrderSurname(surname);
+        setOrderAddress("");
+        setOrderPostNumber("");
+        navigate('/');
     }
 
 
