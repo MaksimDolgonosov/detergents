@@ -34,35 +34,37 @@ app.use(bodyParser.json())
 app.use(express.static('public'))
 
 //Настройка для локального сервера MAMP
+
+// const settingsMysql = {
+//     host: "localhost",
+//     port: 3306,
+//     user: "root",
+//     database: "detergents",
+//     password: "root"
+// }
+
+//Настройка для реального сервера hoster.by
+
 const settingsMysql = {
     host: "localhost",
-    port: 3306,
-    user: "root",
-    database: "detergents",
-    password: "root"
+    user: "webmakss_e_market",
+    database: "webmakss_detergents",
+    password: "263832263832nM"
 }
 
 const conn = mysql.createConnection(settingsMysql);
-
 const syncConn = new syncMysql(settingsMysql);
 
 
-//Настройка для реального сервера hoster.by
-// const conn = mysql.createConnection({
-//     host: "localhost",
-//     user: "webmakss_e_market",
-//     database: "webmakss_detergents",
-//     password: "263832263832nM"
-// });
 
-conn.connect(err => {
-    if (err) {
-        console.log(err);
-        return err
-    } else {
-        console.log("Database--------OK")
-    }
-})
+// conn.connect(err => {
+//     if (err) {
+//         console.log(err);
+//         return err
+//     } else {
+//         console.log("Database--------OK")
+//     }
+// })
 
 
 
@@ -184,11 +186,7 @@ app.post("/api/users/", async (req, res) => {
 
 });
 
-// app.get('/', function (req, res) {
-//     res.render('index', { version: process.version })
-// })
 
-// const server = app.listen()
 
 
 
@@ -209,12 +207,18 @@ app.post("/api/addUser/", async (req, res) => {
 })
 
 
+app.get('/', function (req, res) {
+    res.render('index', { version: process.version })
+})
+
+app.listen()
 
 
+// app.listen(PORT, () => {
+//     console.log(`Server is starting on port:${PORT}`)
+// });
 
-app.listen(PORT, () => {
-    console.log(`Server is starting on port:${PORT}`)
-});
+
 // app.listen();
 //const server = app.listen()
 // app.set()
