@@ -70,7 +70,7 @@ conn.connect(err => {
 app.get("/api/images/:id", async (req, res) => {
     res.setHeader("Content-Type", "image/jpeg");
     fs.readFile(`./goods/${req.params.id}.jpg`, (err, image) => {
-        
+
         res.end(image)
     })
 });
@@ -147,31 +147,31 @@ app.post("/api/sendEmail", async (req, res) => {
 
     //Отключена отправка писем
 
-    // if (body.delivery) {
-    //      transporter.sendMail({
-    //         from: 'dolgonosov_90@mail.ru',
-    //         to: 'max_air@bk.ru',
-    //         subject: 'Новый заказ',
-    //         text: `Заказ для ${body.orderName} ${body.orderSurname}, тел: ${body.orderTel}, в отделение Европочты №${body.orderPostNumber} на сумму ${body.totalPrice}руб. + 9руб. за доставку, товары: ${body.basketList}`,
+    if (body.delivery) {
+        transporter.sendMail({
+            from: 'dolgonosov_90@mail.ru',
+            to: 'max_air@bk.ru',
+            subject: 'Новый заказ',
+            text: `Заказ для ${body.orderName} ${body.orderSurname}, тел: ${body.orderTel}, в отделение Европочты №${body.orderPostNumber} на сумму ${body.totalPrice}руб. + 9руб. за доставку, товары: ${body.basketList}`,
 
-    //     }, (err, data)=>{
-    //         if (err) {
-    //             console.log("Error Occurs: " + err);
-    //         } else {
-    //             console.log("Email sent successfully: " + data.messageId);
-    //         }
-    //     });
+        }, (err, data) => {
+            if (err) {
+                console.log("Error Occurs: " + err);
+            } else {
+                console.log("Email sent successfully: " + data.messageId);
+            }
+        });
 
-    // } else {
-    //     let result = transporter.sendMail({
-    //         from: '"Бытовая химия" <dolgonosov_90@mail.ru>',
-    //         to: 'max_air@bk.ru',
-    //         subject: 'Новый заказ',
-    //         text: `Заказ для ${body.orderName}, тел: ${body.orderTel}, по адресу: ${body.orderAddress} на сумму ${body.totalPrice}руб., товары: ${body.basketList}`,
+    } else {
+        let result = transporter.sendMail({
+            from: '"Бытовая химия" <dolgonosov_90@mail.ru>',
+            to: 'max_air@bk.ru',
+            subject: 'Новый заказ',
+            text: `Заказ для ${body.orderName}, тел: ${body.orderTel}, по адресу: ${body.orderAddress} на сумму ${body.totalPrice}руб., товары: ${body.basketList}`,
 
-    //     });
-    //     console.log(result)
-    // }
+        });
+        console.log(result)
+    }
 
 
     res.status(201).json(req.body);
