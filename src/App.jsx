@@ -19,7 +19,7 @@ import { AgreementPage } from './pages/agreementPage';
 import { PersonalInfoPage } from './pages/personalInfoPage';
 
 function App() {
-  fetch("http://localhost:3001/api/users/x8m1HZZWYrd9eE9lqxY0e19EL4H2")
+  // fetch("http://localhost:3001/api/users/x8m1HZZWYrd9eE9lqxY0e19EL4H2")
   //, {
   //   method: "POST",
   //   headers: {
