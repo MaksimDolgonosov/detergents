@@ -9,11 +9,11 @@
             "status": "admin",
             "basket": [
                 {
-                    "id": 2,
-                    "title": "Стиральный порошок Persil",
-                    "price": 23,
+                    "id": 10,
+                    "title": "Кондиционер для белья ВЕРНЕЛЬ",
+                    "price": 15,
                     "quantity": 1,
-                    "image": "https://test.webmaks.site//api/images/2"
+                    "image": "https://node.webmaks.site/api/images/10"
                 }
             ],
             "history": [
@@ -56,6 +56,20 @@
                         "Стиральный порошок Persil, 1шт."
                     ],
                     "date": "15.03.2024"
+                },
+                {
+                    "id": "28-3-53",
+                    "order": [
+                        "Стиральный порошок Persil, 1шт."
+                    ],
+                    "date": "27.04.2024"
+                },
+                {
+                    "id": "37-3-0",
+                    "order": [
+                        "Таблетки для посудомоечной машины, 1шт."
+                    ],
+                    "date": "27.04.2024"
                 }
             ]
         },

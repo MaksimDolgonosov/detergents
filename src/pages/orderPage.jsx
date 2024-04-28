@@ -52,8 +52,8 @@ export function OrderPage() {
         e.preventDefault();
         setLoading(true);
         if (delivery === "9") {
-            fetch('https://node.webmaks.site/api/sendEmail', {
-                // fetch('http://localhost:3001/api/sendEmail', {
+            // await fetch('https://node.webmaks.site/api/sendEmail', {
+            fetch('http://localhost:3001/api/sendEmail', {
                 method: "POST", headers: {
                     // значение этого заголовка обычно ставится автоматически,
                     // в зависимости от тела запроса
@@ -62,12 +62,14 @@ export function OrderPage() {
                 body: JSON.stringify({ delivery: true, orderName, orderSurname, orderTel, orderPostNumber, totalPrice, basketList })
                 // body: `Заказ для ${orderName} ${orderSurname}, тел: ${orderTel}, в отделение Европочты №${orderPostNumber} на сумму ${totalPrice}руб. + 9руб. за доставку, товары: ${basketList}` 
             })
-                .then(delivered())
+                .then(res => res.json())
+                .then(res => console.log(res))
+
             console.log(`Заказ для ${orderName} ${orderSurname}, тел: ${orderTel}, в отделение Европочты №${orderPostNumber} на сумму ${totalPrice}руб. + 9руб. за доставку, товары: ${basketList}`);
-            return;
+
         } else {
-            fetch('https://node.webmaks.site/api/sendEmail', {
-                // fetch('http://localhost:3001/api/sendEmail', {
+            // await fetch('https://node.webmaks.site/api/sendEmail', {
+            fetch('http://localhost:3001/api/sendEmail', {
                 method: "POST", headers: {
                     // значение этого заголовка обычно ставится автоматически,
                     // в зависимости от тела запроса
@@ -76,48 +78,51 @@ export function OrderPage() {
                 body: JSON.stringify({ delivery: false, orderName, orderTel, orderAddress, totalPrice, basketList })
                 // body: `Заказ для ${orderName}, тел: ${orderTel}, по адресу: ${orderAddress} на сумму ${totalPrice}руб., товары: ${basketList}`
             })
-                .then(delivered())
+                .then(res => res.json())
+                .then(res => console.log(res))
+
             console.log(`Заказ для ${orderName}, тел: ${orderTel}, по адресу: ${orderAddress} на сумму ${totalPrice}руб., товары: ${basketList}`);
-            return;
+
         }
 
-        async function delivered() {
-            const date = await new Date();
-            const stringDate = await `${addZero(date.getDate())}.${addZero(date.getMonth() + 1)}.` + date.getFullYear();
-            const user = await setUserId(userId);
 
-            const currentHistory = user.data[0].history.slice();
+        const date = await new Date();
+        const stringDate = await `${addZero(date.getDate())}.${addZero(date.getMonth() + 1)}.` + date.getFullYear();
+        console.log("delivered")
+        const user = await setUserId(userId);
+        console.log(user)
+        const currentHistory = await user.data[0].history.slice();
 
-            const id = await `${new Date().getSeconds()}-${new Date().getMonth()}-${new Date().getMinutes()}`;
-            currentHistory.push({ id, order: basketList, date: stringDate });
+        const id = await `${new Date().getSeconds()}-${new Date().getMonth()}-${new Date().getMinutes()}`;
+        await currentHistory.push({ id, order: basketList, date: stringDate });
+        console.log(currentHistory)
 
-            await updateHistory({ userId, currentHistory }).unwrap();
+        await updateHistory({ userId, currentHistory }).unwrap();
+        await updateBasket({ userId, currentBasket: [] }).unwrap();
+        await dispatch(clearBasket());
 
-            await updateBasket({ userId, currentBasket: [] }).unwrap();
-            dispatch(clearBasket());
+        setLoading(false);
+        setModal(true);
 
-            setLoading(false);
-            setModal(true);
-
-            setTimeout(() => {
-                setModal(false);
-                setOrderName(name);
-                setOrderSurname(surname);
-                setOrderAddress("");
-                setOrderPostNumber("");
-                // navigate('/');
-            }, 5000)
-            setTimeout(() => {
-
-                navigate('/');
-            }, 6000)
-
+        setTimeout(() => {
+            setModal(false);
             setOrderName(name);
             setOrderSurname(surname);
             setOrderAddress("");
             setOrderPostNumber("");
+            // navigate('/');
+        }, 5000)
+        setTimeout(() => {
+
             navigate('/');
-        }
+        }, 6000)
+
+        setOrderName(name);
+        setOrderSurname(surname);
+        setOrderAddress("");
+        setOrderPostNumber("");
+        navigate('/');
+
 
     }
 
