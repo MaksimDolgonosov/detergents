@@ -4,6 +4,7 @@ import user from "../slices/userSlice";
 import category from "../slices/categorySlice";
 import { userApiSlice } from "../query/userApiSlice";
 import { goodsApiSlice } from "../query/goodsApiSlice";
+import { basketApiSlice } from "../query/basketApiSlice";
 import { categoriesApiSlice } from "../query/categoriesApiSlice";
 // export const store = configureStore({
 //     reducer: 
@@ -26,12 +27,13 @@ const reducers = combineReducers({
     [userApiSlice.reducerPath]: userApiSlice.reducer,
     [goodsApiSlice.reducerPath]: goodsApiSlice.reducer,
     [categoriesApiSlice.reducerPath]: categoriesApiSlice.reducer,
+    [basketApiSlice.reducerPath]: basketApiSlice.reducer,
 });
 
 const persistConfig = {
     key: 'auth',
     storage,
-    blacklist: ['apiGoods', 'apiCategories', 'categories', 'apiUser','category']
+    blacklist: ['apiGoods', 'apiCategories', 'categories', 'apiUser', 'category', 'basketApiSlice']
 }
 const persistedReducer = persistReducer(persistConfig, reducers)
 
@@ -49,7 +51,7 @@ const store = configureStore({
         serializableCheck: {
             ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         },
-    }).concat(userApiSlice.middleware, goodsApiSlice.middleware, categoriesApiSlice.middleware),
+    }).concat(userApiSlice.middleware, goodsApiSlice.middleware, categoriesApiSlice.middleware, basketApiSlice.middleware),
     devTools: process.env.NODE_ENV !== "production",
 
 })

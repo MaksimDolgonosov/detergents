@@ -1,7 +1,8 @@
 import { MdDelete } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromBasket, addQuantityToBasket, removeQuantityFromBasket } from "../../slices/userSlice";
-import { useAddBasketMutation, useLazyGetUserQuery } from '../../query/userApiSlice';
+import {  useLazyGetUserQuery } from '../../query/userApiSlice';
+import { useSetBasketQuantityMutation } from "../../query/basketApiSlice";
 
 
 
@@ -9,7 +10,8 @@ const BasketItem = ({ item }) => {
     const userId = useSelector(state => state.user.id);
     const dispatch = useDispatch();
     const [setUserId] = useLazyGetUserQuery();
-    const [updateBasket] = useAddBasketMutation();
+    // const [updateBasket] = useAddBasketMutation();
+    const [setBasketQuantity] = useSetBasketQuantityMutation();
 
     const onRemoveItem = async (itemId) => {
         const user = await setUserId(userId);
@@ -17,26 +19,31 @@ const BasketItem = ({ item }) => {
         const currentBasket = user.data[0].basket.slice();
         const newBasket = await currentBasket.filter(item => item.id !== itemId)
         dispatch(removeFromBasket(itemId));
-        await updateBasket({ userId, currentBasket: newBasket }).unwrap();
+        // await updateBasket({ userId, currentBasket: newBasket }).unwrap();
     }
 
     const onChangeQuantity = async (itemId, simbol, quantity) => {
+        console.log(quantity)
         if (quantity === 1 && simbol === "minus") {
             return
         } else {
-            const user = await setUserId(userId);
+            // const user = await setUserId(userId);
 
-            const currentBasket = user.data[0].basket.slice();
-            const newBasket = await currentBasket.map(product => {
-                if (product.id === itemId) {
-                    const obj = simbol === "plus" ? { quantity: item.quantity + 1 } : { quantity: item.quantity - 1 }
-                    // const obj = { quantity: item.quantity + 1 };
-                    return { ...product, ...obj }
-                }
-                return product;
-            })
-            simbol === "plus" ? await dispatch(addQuantityToBasket(itemId)) : await dispatch(removeQuantityFromBasket(itemId))
-            await updateBasket({ userId, currentBasket: newBasket }).unwrap();
+            // const currentBasket = user.data[0].basket.slice();
+            // const newBasket = await currentBasket.map(product => {
+            //     if (product.id === itemId) {
+            //         const obj = simbol === "plus" ? { quantity: item.quantity + 1 } : { quantity: item.quantity - 1 }
+            //         // const obj = { quantity: item.quantity + 1 };
+            //         return { ...product, ...obj }
+            //     }
+            //     return product;
+            // })
+
+            await setBasketQuantity({ userId, itemId, quantity: quantity + 1 })
+
+
+            simbol === "plus" ? dispatch(addQuantityToBasket(itemId)) : dispatch(removeQuantityFromBasket(itemId));
+            // await updateBasket({ userId, currentBasket: newBasket }).unwrap();
         }
 
     }
@@ -61,12 +68,15 @@ const BasketItem = ({ item }) => {
 
     return (
         <li className="basket__item">
-            <img src={item.image} alt={item.title} style={{ with: "35px", height: "40px", borderRadius: "100%", border: "1px solid #6495ED" }} />
+            <div className="basket__item_img" style={{ width: "40px", height: "40px", marginRight: "5px", borderRadius: "100%" }} >
+                <img src={item.image} alt={item.title} style={{ width: "40px", height: "40px", borderRadius: "100%", border: "1px solid #6495ED" }} />
+            </div>
+
             <span className="basket__name">{item.title}</span>
             <div className="basket__counter">
                 <button className="basket__btn" onClick={() => onChangeQuantity(item.id, "minus", item.quantity)}>-</button>
                 <span className='basket__quantity'>{item.quantity}</span>
-                <button className="basket__btn" onClick={() => onChangeQuantity(item.id, "plus")}>+</button>
+                <button className="basket__btn" onClick={() => onChangeQuantity(item.id, "plus", item.quantity)}>+</button>
             </div>
             <div className="basket__price" style={{ width: "85px" }}>{(item.price * item.quantity).toFixed(2)} руб</div>
             <MdDelete onClick={() => onRemoveItem(item.id)} title='Удалить товар' />

@@ -9,10 +9,11 @@
             "status": "admin",
             "basket": [
                 {
-                    "id": 10,
+                    "id": "10",
+                    "id_user": "x8m1HZZWYrd9eE9lqxY0e19EL4H2",
                     "title": "Кондиционер для белья ВЕРНЕЛЬ",
                     "price": 15,
-                    "quantity": 1,
+                    "quantity": 2,
                     "image": "https://node.webmaks.site/api/images/10"
                 }
             ],

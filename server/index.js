@@ -31,9 +31,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 // app.use(express.static(path.resolve(__dirname, "../build")));
-
-
-// app.use(express.static('public'))
+//app.use(express.static('public'))
 
 //Настройка для локального сервера MAMP
 
@@ -82,21 +80,23 @@ app.get("/api/images/:id", async (req, res) => {
 
 
 app.get("/api/users", (req, res) => {
-
-    res.json(db.users)
+    const users = syncConn.query(`SELECT * FROM users`);
+    console.log(users);
+    res.json(users)
+    // res.json(db.users)
 
 });
 
 app.get("/api/users/:id", async (req, res) => {
 
-    const user = await db.users.filter(u => u.id === req.params.id);
+    //const user = await db.users.filter(u => u.id === req.params.id);
 
-    // const userM = syncConn.query(`SELECT * FROM users where id = '${req.params.id}'`);
-    // const basketM = syncConn.query(`SELECT * FROM basket where id_user = '${req.params.id}'`);
-    // userM[0].basket = [...basketM];
-    // console.log(userM[0]);
-
-    res.json(user)
+    const userM = syncConn.query(`SELECT * FROM users where id = '${req.params.id}'`);
+    const basketM = syncConn.query(`SELECT * FROM basket where id_user = '${req.params.id}'`);
+    userM[0].basket = [...basketM];
+    console.log(userM[0]);
+    res.json(userM[0])
+    // res.json(user)
 
 });
 
@@ -132,19 +132,54 @@ app.get("/api/goods", cors(), (req, res) => {
 });
 
 app.patch("/api/users/:id", async (req, res) => {
-    console.log(req.body);
     const updateUsers = await db.users.map(u => {
         if (u.id === req.params.id) {
             return { ...u, ...req.body }
         }
         return u;
     });
-    db = await { ...db, users: updateUsers }
-    
+    db = { ...db, users: updateUsers }
     await fs.writeFileSync("./index.json", JSON.stringify(db), { encoding: "utf-8" });
     res.status(201).json(req.body);
 });
 
+
+app.get("/api/basket/:id", (req, res) => {
+    console.log(req.params.id)
+    let query = `SELECT * FROM basket WHERE id_user = ${req.params.id}`;
+    conn.query(query, (err, result) => {
+        console.log(result)
+        res.json(result);
+    })
+
+    //res.json(db.goods);
+});
+app.patch("/api/basket/basketQuantity/:id", async (req, res) => {
+    const { quantity, itemId } = req.body;
+    console.log(req.body);
+    const item = syncConn.query(`UPDATE basket SET quantity=${quantity} WHERE id='${itemId}'AND id_user='${req.params.id}'`);
+    // console.log(item);
+    // res.status(201).json(req.body);
+});
+
+app.patch("/api/basket/addBasket/:id", async (req, res) => {
+
+    // const { item } = req.body;
+
+
+    // const { quantity, itemId } = req.body;
+    // console.log(req.body);
+    const query = syncConn.query(`INSERT INTO basket(id, id_user, title, price, quantity, image) VALUES ?`);
+    const values = [
+        [req.body.id, req.params.id, req.body.title, req.body.price, req.body.quantity, req.body.image]
+    ]
+    conn.query(query, [values], (err, result) => {
+        if (err) throw err;
+        console.log(result)
+    })
+    // console.log(item);
+    res.status(201).json(req.body);
+});
 
 app.post("/api/sendEmail", async (req, res) => {
     console.log("request------OK")
@@ -153,31 +188,31 @@ app.post("/api/sendEmail", async (req, res) => {
 
     //Отключена отправка писем
 
-    if (body.delivery) {
-        // transporter.sendMail({
-        //     from: 'dolgonosov_90@mail.ru',
-        //     to: 'max_air@bk.ru',
-        //     subject: 'Новый заказ',
-        //     text: `Заказ для ${body.orderName} ${body.orderSurname}, тел: ${body.orderTel}, в отделение Европочты №${body.orderPostNumber} на сумму ${body.totalPrice}руб. + 9руб. за доставку, товары: ${body.basketList}`,
+    // if (body.delivery) {
+    //     transporter.sendMail({
+    //         from: 'dolgonosov_90@mail.ru',
+    //         to: 'max_air@bk.ru',
+    //         subject: 'Новый заказ',
+    //         text: `Заказ для ${body.orderName} ${body.orderSurname}, тел: ${body.orderTel}, в отделение Европочты №${body.orderPostNumber} на сумму ${body.totalPrice}руб. + 9руб. за доставку, товары: ${body.basketList}`,
 
-        // }, (err, data) => {
-        //     if (err) {
-        //         console.log("Error Occurs: " + err);
-        //     } else {
-        //         console.log("Email sent successfully: " + data.messageId);
-        //     }
-        // });
+    //     }, (err, data) => {
+    //         if (err) {
+    //             console.log("Error Occurs: " + err);
+    //         } else {
+    //             console.log("Email sent successfully: " + data.messageId);
+    //         }
+    //     });
 
-    } else {
-        // let result = transporter.sendMail({
-        //     from: '"Бытовая химия" <dolgonosov_90@mail.ru>',
-        //     to: 'max_air@bk.ru',
-        //     subject: 'Новый заказ',
-        //     text: `Заказ для ${body.orderName}, тел: ${body.orderTel}, по адресу: ${body.orderAddress} на сумму ${body.totalPrice}руб., товары: ${body.basketList}`,
+    // } else {
+    //     let result = transporter.sendMail({
+    //         from: '"Бытовая химия" <dolgonosov_90@mail.ru>',
+    //         to: 'max_air@bk.ru',
+    //         subject: 'Новый заказ',
+    //         text: `Заказ для ${body.orderName}, тел: ${body.orderTel}, по адресу: ${body.orderAddress} на сумму ${body.totalPrice}руб., товары: ${body.basketList}`,
 
-        // });
-        // console.log(result)
-    }
+    //     });
+    //     console.log(result)
+    // }
 
 
     res.status(201).json(req.body);
@@ -211,11 +246,11 @@ app.post("/api/addUser/", async (req, res) => {
 })
 
 
-// app.get('/', function (req, res) {
-//     res.render('index', { version: process.version })
-// })
+app.get('/', function (req, res) {
+    res.render('index', { version: process.version })
+})
 
-app.listen()
+//app.listen()
 
 
 app.listen(PORT, () => {

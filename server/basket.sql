@@ -24,41 +24,45 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `categories`
+-- Структура таблицы `basket`
 --
 
-CREATE TABLE `categories` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL
+CREATE TABLE `basket` (
+  `id` varchar(100) NOT NULL,
+  `id_user` varchar(100) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `price` decimal(30,0) NOT NULL,
+  `quantity` tinyint(5) NOT NULL,
+  `image` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `categories`
+-- Дамп данных таблицы `basket`
 --
 
-INSERT INTO `categories` (`id`, `name`) VALUES
-(1, 'Средства для стирки'),
-(2, 'Средства для мытья посуды');
+INSERT INTO `basket` (`id`, `id_user`, `title`, `price`, `quantity`, `image`) VALUES
+('10', 'x8m1HZZWYrd9eE9lqxY0e19EL4H2', 'Кондиционер для белья ВЕРНЕЛЬ', '15', 2, 'https://node.webmaks.site/api/images/10');
 
 --
 -- Индексы сохранённых таблиц
 --
 
 --
--- Индексы таблицы `categories`
+-- Индексы таблицы `basket`
 --
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `basket`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_user` (`id_user`);
 
 --
--- AUTO_INCREMENT для сохранённых таблиц
+-- Ограничения внешнего ключа сохраненных таблиц
 --
 
 --
--- AUTO_INCREMENT для таблицы `categories`
+-- Ограничения внешнего ключа таблицы `basket`
 --
-ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `basket`
+  ADD CONSTRAINT `basket_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

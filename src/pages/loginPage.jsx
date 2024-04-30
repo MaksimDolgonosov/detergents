@@ -4,43 +4,38 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../slices/userSlice";
-import { useHttp } from "../hooks/useHttp";
 import Spinner from 'react-bootstrap/Spinner';
 import '../css/loginPage.scss';
-//import { useGetUserQuery } from '../query/userApiSlice';
+import { useLazyGetUserQuery } from '../query/userApiSlice';
 
 export const LoginPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { request } = useHttp();
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-    //const { data: user = {} } = useGetUserQuery("kfc8ucSqWzcwVpoCV9BPvMEEdz33");
-    //console.log(user);
+    const [getUser] = useLazyGetUserQuery();
 
 
-    const onLogin = (e) => {
+    const onLogin = async (e) => {
         e.preventDefault();
         setLoading(true)
         const auth = getAuth();
-
-        signInWithEmailAndPassword(auth, email, password)
-            .then(({ user }) => {
-                request("http://localhost:3001/api/users")
-                    // request("https://node.webmaks.site/api/users")
-                    .then(data => data.filter(serverUser => serverUser.id === user.uid))
-                    .then(data => dispatch(setUser({
-                        name: data[0].name,
-                        surname: data[0].surname,
-                        tel: data[0].tel,
-                        email: user.email,
-                        id: user.uid,
-                        status: data[0].status,
-                        basket: data[0].basket,
-                        history: data[0].history
-                    })))
+        await signInWithEmailAndPassword(auth, email, password)
+            .then(async ({ user }) => {
+                const userSql = await getUser(user.uid);
+                console.log(userSql)
+                dispatch(setUser({
+                    name: userSql.data.name,
+                    surname: userSql.data.surname,
+                    tel: userSql.data.tel,
+                    email: user.email,
+                    id: user.uid,
+                    status: userSql.data.status,
+                    basket: userSql.data.basket,
+                    history: userSql.data.history
+                }))
                 setLoading(false)
                 setError(null)
                 navigate("/goods");

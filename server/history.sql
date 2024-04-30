@@ -24,41 +24,43 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `categories`
+-- Структура таблицы `history`
 --
 
-CREATE TABLE `categories` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL
+CREATE TABLE `history` (
+  `id` varchar(30) NOT NULL,
+  `id_user` varchar(100) NOT NULL,
+  `orderData` text NOT NULL,
+  `date` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `categories`
+-- Дамп данных таблицы `history`
 --
 
-INSERT INTO `categories` (`id`, `name`) VALUES
-(1, 'Средства для стирки'),
-(2, 'Средства для мытья посуды');
+INSERT INTO `history` (`id`, `id_user`, `orderData`, `date`) VALUES
+('2-45-34', 'x8m1HZZWYrd9eE9lqxY0e19EL4H2', 'Стиральный порошок Persil, 1шт., Таблетки для посудомоечной машины, 1шт., Кондиционер для белья ВЕРНЕЛЬ, 1шт.', '07.02.2024');
 
 --
 -- Индексы сохранённых таблиц
 --
 
 --
--- Индексы таблицы `categories`
+-- Индексы таблицы `history`
 --
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `history`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_user` (`id_user`);
 
 --
--- AUTO_INCREMENT для сохранённых таблиц
+-- Ограничения внешнего ключа сохраненных таблиц
 --
 
 --
--- AUTO_INCREMENT для таблицы `categories`
+-- Ограничения внешнего ключа таблицы `history`
 --
-ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `history`
+  ADD CONSTRAINT `history_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Время создания: Апр 23 2024 г., 13:55
+-- Время создания: Апр 30 2024 г., 12:47
 -- Версия сервера: 5.7.24
 -- Версия PHP: 8.0.1
 
@@ -28,6 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `subcategories` (
+  `id` int(11) NOT NULL,
   `id_category` int(11) NOT NULL,
   `subcategory` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -36,11 +37,11 @@ CREATE TABLE `subcategories` (
 -- Дамп данных таблицы `subcategories`
 --
 
-INSERT INTO `subcategories` (`id_category`, `subcategory`) VALUES
-(1, '\"Стиральные порошки\"'),
-(1, 'Кондиционеры для белья'),
-(2, 'Таблетки для мытья посуды'),
-(2, 'Гели для мытья посуды');
+INSERT INTO `subcategories` (`id`, `id_category`, `subcategory`) VALUES
+(1, 1, 'Стиральные порошки'),
+(2, 1, 'Кондиционеры для белья'),
+(3, 2, 'Таблетки для мытья посуды'),
+(4, 2, 'Гели для мытья посуды');
 
 --
 -- Индексы сохранённых таблиц
@@ -50,7 +51,18 @@ INSERT INTO `subcategories` (`id_category`, `subcategory`) VALUES
 -- Индексы таблицы `subcategories`
 --
 ALTER TABLE `subcategories`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `id_category` (`id_category`);
+
+--
+-- AUTO_INCREMENT для сохранённых таблиц
+--
+
+--
+-- AUTO_INCREMENT для таблицы `subcategories`
+--
+ALTER TABLE `subcategories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц

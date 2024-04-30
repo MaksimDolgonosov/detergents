@@ -17,7 +17,9 @@ import { DeliveryPage } from './pages/deliveryPage';
 import { PolicyPage } from './pages/policyPage';
 import { AgreementPage } from './pages/agreementPage';
 import { PersonalInfoPage } from './pages/personalInfoPage';
-
+import { removeUser } from './slices/userSlice';
+import { useDispatch } from "react-redux";
+import { useGetBasketQuery } from './query/basketApiSlice';
 function App() {
   // fetch("http://localhost:3001/api/users/x8m1HZZWYrd9eE9lqxY0e19EL4H2")
   //, {
@@ -34,10 +36,15 @@ function App() {
   //     email: "ivan@hr.cj"
   //   })
   // })
-    //  .then(res => res.json())
-    //  .then(res => console.log(res))
+  //  .then(res => res.json())
+  //  .then(res => console.log(res))
 
 
+  const dispatch = useDispatch();
+  // dispatch(removeUser());
+
+  const { data, isLoading } = useGetBasketQuery("x8m1HZZWYrd9eE9lqxY0e19EL4H2")
+  console.log(data);
   return (
     <>
       <BrowserRouter>

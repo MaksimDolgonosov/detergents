@@ -4,7 +4,8 @@ import { useSelector } from "react-redux"
 import InputMask from 'react-input-mask';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useAddBasketMutation, useAddHistoryMutation, useLazyGetUserQuery } from "../query/userApiSlice";
+import {  useAddHistoryMutation, useLazyGetUserQuery } from "../query/userApiSlice";
+import { useAddBasketMutation } from '../query/basketApiSlice';
 import { clearBasket } from "../slices/userSlice";
 import { useNavigate } from "react-router-dom";
 import { Modal } from '../components/modal/modal';
@@ -91,7 +92,7 @@ export function OrderPage() {
         console.log("delivered")
         const user = await setUserId(userId);
         console.log(user)
-        const currentHistory = await user.data[0].history.slice();
+        const currentHistory = await user.data.history.slice();
 
         const id = await `${new Date().getSeconds()}-${new Date().getMonth()}-${new Date().getMinutes()}`;
         await currentHistory.push({ id, order: basketList, date: stringDate });

@@ -1,5 +1,6 @@
 import '../css/basketPage.scss';
 
+
 import { useGetUserQuery } from '../query/userApiSlice';
 import Spinner from 'react-bootstrap/Spinner';
 import { useDispatch, useSelector } from "react-redux";
@@ -8,17 +9,19 @@ import { useState } from 'react';
 import { setDeliveryUser } from '../slices/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-
+import { useGetBasketQuery } from '../query/basketApiSlice';
 
 export function BasketPage() {
 
   const userId = useSelector(state => state.user.id);
-  const { data: user = [{ basket: [] }], isLoading } = useGetUserQuery(userId);
+   const { data, isLoading } = useGetBasketQuery(userId);
+
+  // const { data: user = [{ basket: [] }], isLoading } = useGetUserQuery(userId);
   const [delivery, setDelivery] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const basket = userId ? user[0].basket || [{ basket: [] }] : [{ basket: [] }];
+  // console.log(user);
+  const basket = userId ? data || [{ basket: [] }] : [{ basket: [] }];
 
   const totalPrice = basket.reduce(((sum, current) => sum + current.price * current.quantity), 0).toFixed(2);
 

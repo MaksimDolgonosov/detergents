@@ -17,7 +17,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { addBasket } from '../slices/userSlice';
 
-import { useAddBasketMutation } from '../query/userApiSlice';
+import { useAddBasketMutation } from '../query/basketApiSlice';
 import Sale from "../images/sale.png"
 
 // import Container from 'react-bootstrap/Container';
