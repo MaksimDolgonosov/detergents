@@ -16,8 +16,8 @@ import { useSelector } from 'react-redux';
 
 import { useDispatch } from 'react-redux';
 import { addBasket } from '../slices/userSlice';
-
 import { useAddBasketMutation } from '../query/basketApiSlice';
+
 import Sale from "../images/sale.png"
 
 // import Container from 'react-bootstrap/Container';
@@ -31,10 +31,10 @@ export function GoodsPage() {
     const [curentPage, setCurentPage] = useState(1);
     const { data: goods = [], isLoading } = useGetAllGoodsQuery();
     const basket = useSelector(state => state.user.basket);
-    const basketIds = basket.map(item => item.id);
+    const basketIds = basket.map(item => +item.id);
 
-    const [setUserId] = useLazyGetUserQuery();
-    // console.log(activeCategory);
+    //const [setUserId] = useLazyGetUserQuery();
+
     // console.log(setUserId(userId));
     const dispatch = useDispatch();
     const filteredGoods = activeCategory === "Все" ? goods : goods.filter(item => item.category === activeCategory);
@@ -43,16 +43,16 @@ export function GoodsPage() {
     const [updateBasket] = useAddBasketMutation();
 
     const addBasketHandle = async (id, title, price, image) => {
-        const user = await setUserId(userId);
-
-        const currentBasket = await user.data[0].basket.slice();
+       // const user = await setUserId(userId);
+       // console.log(user)
+        //const currentBasket = await user.data.basket.slice();
 
         const newItem = { id, title, price, quantity: 1, image };
-        currentBasket.push(newItem);
+        //currentBasket.push(newItem);
 
         dispatch(addBasket(newItem));
 
-        await updateBasket({ userId, currentBasket }).unwrap();
+        await updateBasket({ userId, newItem }).unwrap();
     }
 
 

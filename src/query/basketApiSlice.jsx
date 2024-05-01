@@ -6,29 +6,39 @@ export const basketApiSlice = createApi({
     // baseQuery: fetchBaseQuery({ baseUrl: 'https://node.webmaks.site' }),
     tagTypes: ["basket"],
     endpoints: (builder) => ({
-        getBasket: builder.query({
-            query: (id) => {
-                console.log(id);
-                return `/api/basket/${id}`
-            },
-            providesTags: ["basket"],
-            //invalidatesTags: ["basket"]
+        // getBasket: builder.query({
+        //     query: (userId) => `/api/getBasket/${userId}`,
+        //    // providesTags: ["basket"],
+        //     //invalidatesTags: ["basket"]
+        // }),
+        // getBasket: builder.query({
+        //     query: (id) => {
+        //         console.log(id);
+        //         return `/api/basket/${id}
+        //     `},
+        //     // providesTags: ["basket"],
+        //     //invalidatesTags: ["basket"]
+        // }),
+
+
+        getFullBasket: builder.query({
+            query: (userId) => `/api/basket/getFullBasket/${userId}`,
+            providesTags: ["basket"]
         }),
 
         addBasket: builder.mutation({
-            query: ({ userId, item }) => {
-                // console.log(currentBasket);
+            query: ({ userId, newItem }) => {
+                console.log(newItem);
                 return {
-                    url: `/api/addBasket/${userId}`,
+                    url: `/api/basket/addBasket/${userId}`,
                     method: 'PATCH',
-                    body: { item },
+                    body: newItem,
                     headers: {
                         'Content-Type': 'application/json'
                         // Заголовки
                     }
                 }
             },
-            // providesTags: ["basket"],
             invalidatesTags: ["basket"]
         }),
         setBasketQuantity: builder.mutation({
@@ -44,24 +54,23 @@ export const basketApiSlice = createApi({
                     }
                 }
             },
-            // providesTags: ["basket"],
             invalidatesTags: ["basket"]
         }),
-        removeFromBasket: builder.mutation({
-            query: ({ userId, currentHistory }) => ({
-                url: `/api/users/${userId}`,
-                method: 'PATCH',
-                body: { history: currentHistory },
-                headers: {
-                    'Content-Type': 'application/json'
-                    // Заголовки
-                }
-            }),
-            // providesTags: ["basket"],
-            // invalidatesTags: ["basket"]
-        }),
+        // removeFromBasket: builder.mutation({
+        //     query: ({ userId, currentHistory }) => ({
+        //         url: `/api/users/${userId}`,
+        //         method: 'PATCH',
+        //         body: { history: currentHistory },
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //             // Заголовки
+        //         }
+        //     }),
+        //     // providesTags: ["basket"],
+        //     // invalidatesTags: ["basket"]
+        // }),
 
     }),
 })
 
-export const { useGetBasketQuery, useSetBasketQuantityMutation, useAddBasketMutation } = basketApiSlice;
+export const { useSetBasketQuantityMutation, useAddBasketMutation, useGetFullBasketQuery } = basketApiSlice;

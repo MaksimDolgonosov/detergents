@@ -4,11 +4,11 @@ export const userApiSlice = createApi({
     reducerPath: 'apiUser',
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001' }),
     // baseQuery: fetchBaseQuery({ baseUrl: 'https://node.webmaks.site' }),
-    tagTypes: ["basket"],
+   // tagTypes: ["basket"],
     endpoints: (builder) => ({
         getUser: builder.query({
             query: (id) => `/api/users/${id}`,
-            providesTags: ["basket"],
+           // providesTags: ["basket"],
             //invalidatesTags: ["basket"]
         }),
         addUser: builder.mutation({

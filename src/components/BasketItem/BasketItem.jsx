@@ -1,7 +1,7 @@
 import { MdDelete } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromBasket, addQuantityToBasket, removeQuantityFromBasket } from "../../slices/userSlice";
-import {  useLazyGetUserQuery } from '../../query/userApiSlice';
+import { useLazyGetUserQuery } from '../../query/userApiSlice';
 import { useSetBasketQuantityMutation } from "../../query/basketApiSlice";
 
 
@@ -17,7 +17,7 @@ const BasketItem = ({ item }) => {
         const user = await setUserId(userId);
 
         const currentBasket = user.data[0].basket.slice();
-        const newBasket = await currentBasket.filter(item => item.id !== itemId)
+        // const newBasket = await currentBasket.filter(item => item.id !== itemId)
         dispatch(removeFromBasket(itemId));
         // await updateBasket({ userId, currentBasket: newBasket }).unwrap();
     }
@@ -39,9 +39,9 @@ const BasketItem = ({ item }) => {
             //     return product;
             // })
 
-            await setBasketQuantity({ userId, itemId, quantity: quantity + 1 })
+            
 
-
+            simbol === "plus" ? await setBasketQuantity({ userId, itemId, quantity: quantity + 1 }) : await setBasketQuantity({ userId, itemId, quantity: quantity - 1 });
             simbol === "plus" ? dispatch(addQuantityToBasket(itemId)) : dispatch(removeQuantityFromBasket(itemId));
             // await updateBasket({ userId, currentBasket: newBasket }).unwrap();
         }

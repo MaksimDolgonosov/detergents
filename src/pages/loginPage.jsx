@@ -25,7 +25,7 @@ export const LoginPage = () => {
         await signInWithEmailAndPassword(auth, email, password)
             .then(async ({ user }) => {
                 const userSql = await getUser(user.uid);
-                console.log(userSql)
+                // console.log(userSql)
                 dispatch(setUser({
                     name: userSql.data.name,
                     surname: userSql.data.surname,

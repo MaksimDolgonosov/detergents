@@ -9,19 +9,23 @@ import { useState } from 'react';
 import { setDeliveryUser } from '../slices/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { useGetBasketQuery } from '../query/basketApiSlice';
+//import { useGetBasketQuery } from '../query/basketApiSlice';
+import { useGetFullBasketQuery } from '../query/basketApiSlice';
 
 export function BasketPage() {
 
   const userId = useSelector(state => state.user.id);
-   const { data, isLoading } = useGetBasketQuery(userId);
+  //const { data: data = [] } = useGetBasketQuery(userId);
+  const { data: basketQuery=[], isLoading } = useGetFullBasketQuery(userId);
 
-  // const { data: user = [{ basket: [] }], isLoading } = useGetUserQuery(userId);
+  console.log(basketQuery);
+
+  //const { data: user = [{ basket: [] }], isLoading } = useGetUserQuery(userId);
   const [delivery, setDelivery] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // console.log(user);
-  const basket = userId ? data || [{ basket: [] }] : [{ basket: [] }];
+  // console.log(data);
+  const basket = userId ? basketQuery || [{ basket: [] }] : [{ basket: [] }];
 
   const totalPrice = basket.reduce(((sum, current) => sum + current.price * current.quantity), 0).toFixed(2);
 
@@ -47,7 +51,8 @@ export function BasketPage() {
       {userId ?
         <div className="basket">
           <ul className="basket__items">
-            {userId || isLoading ? basketList : <Spinner animation="border" />}
+            {isLoading ? <Spinner animation="border" /> : basketList}
+            {/* {userId || isLoading ? basketList : <Spinner animation="border" />} */}
           </ul>
           <div className='basket__toOrder'>
             <form>

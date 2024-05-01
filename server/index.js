@@ -93,8 +93,10 @@ app.get("/api/users/:id", async (req, res) => {
 
     const userM = syncConn.query(`SELECT * FROM users where id = '${req.params.id}'`);
     const basketM = syncConn.query(`SELECT * FROM basket where id_user = '${req.params.id}'`);
+    const historyM = syncConn.query(`SELECT * FROM history where id_user = '${req.params.id}'`);
     userM[0].basket = [...basketM];
-    console.log(userM[0]);
+    userM[0].history = [...historyM];
+    //console.log(userM[0]);
     res.json(userM[0])
     // res.json(user)
 
@@ -144,32 +146,54 @@ app.patch("/api/users/:id", async (req, res) => {
 });
 
 
-app.get("/api/basket/:id", (req, res) => {
-    console.log(req.params.id)
-    let query = `SELECT * FROM basket WHERE id_user = ${req.params.id}`;
-    conn.query(query, (err, result) => {
-        console.log(result)
-        res.json(result);
-    })
+// app.get("/api/basket/:id", (req, res) => {
+//     console.log(req.params.id)
+//     const query = syncConn.query(`SELECT * FROM basket where id_user = '${req.params.id}'`);
+//     //let query = `SELECT * FROM basket where id_user = ${req.params.id}`;
+//     conn.query(query, (err, result) => {
+//         console.log(result)
+//         res.json(result);
+//     })
 
-    //res.json(db.goods);
+//     //res.json(db.goods);
+// });
+
+// app.get("/api/basket/:id", async (req, res) => {
+//     console.log("server req");
+//     //const user = await db.users.filter(u => u.id === req.params.id);
+//     const basketM = syncConn.query(`SELECT * FROM basket where id_user = '${req.params.id}'`);
+//     console.log(basketM);
+//     res.json(basketM)
+//     // res.json(user)
+
+// });
+
+app.get("/api/basket/getFullBasket/:userId", async (req, res) => {
+    console.log("server req");
+    //const user = await db.users.filter(u => u.id === req.params.id);
+    const basketM = syncConn.query(`SELECT * FROM basket where id_user = '${req.params.userId}'`);
+    console.log(basketM);
+    res.json(basketM)
+    // res.json(user)
+
 });
+
 app.patch("/api/basket/basketQuantity/:id", async (req, res) => {
     const { quantity, itemId } = req.body;
     console.log(req.body);
-    const item = syncConn.query(`UPDATE basket SET quantity=${quantity} WHERE id='${itemId}'AND id_user='${req.params.id}'`);
+     syncConn.query(`UPDATE basket SET quantity=${quantity} WHERE id='${itemId}'AND id_user='${req.params.id}'`);
     // console.log(item);
-    // res.status(201).json(req.body);
+     res.status(201).json(req.body);
 });
 
 app.patch("/api/basket/addBasket/:id", async (req, res) => {
-
     // const { item } = req.body;
-
-
     // const { quantity, itemId } = req.body;
-    // console.log(req.body);
-    const query = syncConn.query(`INSERT INTO basket(id, id_user, title, price, quantity, image) VALUES ?`);
+    console.log(req.body);
+    
+    // const query = syncConn.query(`INSERT INTO basket(id, id_user, title, price, quantity, image) VALUES ('[${req.body.id}]', '[${req.params.id}]','[${req.body.title}]',[${req.body.price}],'${req.body.quantity}','[${req.body.image}]')`);
+    const query = `INSERT INTO basket(id, id_user, title, price, quantity, image) VALUES ?`;
+    
     const values = [
         [req.body.id, req.params.id, req.body.title, req.body.price, req.body.quantity, req.body.image]
     ]
@@ -177,9 +201,10 @@ app.patch("/api/basket/addBasket/:id", async (req, res) => {
         if (err) throw err;
         console.log(result)
     })
-    // console.log(item);
+
     res.status(201).json(req.body);
 });
+
 
 app.post("/api/sendEmail", async (req, res) => {
     console.log("request------OK")

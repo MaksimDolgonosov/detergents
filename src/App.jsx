@@ -20,8 +20,9 @@ import { PersonalInfoPage } from './pages/personalInfoPage';
 import { removeUser } from './slices/userSlice';
 import { useDispatch } from "react-redux";
 import { useGetBasketQuery } from './query/basketApiSlice';
+import { useEffect } from 'react';
 function App() {
-  // fetch("http://localhost:3001/api/users/x8m1HZZWYrd9eE9lqxY0e19EL4H2")
+  // fetch("http://localhost:3001/api/basket/x8m1HZZWYrd9eE9lqxY0e19EL4H2")
   //, {
   //   method: "POST",
   //   headers: {
@@ -36,15 +37,17 @@ function App() {
   //     email: "ivan@hr.cj"
   //   })
   // })
-  //  .then(res => res.json())
-  //  .then(res => console.log(res))
+    // .then(res => res.json())
+    // .then(res => console.log(res))
 
 
   const dispatch = useDispatch();
   // dispatch(removeUser());
 
-  const { data, isLoading } = useGetBasketQuery("x8m1HZZWYrd9eE9lqxY0e19EL4H2")
-  console.log(data);
+  //const { data, isLoading } = useGetBasketQuery("x8m1HZZWYrd9eE9lqxY0e19EL4H2");
+
+
+
   return (
     <>
       <BrowserRouter>

@@ -33,7 +33,7 @@ const reducers = combineReducers({
 const persistConfig = {
     key: 'auth',
     storage,
-    blacklist: ['apiGoods', 'apiCategories', 'categories', 'apiUser', 'category', 'basketApiSlice']
+    blacklist: ['apiGoods', 'apiCategories', 'apiBasket', 'categories', 'apiUser', 'category']
 }
 const persistedReducer = persistReducer(persistConfig, reducers)
 
