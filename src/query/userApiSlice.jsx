@@ -4,12 +4,10 @@ export const userApiSlice = createApi({
     reducerPath: 'apiUser',
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001' }),
     // baseQuery: fetchBaseQuery({ baseUrl: 'https://node.webmaks.site' }),
-   // tagTypes: ["basket"],
     endpoints: (builder) => ({
         getUser: builder.query({
             query: (id) => `/api/users/${id}`,
-           // providesTags: ["basket"],
-            //invalidatesTags: ["basket"]
+
         }),
         addUser: builder.mutation({
             query: (user) => ({
@@ -21,7 +19,7 @@ export const userApiSlice = createApi({
         }),
         setUserData: builder.mutation({
             query: ({ userId, currentData }) => ({
-                url: `/api/users/${userId}`,
+                url: `/api/usersData/${userId}`,
                 method: 'PATCH',
                 body: {
                     name: currentData.name,
@@ -30,57 +28,25 @@ export const userApiSlice = createApi({
                 },
                 headers: {
                     'Content-Type': 'application/json'
-                    // Заголовки
                 }
             }),
         }),
-        // addBasket: builder.mutation({
-        //     query: ({ userId, currentBasket }) => {
-        //         // console.log(currentBasket);
-        //         return {
-        //             url: `/api/users/basket/${userId}`,
-        //             method: 'PATCH',
-        //             body: { basket: currentBasket },
-        //             headers: {
-        //                 'Content-Type': 'application/json'
-        //                 // Заголовки
-        //             }
-        //         }
-        //     },
-        //     // providesTags: ["basket"],
-        //     invalidatesTags: ["basket"]
-        // }),
-        // setBasketQuantity: builder.mutation({
-        //     query: ({ userId, itemId, quantity }) => {
-        //         console.log(itemId, quantity);
-        //         return {
-        //             url: `/api/users/basketQuantity/${userId}`,
-        //             method: 'PATCH',
-        //             body: { itemId, quantity },
-        //             headers: {
-        //                 'Content-Type': 'application/json'
-        //                 // Заголовки
-        //             }
-        //         }
-        //     },
-        //     // providesTags: ["basket"],
-        //     invalidatesTags: ["basket"]
-        // }),
+        getHistory: builder.query({
+            query: (id) => `/api/getHistory/${id}`,
+        }),
         addHistory: builder.mutation({
-            query: ({ userId, currentHistory }) => ({
-                url: `/api/users/${userId}`,
-                method: 'PATCH',
-                body: { history: currentHistory },
+            query: ({ userId, id, orderData, date }) => ({
+                url: `/api/addHistory/${userId}`,
+                method: 'POST',
+                body: { id, orderData, date },
                 headers: {
                     'Content-Type': 'application/json'
                     // Заголовки
                 }
             }),
-            // providesTags: ["basket"],
-            // invalidatesTags: ["basket"]
         }),
 
     }),
 })
 
-export const { useGetUserQuery, useLazyGetUserQuery, useAddUserMutation, useAddHistoryMutation, useSetUserDataMutation } = userApiSlice;
+export const { useGetUserQuery, useLazyGetUserQuery, useAddUserMutation, useAddHistoryMutation, useSetUserDataMutation, useGetHistoryQuery } = userApiSlice;

@@ -1,7 +1,6 @@
 import '../css/basketPage.scss';
 
 
-import { useGetUserQuery } from '../query/userApiSlice';
 import Spinner from 'react-bootstrap/Spinner';
 import { useDispatch, useSelector } from "react-redux";
 import BasketItem from '../components/BasketItem/BasketItem';
@@ -9,36 +8,28 @@ import { useState } from 'react';
 import { setDeliveryUser } from '../slices/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-//import { useGetBasketQuery } from '../query/basketApiSlice';
 import { useGetFullBasketQuery } from '../query/basketApiSlice';
 
 export function BasketPage() {
 
   const userId = useSelector(state => state.user.id);
-  //const { data: data = [] } = useGetBasketQuery(userId);
   const { data: basketQuery=[], isLoading } = useGetFullBasketQuery(userId);
-
-  console.log(basketQuery);
-
-  //const { data: user = [{ basket: [] }], isLoading } = useGetUserQuery(userId);
   const [delivery, setDelivery] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // console.log(data);
+
   const basket = userId ? basketQuery || [{ basket: [] }] : [{ basket: [] }];
-
   const totalPrice = basket.reduce(((sum, current) => sum + current.price * current.quantity), 0).toFixed(2);
-
   const basketList = basket.map(item => <BasketItem item={item} key={item.id} />)
   const basketLength = basket.reduce(((sum, current) => sum + current.quantity), 0);
 
 
-  const onOrder = async (e) => {
+  const onOrder =  (e) => {
     e.preventDefault();
     if (delivery === "") {
       return
     } else {
-      await dispatch(setDeliveryUser(delivery));
+       dispatch(setDeliveryUser(delivery));
       navigate("/order");
     }
   }
@@ -52,7 +43,6 @@ export function BasketPage() {
         <div className="basket">
           <ul className="basket__items">
             {isLoading ? <Spinner animation="border" /> : basketList}
-            {/* {userId || isLoading ? basketList : <Spinner animation="border" />} */}
           </ul>
           <div className='basket__toOrder'>
             <form>

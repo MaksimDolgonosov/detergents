@@ -17,10 +17,9 @@ import { DeliveryPage } from './pages/deliveryPage';
 import { PolicyPage } from './pages/policyPage';
 import { AgreementPage } from './pages/agreementPage';
 import { PersonalInfoPage } from './pages/personalInfoPage';
-import { removeUser } from './slices/userSlice';
-import { useDispatch } from "react-redux";
-import { useGetBasketQuery } from './query/basketApiSlice';
-import { useEffect } from 'react';
+
+
+
 function App() {
   // fetch("http://localhost:3001/api/basket/x8m1HZZWYrd9eE9lqxY0e19EL4H2")
   //, {
@@ -41,10 +40,6 @@ function App() {
     // .then(res => console.log(res))
 
 
-  const dispatch = useDispatch();
-  // dispatch(removeUser());
-
-  //const { data, isLoading } = useGetBasketQuery("x8m1HZZWYrd9eE9lqxY0e19EL4H2");
 
 
 

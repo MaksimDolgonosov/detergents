@@ -1,22 +1,23 @@
 import '../css/historyPage.scss';
 
 import { useSelector } from "react-redux";
-import { useGetUserQuery } from "../query/userApiSlice";
 import Spinner from 'react-bootstrap/Spinner';
+import { useGetHistoryQuery } from '../query/userApiSlice';
 
 export function HistoryPage() {
     const userId = useSelector(state => state.user.id);
-    const { data: user = [{ history: [] }], isLoading } = useGetUserQuery(userId);
-    const history = user[0].history || [];
-    
+    const { data: historyQuery = [], isLoading } = useGetHistoryQuery(userId);
+
+    const history = historyQuery || [];
+
 
     const HistoryItem = (props) => {
         return (
             <li className="history__item"  >
-                <div className="history__orderNum">Номер заказа: №{props.id}</div>
+                <div className="history__orderNum"><b>Номер заказа: №{props.id}</b></div>
 
-                <ul className="history__basket">Товары:
-                    {props.items.map(item => {
+                <ul className="history__basket"><b>Товары:</b>
+                    {props.items.split(',').map(item => {
                         return (
                             <li key={Math.random()}>{item}</li>
                         )
@@ -31,7 +32,7 @@ export function HistoryPage() {
 
     const historyItems = history.map(order => {
         return (
-            <HistoryItem key={order.id} items={order.order} date={order.date} id={order.id} />
+            <HistoryItem key={order.id} items={order.orderData} date={order.date} id={order.id} />
         )
     })
 

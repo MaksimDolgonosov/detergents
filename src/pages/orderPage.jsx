@@ -4,12 +4,14 @@ import { useSelector } from "react-redux"
 import InputMask from 'react-input-mask';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import {  useAddHistoryMutation, useLazyGetUserQuery } from "../query/userApiSlice";
-import { useAddBasketMutation } from '../query/basketApiSlice';
+import { useAddHistoryMutation, useLazyGetUserQuery } from "../query/userApiSlice";
+import { useAddBasketMutation, useClearBasketMutation } from '../query/basketApiSlice';
 import { clearBasket } from "../slices/userSlice";
 import { useNavigate } from "react-router-dom";
 import { Modal } from '../components/modal/modal';
 import Spinner from 'react-bootstrap/Spinner';
+
+
 
 export function OrderPage() {
     const dispatch = useDispatch();
@@ -27,6 +29,7 @@ export function OrderPage() {
     const [updateHistory] = useAddHistoryMutation();
     const [updateBasket] = useAddBasketMutation();
     const [setUserId] = useLazyGetUserQuery();
+    const [clearBasketQuery] = useClearBasketMutation();
 
     // const date = new Date()
     // console.log(date.getDate(), date.getMonth() + 1, date.getFullYear());
@@ -87,8 +90,8 @@ export function OrderPage() {
         }
 
 
-        const date = await new Date();
-        const stringDate = await `${addZero(date.getDate())}.${addZero(date.getMonth() + 1)}.` + date.getFullYear();
+        const date = new Date();
+        const stringDate = `${addZero(date.getDate())}.${addZero(date.getMonth() + 1)}.` + date.getFullYear();
         console.log("delivered")
         const user = await setUserId(userId);
         console.log(user)
@@ -98,9 +101,13 @@ export function OrderPage() {
         await currentHistory.push({ id, order: basketList, date: stringDate });
         console.log(currentHistory)
 
-        await updateHistory({ userId, currentHistory }).unwrap();
-        await updateBasket({ userId, currentBasket: [] }).unwrap();
-        await dispatch(clearBasket());
+
+        // await updateHistory({ userId, currentHistory }).unwrap();
+        // await updateBasket({ userId, currentBasket: [] }).unwrap();
+
+
+        clearBasketQuery(userId);
+        dispatch(clearBasket());
 
         setLoading(false);
         setModal(true);
@@ -118,11 +125,11 @@ export function OrderPage() {
             navigate('/');
         }, 6000)
 
-        setOrderName(name);
-        setOrderSurname(surname);
-        setOrderAddress("");
-        setOrderPostNumber("");
-        navigate('/');
+        // setOrderName(name);
+        // setOrderSurname(surname);
+        // setOrderAddress("");
+        // setOrderPostNumber("");
+        // navigate('/');
 
 
     }

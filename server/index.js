@@ -69,6 +69,7 @@ conn.connect(err => {
 
 
 
+
 app.get("/api/images/:id", async (req, res) => {
     res.setHeader("Content-Type", "image/jpeg");
     fs.readFile(`./goods/${req.params.id}.jpg`, (err, image) => {
@@ -104,7 +105,7 @@ app.get("/api/users/:id", async (req, res) => {
 
 
 
-app.get("/api/categories", cors(), async (req, res) => {
+app.get("/api/categories", async (req, res) => {
 
     const cat = syncConn.query("SELECT * FROM categories");
     const subCat = syncConn.query("SELECT * FROM subcategories");
@@ -132,19 +133,44 @@ app.get("/api/goods", cors(), (req, res) => {
 
     //res.json(db.goods);
 });
+app.get("/api/getHistory/:id", async (req, res) => {
+    const result = syncConn.query(`SELECT * FROM history where id_user = '${req.params.id}'`);
+    //const result = syncConn.query(`SELECT orderData FROM history WHERE id_user='${req.params.id}'`);
+    // console.log(result)
+    res.status(200).json(result);
+});
 
-app.patch("/api/users/:id", async (req, res) => {
-    const updateUsers = await db.users.map(u => {
-        if (u.id === req.params.id) {
-            return { ...u, ...req.body }
-        }
-        return u;
-    });
-    db = { ...db, users: updateUsers }
-    await fs.writeFileSync("./index.json", JSON.stringify(db), { encoding: "utf-8" });
+app.post("/api/addHistory/:id", async (req, res) => {
+    const query = `INSERT INTO history (id, id_user, orderData, date) VALUES ?`;
+    const values = [
+        [req.body.id, req.params.id, req.body.orderData, req.body.date]
+    ]
+    conn.query(query, [values], (err, result) => {
+        if (err) throw err;
+        console.log(result)
+    })
+
+    res.status(200).json(req.body);
+    // res.status(200).json(result);
+});
+
+app.patch("/api/usersData/:id", async (req, res) => {
+    const { name, surname, tel } = req.body;
+    syncConn.query(`UPDATE users SET name='${name}', surname='${surname}', tel='${tel}' WHERE id='${req.params.id}'`);
     res.status(201).json(req.body);
 });
 
+// app.patch("/api/users/:id", async (req, res) => {
+//     const updateUsers = await db.users.map(u => {
+//         if (u.id === req.params.id) {
+//             return { ...u, ...req.body }
+//         }
+//         return u;
+//     });
+//     db = { ...db, users: updateUsers }
+//     await fs.writeFileSync("./index.json", JSON.stringify(db), { encoding: "utf-8" });
+//     res.status(201).json(req.body);
+// });
 
 // app.get("/api/basket/:id", (req, res) => {
 //     console.log(req.params.id)
@@ -169,10 +195,10 @@ app.patch("/api/users/:id", async (req, res) => {
 // });
 
 app.get("/api/basket/getFullBasket/:userId", async (req, res) => {
-    console.log("server req");
+    //console.log("server req");
     //const user = await db.users.filter(u => u.id === req.params.id);
     const basketM = syncConn.query(`SELECT * FROM basket where id_user = '${req.params.userId}'`);
-    console.log(basketM);
+    //console.log(basketM);
     res.json(basketM)
     // res.json(user)
 
@@ -180,20 +206,20 @@ app.get("/api/basket/getFullBasket/:userId", async (req, res) => {
 
 app.patch("/api/basket/basketQuantity/:id", async (req, res) => {
     const { quantity, itemId } = req.body;
-    console.log(req.body);
-     syncConn.query(`UPDATE basket SET quantity=${quantity} WHERE id='${itemId}'AND id_user='${req.params.id}'`);
+    //console.log(req.body);
+    syncConn.query(`UPDATE basket SET quantity=${quantity} WHERE id='${itemId}'AND id_user='${req.params.id}'`);
     // console.log(item);
-     res.status(201).json(req.body);
+    res.status(201).json(req.body);
 });
 
 app.patch("/api/basket/addBasket/:id", async (req, res) => {
     // const { item } = req.body;
     // const { quantity, itemId } = req.body;
-    console.log(req.body);
-    
+    //console.log(req.body);
+
     // const query = syncConn.query(`INSERT INTO basket(id, id_user, title, price, quantity, image) VALUES ('[${req.body.id}]', '[${req.params.id}]','[${req.body.title}]',[${req.body.price}],'${req.body.quantity}','[${req.body.image}]')`);
     const query = `INSERT INTO basket(id, id_user, title, price, quantity, image) VALUES ?`;
-    
+
     const values = [
         [req.body.id, req.params.id, req.body.title, req.body.price, req.body.quantity, req.body.image]
     ]
@@ -202,6 +228,17 @@ app.patch("/api/basket/addBasket/:id", async (req, res) => {
         console.log(result)
     })
 
+    res.status(201).json(req.body);
+});
+app.delete("/api/basket/removeFromBasket/:id", async (req, res) => {
+    const { itemId } = req.body;
+    console.log(itemId);
+    const item = syncConn.query(`DELETE FROM basket WHERE id='${itemId}'AND id_user='${req.params.id}'`);
+    console.log(item);
+    res.status(201).json(req.body);
+});
+app.delete("/api/basket/clearBasket/:id", async (req, res) => {
+    syncConn.query(`DELETE FROM basket WHERE id_user='${req.params.id}'`);
     res.status(201).json(req.body);
 });
 
@@ -243,18 +280,14 @@ app.post("/api/sendEmail", async (req, res) => {
     res.status(201).json(req.body);
 })
 
+// app.post("/api/users/", async (req, res) => {
+//     console.log(req.body);
+//     await fs.writeFileSync("./index.json", JSON.stringify(db), { encoding: "utf-8" });
+//     res.status(201).json(req.body.basket);
+
+// });
+
 app.post("/api/users/", async (req, res) => {
-    db.users.push(req.body);
-    await fs.writeFileSync("./index.json", JSON.stringify(db), { encoding: "utf-8" });
-    res.status(201).json(req.body.basket);
-
-});
-
-
-
-
-
-app.post("/api/addUser/", async (req, res) => {
     // const queryStr = `INSERT INTO 'users'('id', 'name', 'surname', 'tel', 'email', 'status') VALUES ('[${req.body.id}]','[${req.body.name}]','[${req.body.surname}]','[${req.body.tel}]','[${req.body.email}]','[${req.body.status}]')`;
     let query = "INSERT INTO users(id, name, surname, tel, email, status) VALUES ?";
     const values = [
@@ -271,9 +304,9 @@ app.post("/api/addUser/", async (req, res) => {
 })
 
 
-app.get('/', function (req, res) {
-    res.render('index', { version: process.version })
-})
+// app.get('/', function (req, res) {
+//     res.render('index', { version: process.version })
+// })
 
 //app.listen()
 

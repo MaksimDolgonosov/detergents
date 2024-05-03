@@ -6,14 +6,9 @@ import Placeholder from 'react-bootstrap/Placeholder';
 import Spinner from 'react-bootstrap/Spinner';
 import Pagination from 'react-bootstrap/Pagination';
 import { useGetAllGoodsQuery } from '../query/goodsApiSlice';
-
-import { useLazyGetUserQuery } from '../query/userApiSlice';
-// import { useGetUserQuery } from '../query/userApiSlice';
 import { Link } from 'react-router-dom';
-
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-
 import { useDispatch } from 'react-redux';
 import { addBasket } from '../slices/userSlice';
 import { useAddBasketMutation } from '../query/basketApiSlice';

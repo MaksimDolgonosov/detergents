@@ -9,16 +9,23 @@
         }
     }
 
-    &__orderNum {
-        font-weight: 500;
-    }
+    // &__orderNum {
+    //     font-weight: 500;
+    // }
 
     &__item {
         padding: 10px;
         width: 30%;
         margin-bottom: 10px;
         border: 1px solid rgba(109, 109, 109, 0.548);
+        border-radius: 5px;
 
+    }
+
+
+    &__date {
+        margin-top: 5px;
+        font-style: italic;
     }
 }
 

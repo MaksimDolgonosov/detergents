@@ -20,8 +20,8 @@ export function PersonalPage() {
 
   const setPersonalData = async () => {
     const userId = await user.id;
-    const currentData = await { name, surname, tel }
-    updateUserData({userId, currentData});
+    const currentData = { name, surname, tel }
+    await updateUserData({userId, currentData});
     dispatch(setUserData(currentData));
   }
 
