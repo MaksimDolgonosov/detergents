@@ -29,7 +29,7 @@ export const basketApiSlice = createApi({
         }),
         setBasketQuantity: builder.mutation({
             query: ({ userId, itemId, quantity }) => {
-                console.log(itemId, quantity);
+                // console.log(itemId, quantity);
                 return {
                     url: `/api/basket/basketQuantity/${userId}`,
                     method: 'PATCH',

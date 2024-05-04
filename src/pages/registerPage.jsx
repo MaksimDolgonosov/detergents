@@ -18,17 +18,17 @@ export const RegisterPage = () => {
     const [updateUsers] = useAddUserMutation();
     const [loading, setLoading] = useState(false);
 
-    const onRegister = (event) => {
+    const onRegister = async (event) => {
         event.preventDefault();
         setLoading(true)
-        const auth = getAuth();
+        const auth = await getAuth();
         createUserWithEmailAndPassword(auth, email, password)
 
             .then(({ user }) => {
                 const newUser = {
                     name: name,
-                    surname: null,
-                    tel: null,
+                    surname: "",
+                    tel: "",
                     email: user.email,
                     id: user.uid,
                     status: "customer",

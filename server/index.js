@@ -26,7 +26,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json())
@@ -82,7 +81,7 @@ app.get("/api/images/:id", async (req, res) => {
 
 app.get("/api/users", (req, res) => {
     const users = syncConn.query(`SELECT * FROM users`);
-    console.log(users);
+    // console.log(users);
     res.json(users)
     // res.json(db.users)
 
@@ -147,7 +146,7 @@ app.post("/api/addHistory/:id", async (req, res) => {
     ]
     conn.query(query, [values], (err, result) => {
         if (err) throw err;
-        console.log(result)
+        // console.log(result)
     })
 
     res.status(200).json(req.body);
@@ -225,16 +224,14 @@ app.patch("/api/basket/addBasket/:id", async (req, res) => {
     ]
     conn.query(query, [values], (err, result) => {
         if (err) throw err;
-        console.log(result)
+        // console.log(result)
     })
 
     res.status(201).json(req.body);
 });
 app.delete("/api/basket/removeFromBasket/:id", async (req, res) => {
     const { itemId } = req.body;
-    console.log(itemId);
-    const item = syncConn.query(`DELETE FROM basket WHERE id='${itemId}'AND id_user='${req.params.id}'`);
-    console.log(item);
+    syncConn.query(`DELETE FROM basket WHERE id='${itemId}'AND id_user='${req.params.id}'`);
     res.status(201).json(req.body);
 });
 app.delete("/api/basket/clearBasket/:id", async (req, res) => {
@@ -247,35 +244,25 @@ app.post("/api/sendEmail", async (req, res) => {
     console.log("request------OK")
 
     const body = await req.body;
-
     //Отключена отправка писем
 
-    // if (body.delivery) {
-    //     transporter.sendMail({
-    //         from: 'dolgonosov_90@mail.ru',
-    //         to: 'max_air@bk.ru',
-    //         subject: 'Новый заказ',
-    //         text: `Заказ для ${body.orderName} ${body.orderSurname}, тел: ${body.orderTel}, в отделение Европочты №${body.orderPostNumber} на сумму ${body.totalPrice}руб. + 9руб. за доставку, товары: ${body.basketList}`,
 
-    //     }, (err, data) => {
-    //         if (err) {
-    //             console.log("Error Occurs: " + err);
-    //         } else {
-    //             console.log("Email sent successfully: " + data.messageId);
-    //         }
-    //     });
-
-    // } else {
-    //     let result = transporter.sendMail({
-    //         from: '"Бытовая химия" <dolgonosov_90@mail.ru>',
-    //         to: 'max_air@bk.ru',
-    //         subject: 'Новый заказ',
-    //         text: `Заказ для ${body.orderName}, тел: ${body.orderTel}, по адресу: ${body.orderAddress} на сумму ${body.totalPrice}руб., товары: ${body.basketList}`,
-
-    //     });
-    //     console.log(result)
-    // }
-
+    if (body.delivery) {
+        transporter.sendMail({
+            from: '"Бытовая химия" <dolgonosov_90@mail.ru>',
+            to: `max_air@bk.ru, ${body.email}`,
+            subject: 'Новый заказ',
+            text: `Ваш заказ оформлен, для ${body.orderName} ${body.orderSurname}, тел: ${body.orderTel}, в отделение Европочты №${body.orderPostNumber} на сумму ${body.totalPrice}руб. + 9руб. за доставку, товары: ${body.basketList}`,
+        });
+    } else {
+        transporter.sendMail({
+            from: '"Бытовая химия" <dolgonosov_90@mail.ru>',
+            to: `max_air@bk.ru, ${body.email}`,
+            subject: 'Новый заказ',
+            text: `Ваш заказ оформлен, для ${body.orderName}, тел: ${body.orderTel}, по адресу: ${body.orderAddress} на сумму ${body.totalPrice}руб., товары: ${body.basketList}`,
+        });
+       // console.log(result)
+    }
 
     res.status(201).json(req.body);
 })
@@ -295,7 +282,7 @@ app.post("/api/users/", async (req, res) => {
     ]
     conn.query(query, [values], (err, result) => {
         if (err) throw err;
-        console.log(result)
+       // console.log(result)
     })
 
     // syncConn.query(queryStr);

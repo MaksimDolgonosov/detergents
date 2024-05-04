@@ -20,24 +20,24 @@ import { PersonalInfoPage } from './pages/personalInfoPage';
 
 
 
-function App() {
-  // fetch("http://localhost:3001/api/basket/x8m1HZZWYrd9eE9lqxY0e19EL4H2")
-  //, {
-  //   method: "POST",
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  //   body: JSON.stringify({
-  //     name: "Ivan",
-  //     surname: "Petrichenko",
-  //     id: "124124124124",
-  //     tel: "80(44)516-90-78",
-  //     status: "customer",
-  //     email: "ivan@hr.cj"
-  //   })
-  // })
-    // .then(res => res.json())
-    // .then(res => console.log(res))
+ function App() {
+//   fetch("http://localhost:3001/api/users"
+//     , {
+//       method: "POST",
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({
+//         name: "Ivan",
+//         surname: null,
+//         id: "124124124124",
+//         tel: null,
+//         status: "customer",
+//         email: "ivan@hr.cj"
+//       })
+//     })
+//     .then(res => res.json())
+//     .then(res => console.log(res))
 
 
 

@@ -4,11 +4,12 @@ import { useSelector } from "react-redux"
 import InputMask from 'react-input-mask';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useAddHistoryMutation, useLazyGetUserQuery } from "../query/userApiSlice";
-import { useAddBasketMutation, useClearBasketMutation } from '../query/basketApiSlice';
+import { useAddHistoryMutation } from "../query/userApiSlice";
+import { useClearBasketMutation } from '../query/basketApiSlice';
 import { clearBasket } from "../slices/userSlice";
 import { useNavigate } from "react-router-dom";
 import { Modal } from '../components/modal/modal';
+import { useHttp } from '../hooks/useHttp';
 import Spinner from 'react-bootstrap/Spinner';
 
 
@@ -18,17 +19,19 @@ export function OrderPage() {
     const userId = useSelector(state => state.user.id);
     const delivery = useSelector(state => state.user.delivery);
     const name = useSelector(state => state.user.name);
+    const email = useSelector(state => state.user.email);
     const surname = useSelector(state => state.user.surname);
     const tel = useSelector(state => state.user.tel);
     const basket = useSelector(state => state.user.basket);
     const totalPrice = basket.reduce(((sum, current) => sum + current.price * current.quantity), 0).toFixed(2);
-    const basketList = basket.map(item => `${item.title}, ${item.quantity}шт.`)
+    const basketList = basket.map(item => `${item.title} - ${item.quantity}шт.`)
     const navigate = useNavigate();
+    const { request } = useHttp();
     // const { data: user = { history: [] } } = useGetUserQuery(userId);
     // const userHistory = user.history;
-    const [updateHistory] = useAddHistoryMutation();
-    const [updateBasket] = useAddBasketMutation();
-    const [setUserId] = useLazyGetUserQuery();
+    const [addHistory] = useAddHistoryMutation();
+    // const [updateBasket] = useAddBasketMutation();
+    // const [setUserId] = useLazyGetUserQuery();
     const [clearBasketQuery] = useClearBasketMutation();
 
     // const date = new Date()
@@ -56,61 +59,30 @@ export function OrderPage() {
         e.preventDefault();
         setLoading(true);
         if (delivery === "9") {
-            // await fetch('https://node.webmaks.site/api/sendEmail', {
-            fetch('http://localhost:3001/api/sendEmail', {
-                method: "POST", headers: {
-                    // значение этого заголовка обычно ставится автоматически,
-                    // в зависимости от тела запроса
-                    'Content-Type': 'application/json;charset=utf-8'
-                },
-                body: JSON.stringify({ delivery: true, orderName, orderSurname, orderTel, orderPostNumber, totalPrice, basketList })
-                // body: `Заказ для ${orderName} ${orderSurname}, тел: ${orderTel}, в отделение Европочты №${orderPostNumber} на сумму ${totalPrice}руб. + 9руб. за доставку, товары: ${basketList}` 
-            })
-                .then(res => res.json())
-                .then(res => console.log(res))
-
+            // request('https://node.webmaks.site/api/sendEmail', "POST", JSON.stringify({ delivery: true, orderName, orderSurname, orderTel, orderPostNumber, totalPrice, basketList, email }))
+            request('http://localhost:3001/api/sendEmail', "POST", JSON.stringify({ delivery: true, orderName, orderSurname, orderTel, orderPostNumber, totalPrice, basketList, email }))
+            .then(setLoading(false));
             console.log(`Заказ для ${orderName} ${orderSurname}, тел: ${orderTel}, в отделение Европочты №${orderPostNumber} на сумму ${totalPrice}руб. + 9руб. за доставку, товары: ${basketList}`);
 
         } else {
-            // await fetch('https://node.webmaks.site/api/sendEmail', {
-            fetch('http://localhost:3001/api/sendEmail', {
-                method: "POST", headers: {
-                    // значение этого заголовка обычно ставится автоматически,
-                    // в зависимости от тела запроса
-                    'Content-Type': 'application/json;charset=utf-8'
-                },
-                body: JSON.stringify({ delivery: false, orderName, orderTel, orderAddress, totalPrice, basketList })
-                // body: `Заказ для ${orderName}, тел: ${orderTel}, по адресу: ${orderAddress} на сумму ${totalPrice}руб., товары: ${basketList}`
-            })
-                .then(res => res.json())
-                .then(res => console.log(res))
-
+            // request('https://node.webmaks.site/api/sendEmail', "POST", JSON.stringify({ delivery: false, orderName, orderTel, orderAddress, totalPrice, basketList, email }))
+            request('http://localhost:3001/api/sendEmail', "POST", JSON.stringify({ delivery: false, orderName, orderTel, orderAddress, totalPrice, basketList, email }))
+                .then(setLoading(false));
             console.log(`Заказ для ${orderName}, тел: ${orderTel}, по адресу: ${orderAddress} на сумму ${totalPrice}руб., товары: ${basketList}`);
-
         }
 
+        setModal(true);
 
         const date = new Date();
         const stringDate = `${addZero(date.getDate())}.${addZero(date.getMonth() + 1)}.` + date.getFullYear();
-        console.log("delivered")
-        const user = await setUserId(userId);
-        console.log(user)
-        const currentHistory = await user.data.history.slice();
-
         const id = await `${new Date().getSeconds()}-${new Date().getMonth()}-${new Date().getMinutes()}`;
-        await currentHistory.push({ id, order: basketList, date: stringDate });
-        console.log(currentHistory)
-
-
-        // await updateHistory({ userId, currentHistory }).unwrap();
-        // await updateBasket({ userId, currentBasket: [] }).unwrap();
-
-
+        
+        await addHistory({ userId, id, date: stringDate, orderData: basketList.join() })
         clearBasketQuery(userId);
         dispatch(clearBasket());
 
-        setLoading(false);
-        setModal(true);
+        
+        
 
         setTimeout(() => {
             setModal(false);
@@ -118,19 +90,11 @@ export function OrderPage() {
             setOrderSurname(surname);
             setOrderAddress("");
             setOrderPostNumber("");
-            // navigate('/');
         }, 5000)
         setTimeout(() => {
 
             navigate('/');
         }, 6000)
-
-        // setOrderName(name);
-        // setOrderSurname(surname);
-        // setOrderAddress("");
-        // setOrderPostNumber("");
-        // navigate('/');
-
 
     }
 

@@ -14,16 +14,23 @@ const BasketItem = ({ item }) => {
 
     const onRemoveItem = async (itemId) => {
         await removeFromBasketFunc({ userId, itemId });
-         dispatch(removeFromBasket(itemId));
+        dispatch(removeFromBasket(itemId));
     }
 
     const onChangeQuantity = async (itemId, simbol, quantity) => {
-        console.log(quantity)
         if (quantity === 1 && simbol === "minus") {
             return
         } else {
-            simbol === "plus" ? await setBasketQuantity({ userId, itemId, quantity: quantity + 1 }) : await setBasketQuantity({ userId, itemId, quantity: quantity - 1 });
-            simbol === "plus" ? dispatch(addQuantityToBasket(itemId)) : dispatch(removeQuantityFromBasket(itemId));
+
+            if (simbol === "plus") {
+                await setBasketQuantity({ userId, itemId, quantity: quantity + 1 });
+                dispatch(addQuantityToBasket(itemId))
+            } else {
+                await setBasketQuantity({ userId, itemId, quantity: quantity - 1 });
+                dispatch(removeQuantityFromBasket(itemId));
+            }
+            // simbol === "plus" ? await setBasketQuantity({ userId, itemId, quantity: quantity + 1 }) : await setBasketQuantity({ userId, itemId, quantity: quantity - 1 });
+            // simbol === "plus" ? dispatch(addQuantityToBasket(itemId)) : dispatch(removeQuantityFromBasket(itemId));
         }
 
     }

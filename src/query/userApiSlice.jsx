@@ -4,6 +4,7 @@ export const userApiSlice = createApi({
     reducerPath: 'apiUser',
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001' }),
     // baseQuery: fetchBaseQuery({ baseUrl: 'https://node.webmaks.site' }),
+    tagTypes: ["history"],
     endpoints: (builder) => ({
         getUser: builder.query({
             query: (id) => `/api/users/${id}`,
@@ -33,6 +34,7 @@ export const userApiSlice = createApi({
         }),
         getHistory: builder.query({
             query: (id) => `/api/getHistory/${id}`,
+            providesTags: ["history"]
         }),
         addHistory: builder.mutation({
             query: ({ userId, id, orderData, date }) => ({
@@ -44,6 +46,7 @@ export const userApiSlice = createApi({
                     // Заголовки
                 }
             }),
+            invalidatesTags: ["history"]
         }),
 
     }),

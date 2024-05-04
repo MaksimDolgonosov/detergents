@@ -57,7 +57,8 @@ const userSlice = createSlice({
         },
         addQuantityToBasket(state, action) {
             state.basket = state.basket.map(product => {
-                if (product.id === action.payload) {
+                // eslint-disable-next-line
+                if (product.id == action.payload) {
                     product.quantity += 1;
                 }
                 return product;
@@ -65,7 +66,8 @@ const userSlice = createSlice({
         },
         removeQuantityFromBasket(state, action) {
             state.basket = state.basket.map(product => {
-                if (product.id === action.payload) {
+                // eslint-disable-next-line
+                if (product.id == action.payload) {
                     product.quantity -= 1;
                 }
                 return product;
