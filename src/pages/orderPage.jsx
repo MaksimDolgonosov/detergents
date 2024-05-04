@@ -59,14 +59,14 @@ export function OrderPage() {
         e.preventDefault();
         setLoading(true);
         if (delivery === "9") {
-            // request('https://node.webmaks.site/api/sendEmail', "POST", JSON.stringify({ delivery: true, orderName, orderSurname, orderTel, orderPostNumber, totalPrice, basketList, email }))
-            request('http://localhost:3001/api/sendEmail', "POST", JSON.stringify({ delivery: true, orderName, orderSurname, orderTel, orderPostNumber, totalPrice, basketList, email }))
-            .then(setLoading(false));
+            request('https://node.webmaks.site/api/sendEmail', "POST", JSON.stringify({ delivery: true, orderName, orderSurname, orderTel, orderPostNumber, totalPrice, basketList, email }))
+                // request('http://localhost:3001/api/sendEmail', "POST", JSON.stringify({ delivery: true, orderName, orderSurname, orderTel, orderPostNumber, totalPrice, basketList, email }))
+                .then(setLoading(false));
             console.log(`Заказ для ${orderName} ${orderSurname}, тел: ${orderTel}, в отделение Европочты №${orderPostNumber} на сумму ${totalPrice}руб. + 9руб. за доставку, товары: ${basketList}`);
 
         } else {
-            // request('https://node.webmaks.site/api/sendEmail', "POST", JSON.stringify({ delivery: false, orderName, orderTel, orderAddress, totalPrice, basketList, email }))
-            request('http://localhost:3001/api/sendEmail', "POST", JSON.stringify({ delivery: false, orderName, orderTel, orderAddress, totalPrice, basketList, email }))
+            request('https://node.webmaks.site/api/sendEmail', "POST", JSON.stringify({ delivery: false, orderName, orderTel, orderAddress, totalPrice, basketList, email }))
+                // request('http://localhost:3001/api/sendEmail', "POST", JSON.stringify({ delivery: false, orderName, orderTel, orderAddress, totalPrice, basketList, email }))
                 .then(setLoading(false));
             console.log(`Заказ для ${orderName}, тел: ${orderTel}, по адресу: ${orderAddress} на сумму ${totalPrice}руб., товары: ${basketList}`);
         }
@@ -76,13 +76,13 @@ export function OrderPage() {
         const date = new Date();
         const stringDate = `${addZero(date.getDate())}.${addZero(date.getMonth() + 1)}.` + date.getFullYear();
         const id = await `${new Date().getSeconds()}-${new Date().getMonth()}-${new Date().getMinutes()}`;
-        
+
         await addHistory({ userId, id, date: stringDate, orderData: basketList.join() })
         clearBasketQuery(userId);
         dispatch(clearBasket());
 
-        
-        
+
+
 
         setTimeout(() => {
             setModal(false);
