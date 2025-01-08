@@ -29,7 +29,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json())
-// app.use(express.static(path.resolve(__dirname, "../build")));
+app.use(express.static(path.resolve(__dirname, "../build")));
 //app.use(express.static('public'))
 
 //Настройка для локального сервера MAMP
@@ -46,8 +46,8 @@ app.use(bodyParser.json())
 
 const settingsMysql = {
     host: "localhost",
-    user: "webmakss_e_market",
-    database: "webmakss_detergents",
+    user: "createmaxs_detergents",
+    database: "createmaxs_detergents",
     password: "263832263832nM"
 }
 
@@ -261,7 +261,7 @@ app.post("/api/sendEmail", async (req, res) => {
             subject: 'Новый заказ',
             text: `Ваш заказ оформлен, для ${body.orderName}, тел: ${body.orderTel}, по адресу: ${body.orderAddress} на сумму ${body.totalPrice}руб., товары: ${body.basketList}`,
         });
-       // console.log(result)
+        // console.log(result)
     }
 
     res.status(201).json(req.body);
@@ -282,7 +282,7 @@ app.post("/api/users/", async (req, res) => {
     ]
     conn.query(query, [values], (err, result) => {
         if (err) throw err;
-       // console.log(result)
+        // console.log(result)
     })
 
     // syncConn.query(queryStr);
@@ -291,11 +291,11 @@ app.post("/api/users/", async (req, res) => {
 })
 
 
-// app.get('/', function (req, res) {
-//     res.render('index', { version: process.version })
-// })
+app.get('/', function (req, res) {
+    res.render('index', { version: process.version })
+})
 
-//app.listen()
+app.listen()
 
 
 // app.listen(PORT, () => {
@@ -303,7 +303,7 @@ app.post("/api/users/", async (req, res) => {
 // });
 
 
- app.listen();
+// app.listen();
 //const server = app.listen()
 // app.set()
 

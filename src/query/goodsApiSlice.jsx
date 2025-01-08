@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const goodsApiSlice = createApi({
     reducerPath: 'apiGoods',
     // baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001' }),
-     baseQuery: fetchBaseQuery({ baseUrl: 'https://node.webmaks.site' }),
+     baseQuery: fetchBaseQuery({ baseUrl: 'https://detergents.createmax.site' }),
     tagTypes: ["goods"],
     endpoints: (builder) => ({
         getAllGoods: builder.query({
